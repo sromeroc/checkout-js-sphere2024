@@ -1,0 +1,94 @@
+@import '../../ui/Base';
+
+// Static Shipping Option
+// ---------------------------------------------------
+.shippingOption {
+    display: inline-block;
+    min-height: 0;
+    width: 100%;
+}
+
+.shippingOption--selected {
+    border-top: container("border");
+    margin-top: spacing("half");
+    padding-top: spacing("half");
+}
+
+.shippingOption-figure,
+.shippingOption-desc,
+.shippingOption-price {
+    display: inline-block;
+    font-size: fontSize("base");
+}
+
+.shippingOption-img {
+    padding-right: spacing("half");
+}
+
+.shippingOption-price {
+    font-weight: fontWeight("bold");
+    padding-left: spacing("half");
+}
+
+.shippingOption-transitTime {
+    display: block;
+    font-size: fontSize("base");
+    font-weight: fontWeight("normal");
+}
+
+// ShippingOption Label
+// ---------------------------------------------------
+.shippingOptionLabel {
+    .shippingOption {
+        align-items: center;
+        display: flex;
+        min-height: remCalc(35px);
+    }
+
+    .shippingOption-figure,
+    .shippingOption-desc,
+    .shippingOption-price {
+        font-size: inherit;
+        line-height: lineHeight("base");
+        vertical-align: middle;
+    }
+
+    .shippingOption-figure,
+    .shippingOption-desc {
+        flex: 1;
+    }
+
+    .shippingOption-figure {
+        max-width: remCalc(50px);
+        min-width: remCalc(50px);
+    }
+
+    .shippingOption-additionalDescription--container {
+        display: flex;
+        flex-direction: row;
+        line-height: 1.5rem;
+
+        .shippingOption-additionalDescription {
+            font-size: fontSize("smaller");
+            font-weight: fontWeight("normal");
+            text-overflow: ellipsis;
+        }
+
+        .shippingOption-additionalDescription--collapsed {
+            height: 1.5rem;
+            overflow: hidden;
+            width: 65%;
+        }
+
+        .shippingOption-additionalDescription--expanded {
+            height: auto;
+            overflow: visible;
+            white-space: initial;
+            width: 100%;
+        }
+
+        .shippingOption-readMore {
+            font-weight: normal;
+        }
+    }
+}

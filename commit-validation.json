@@ -1,0 +1,14 @@
+{
+    "scopes": [
+        "billing",
+        "cart",
+        "checkout",
+        "customer",
+        "embedded-checkout",
+        "extension",
+        "order",
+        "other",
+        "payment",
+        "shipping"
+    ]
+}

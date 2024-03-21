@@ -1,0 +1,49 @@
+@import "../ui/Base";
+
+.checkout-address:has(.floating-form-field) {
+    margin-left: -0.5 * $floating-form-field-spacing;
+    margin-right: -0.5 * $floating-form-field-spacing;
+}
+
+.checkout-address {
+    display: flex;
+    flex-flow: row wrap;
+    margin-left: -1 * spacing("half");
+    margin-right: -1 * spacing("half");
+
+    .dynamic-form-addressState,
+    .dynamic-form-field {
+        display: block;
+        flex: 1;
+        flex-basis: 100%;
+        margin-bottom: spacing("half");
+        max-width: 100%;
+        padding: 0 spacing("half");
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+
+    .dynamic-form-field.floating-form-field {
+        margin-bottom: $floating-form-field-spacing;
+        padding: 0 0.5 * $floating-form-field-spacing;
+    }
+
+    .dynamic-form-field--province,
+    .dynamic-form-field--provinceCode,
+    .dynamic-form-field--firstName,
+    .dynamic-form-field--lastName,
+    .dynamic-form-field--phone,
+    .dynamic-form-field--city {
+        @include breakpoint("small") {
+            flex-basis: 50%;
+        }
+    }
+
+    .dynamic-form-field--postCode {
+        @include breakpoint("small") {
+            flex-basis: 30%;
+        }
+    }
+}

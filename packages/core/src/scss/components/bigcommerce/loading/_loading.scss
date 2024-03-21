@@ -1,0 +1,79 @@
+// =============================================================================
+// LOADING INDICATORS
+// =============================================================================
+
+.loadingNotification-label {
+    align-items: center;
+    display: flex;
+    padding: spacing("half") spacing("double");
+
+    .label {
+        margin-left: spacing("half");
+    }
+}
+
+.spinner {
+    animation: lds-dual-ring 1.2s linear infinite;
+    border-color: $loadingNotification-label-spinnerColor;
+    border-radius: 50%;
+    border-style: solid;
+    border-width: 1px;
+    display: inline-block;
+    height: remCalc(15px);
+    width: remCalc(15px);
+}
+
+@keyframes lds-dual-ring {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.layout {
+    > .loadingOverlay::before {
+        position: fixed;
+        top: $loadingOverlay-spinner-top--main;
+    }
+}
+
+.loadingOverlay {
+    opacity: 0.9;
+    z-index: zIndex("low");
+}
+
+@keyframes loading-skeleton-bar-keyframes {
+    0% {
+        background-color: color("greys", "light");
+        left: 0;
+        width: 0;
+    }
+
+    50% {
+        background-color: $loading-skeleton-button-bg-color;
+        left: 0;
+        width: 100%;
+    }
+
+    100% {
+        background-color: color("greys", "light");
+        left: 100%;
+        width: 0;
+    }
+}
+
+.embedded-checkout-loading-spinner-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: $loading-spinner-overlay;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    z-index: 999;
+}

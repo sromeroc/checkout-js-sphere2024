@@ -1,0 +1,40 @@
+// =============================================================================
+// CREDIT CARD TYPES
+// =============================================================================
+
+// BCApp Credit Card Types component extensions and additons
+// -----------------------------------------------------------------------------
+//
+// Purpose: Override Citadel style for the credit-card-type component
+//
+// 1. For ng-checkout, the custom behavior for default credit card type is for
+// it to be greyed out until proven valid.
+//
+// -----------------------------------------------------------------------------
+
+@if $exportCSS--credit-card-types {
+    .creditCardTypes-list {
+        align-content: flex-end;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: end;
+        margin-left: spacing("single");
+        max-width: $credit-card-items-max-width;
+    }
+
+    .creditCardTypes-list-item {
+        opacity: 1;
+        transition: all 0.6s ease-out;
+        width: $credit-card-items-width;
+
+        &.not-active {
+            filter: grayscale(100%);
+            transform: scale(0.95);
+        }
+
+        &.is-active {
+            transform: scale(1.1);
+        }
+    }
+}

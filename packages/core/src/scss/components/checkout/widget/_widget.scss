@@ -1,0 +1,101 @@
+// =============================================================================
+// WIDGET (Component)
+// =============================================================================
+
+.widget {
+    outline: 0;
+    padding-bottom: spacing("half");
+    width: 100%;
+}
+
+.widget--paymentMethod {
+    background-color: container("fill", "dark");
+    border: container("border", "dark");
+    border-radius: $global-radius;
+    list-style: none;
+    margin-left: 0;
+    padding-bottom: 0;
+}
+
+.widget--braintree {
+    .cardDetails {
+        margin-bottom: 0;
+    }
+}
+
+.widget--opy {
+    padding-bottom: 0;
+}
+
+.widget-header {
+    display: block;
+    padding: $checklist-spacing $checklist-spacingRight $checklist-spacing $checklist-spacingLeft--small;
+}
+
+.widget-body {
+    @include collapse($max-height: remCalc(350px));
+
+    margin-left: $checklist-spacingLeft--small;
+    margin-right: $checklist-spacingRight;
+}
+
+.widget-container {
+    padding: ($checklist-spacing / 1.5) 0;
+}
+
+.widget-bodyCard {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.widget-header-googlepay {
+    text-align: center;
+}
+
+.widget-input--stripev3 {
+    color: $color-black;
+    font: 400 1.1rem/normal sans-serif;
+    padding: 1rem;
+
+    &::placeholder {
+        color: rgb(117, 117, 117);
+        font: 400 1.1rem/normal sans-serif;
+    }
+}
+
+.widget--stripev3 {
+    @extend .form-input;
+
+    margin-bottom: remCalc(20px);
+    margin-top: remCalc(20px);
+    padding: 1rem;
+
+    @media screen and (max-width: $screen-large-iPhone) {
+        margin: remCalc(20px) 0 remCalc(20px) 0;
+        padding: 1rem 0 1rem 1rem;
+        width: 20rem;
+    }
+
+    @media screen and (max-width: $screen-medium-iPhone) {
+        margin: remCalc(20px) -2rem remCalc(20px) -2rem;
+        padding: 1rem 0 1rem 1rem;
+        width: 20rem;
+    }
+
+    @media screen and (max-width: $screen-xxsmall) {
+        margin: remCalc(20px) -2rem remCalc(20px) -3rem;
+        padding: 1rem 0 1rem 0.25rem;
+        width: 19rem;
+    }
+}
+
+.StripeElement--focus {
+    border-color: $input-focus-border-color;
+    box-shadow: $input-focus-boxShadow;
+}
+
+.widget-link-amazonpay {
+    padding-bottom: spacing("quarter");
+}

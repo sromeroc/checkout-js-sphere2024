@@ -1,0 +1,10 @@
+@import '../../ui/Base';
+
+.errorCode {
+    font-size: fontSize("tiny");
+    opacity: 0.4;
+
+    .errorCode-value {
+        word-break: break-word;
+    }
+}

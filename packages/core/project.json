@@ -1,0 +1,78 @@
+{
+  "root": "packages/core",
+  "sourceRoot": "packages/core/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "command": "webpack --mode production"
+      },
+      "dependsOn": [
+        {
+          "target": "generate",
+          "projects": "self"
+        },
+        {
+          "target": "build",
+          "projects": "dependencies"
+        }
+      ]
+    },
+    "dev": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "command": "webpack --mode development --watch"
+      },
+      "dependsOn": [
+        {
+          "target": "generate",
+          "projects": "self"
+        },
+        {
+          "target": "build",
+          "projects": "dependencies"
+        }
+      ]
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/packages/core"],
+      "options": {
+        "jestConfig": "packages/core/jest.config.js",
+        "passWithNoTests": false,
+        "runInBand": true
+      },
+      "dependsOn": [
+        {
+          "target": "generate",
+          "projects": "self"
+        }
+      ]
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "fix": true,
+      "options": {
+        "lintFilePatterns": ["packages/core/**/*.{ts,tsx}"]
+      },
+      "dependsOn": [
+        {
+          "target": "generate",
+          "projects": "self"
+        }
+      ]
+    },
+    "generate": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "commands": [
+          "npx nx generate @bigcommerce/checkout/workspace-tools:auto-export --projectName=core"
+        ],
+        "parallel": false
+      }
+    }
+  },
+  "tags": ["scope:core"]
+}

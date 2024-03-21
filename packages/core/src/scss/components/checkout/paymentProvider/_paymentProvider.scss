@@ -1,0 +1,157 @@
+// =============================================================================
+// PAYMENT PROVIDER (Component)
+// =============================================================================
+.paymentProviderHeader-container {
+    align-items: start;
+    display: flex;
+    justify-content: space-between;
+}
+
+.paymentProviderHeader-subtitleContainer {
+    flex-basis: 100%;
+}
+
+.paymentProviderHeader-nameContainer {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.paymentProviderHeader-img {
+    align-self: center;
+    display: flex;
+    height: fontSize("large");
+    object-fit: contain;
+
+    + .paymentProviderHeader-name {
+        margin-left: spacing("half");
+        white-space: nowrap;
+    }
+}
+
+.googlePay-logo {
+    height: remCalc(40px);
+}
+
+.paymentProviderHeader-cc {
+    @include breakpoint("small") {
+        align-items: flex-end;
+        display: flex;
+        flex-grow: 0;
+        flex-shrink: 2;
+    }
+}
+
+.paymentProviderHeader-name {
+    align-items: flex-end;
+    align-self: start;
+    display: flex;
+    flex-grow: 1;
+    flex-shrink: 1;
+}
+
+@media (max-width: $screen-xsmall) {
+    div[data-test="payment-method-sezzle"] {
+        .paymentProviderHeader-name {
+            visibility: hidden;
+        }
+    }
+}
+
+.paymentMethod--creditCard,
+.paymentMethod--hosted,
+.paymentMethod--walletButton {
+    clear: both;
+    padding: $payment-step-spacing-top 0;
+}
+
+.chasePay--container {
+    margin-top: remCalc(5px);
+}
+
+%button-masterpass-base {
+    background-color: color("greys", "lightest");
+    background-image: url(https://masterpass.com/dyn/img/btn/global/mp_chk_btn_180x042px.svg);
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    border-color: color("greys", "lightest");
+    border-radius: remCalc(5px);
+    height: remCalc(42px);
+    padding: 0;
+    width: remCalc(180px);
+}
+
+/* Masterpass accordion button */
+.button-masterpass {
+    @extend %button-masterpass-base;
+
+    cursor: pointer;
+    display: none;
+}
+
+/* Masterpass widget button */
+.button-masterpass-mark {
+    @extend %button-masterpass-base;
+
+    cursor: default;
+    margin: auto;
+}
+
+// KLUDGE: We need this override when Klarna modal is open because
+// `scroll-behavior: smooth` conflicts with the styles injected by Klarna JS,
+// cropping the content of the modal in Firefox as a result.
+body.klarna-payments-fso-open {
+    scroll-behavior: auto;
+}
+
+.stripe-sepa-mandate-disclaimer {
+    margin-bottom: 0;
+    padding-bottom: remCalc(20px);
+}
+
+#stripe-card-field--invalid {
+    border-color: #fa755a;
+}
+
+#stripe-card-field--webkit-autofill {
+    background-color: #fefde5 !important;
+}
+
+.submitButtonContainer {
+    margin-left: 0;
+    width: 100%;
+}
+
+.checkoutcom-sepa-column-container {
+    display: flex;
+    flex: 1;
+    flex-basis: 100%;
+    flex-direction: row;
+    margin-bottom: 0;
+    padding-bottom: remCalc(5px);
+}
+
+.checkoutcom-sepa-column-content {
+    width: 50%;
+}
+
+.checkoutcom-sepa-title {
+    margin-bottom: 0;
+    padding-bottom: remCalc(5px);
+}
+
+.checkoutcom-sepa-line {
+    margin-bottom: 0;
+}
+
+/* Custom payment submit buttons styles */
+.payment-submit-button-bolt {
+    font-size: 16px;
+}
+
+.payment-submit-button-bolt-icon {
+    height: remCalc(12px);
+    margin-right: remCalc(8px);
+    width: remCalc(12px);
+}
