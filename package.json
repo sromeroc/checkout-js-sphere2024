@@ -25,7 +25,8 @@
     "lint": "npx nx run-many --target=lint --all",
     "test": "npx nx run-many --target=test --all",
     "test:watch": "npx nx run-many --target=test --all --watch",
-    "dev:server-https": "http-server -S -p 443 -C cert.pem build"
+    "dev:server-https": "http-server -S -p 443 -C cert.pem build",
+    "gcp-build": ""
   },
   "jest-junit": {
     "addFileAttribute": "true"

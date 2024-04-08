@@ -1,0 +1,10 @@
+runtime: nodejs18
+build_env_variables:
+  GOOGLE_NODE_RUN_SCRIPTS: ""
+handlers:
+  - url: /
+    static_files: build
+    upload: build
+
+  - url: /
+    static_dir: build  
