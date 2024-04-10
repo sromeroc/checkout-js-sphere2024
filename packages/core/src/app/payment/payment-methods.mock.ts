@@ -62,7 +62,7 @@ export function getPaypalCreditPaymentMethod(): PaymentMethod {
 
 export function getPaymentMethodSphere(): PaymentMethod {
     return {
-        id: 'authorizenet',
+        id: 'sphere',
         gateway: undefined,
         logoUrl: '',
         method: 'credit-card',
@@ -79,7 +79,7 @@ export function getPaymentMethodSphere(): PaymentMethod {
             is3dsEnabled: undefined,
             isVisaCheckoutEnabled: undefined,
             merchantId: undefined,
-            testMode: false,
+            testMode: false, // !! true
         },
         type: 'PAYMENT_TYPE_API',
     };
