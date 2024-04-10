@@ -60,6 +60,31 @@ export function getPaypalCreditPaymentMethod(): PaymentMethod {
     };
 }
 
+export function getPaymentMethodSphere(): PaymentMethod {
+    return {
+        id: 'authorizenet',
+        gateway: undefined,
+        logoUrl: '',
+        method: 'credit-card',
+        supportedCards: ['VISA', 'AMEX', 'MC'],
+        initializationData: {
+            payPalCreditProductBrandName: { credit: '' },
+        },
+        config: {
+            displayName: 'Credit Card - Sphere',
+            cardCode: true,
+            enablePaypal: undefined,
+            hasDefaultStoredInstrument: false,
+            helpText: '',
+            is3dsEnabled: undefined,
+            isVisaCheckoutEnabled: undefined,
+            merchantId: undefined,
+            testMode: false,
+        },
+        type: 'PAYMENT_TYPE_API',
+    };
+}
+
 export function getMobilePaymentMethod(): PaymentMethod {
     return {
         id: 'authorizenetMobile',
