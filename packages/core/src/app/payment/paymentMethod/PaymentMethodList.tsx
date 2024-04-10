@@ -50,7 +50,7 @@ const PaymentMethodList: FunctionComponent<
         (value: string) => {
             onSelect(getPaymentMethodFromListValue(modifiedMethods, value));
         },
-        [methods, onSelect],
+        [modifiedMethods, onSelect],
     );
 
     return (
