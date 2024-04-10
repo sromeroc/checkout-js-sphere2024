@@ -30,7 +30,7 @@ export function getPaymentMethodCulqi(): PaymentMethod {
         id: 'culqi',
         gateway: undefined,
         config: {
-            displayName: 'Pagar con Culqi - Sphere',
+            displayName: 'Pagar con Culqi',
             hasDefaultStoredInstrument: false,
             helpText: "",
             testMode: true
@@ -79,7 +79,7 @@ export function getPaymentMethodSphere(): PaymentMethod {
             is3dsEnabled: undefined,
             isVisaCheckoutEnabled: undefined,
             merchantId: undefined,
-            testMode: true, // !! true
+            testMode: false, // !! true
         },
         type: 'PAYMENT_TYPE_API',
     };
