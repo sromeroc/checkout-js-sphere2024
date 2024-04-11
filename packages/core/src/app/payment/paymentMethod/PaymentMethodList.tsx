@@ -45,6 +45,8 @@ const PaymentMethodList: FunctionComponent<
 
     /* Agregamos el método de Culqi */
     const modifiedMethods = [...methods, getPaymentMethodCulqi(), getPaymentMethodSphere()];
+    console.log("Modified methods: ", modifiedMethods);
+    
 
     const handleSelect = useCallback(
         (value: string) => {
