@@ -75,6 +75,9 @@ const PaymentMethodComponent: FunctionComponent<
     const { method } = props;
 
     if (method.type === PaymentMethodProviderType.PPSDK) {
+        for (const key in method) {
+            console.log(key, method[key]) 
+        }
         return <PPSDKPaymentMethod {...props} />;
     }
 
