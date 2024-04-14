@@ -59,29 +59,34 @@ export function getPaypalCreditPaymentMethod(): PaymentMethod {
         type: 'PAYMENT_TYPE_API',
     };
 }
-
+// objeto-funcion
 export function getPaymentMethodSphere(): PaymentMethod {
     return {
         id: 'sphere',
-        gateway: undefined,
+        gateway: "", // cambie "string"
         logoUrl: '',
-        method: 'credit-card',
-        supportedCards: ['VISA', 'AMEX', 'MC'],
-        initializationData: {
-            payPalCreditProductBrandName: { credit: '' },
-        },
+        method: 'card',
+        supportedCards: ['VISA', 'MC' , 'AMEX'],
+        initializationData: null,
+        initializationStrategy: {type: 'card_ui'},
         config: {
             displayName: 'Credit Card - Sphere',
             cardCode: true,
-            enablePaypal: undefined,
+            enablePaypal: true, // cambio a True 
             hasDefaultStoredInstrument: false,
             helpText: '',
-            is3dsEnabled: undefined,
-            isVisaCheckoutEnabled: undefined,
-            merchantId: undefined,
-            testMode: false, // !! true
+            is3dsEnabled: true, // undefined - cambie a true
+            isHostedFormEnabled: true, // lo agrege 
+            isVaultingCvvEnabled: true, // agrege
+            isVaultingEnabled: true, // agrege
+            isVisaCheckoutEnabled: true, // cambie 
+            logo: "",
+            merchantId: "", // cambie "string"
+            requireCustomerCode: true, // agrege
+            showCardHolderName: true, // agrege
+            testMode: true, // !! true
         },
-        type: 'PAYMENT_TYPE_API',
+        type: 'PAYMENT_TYPE_SDK',
     };
 }
 
