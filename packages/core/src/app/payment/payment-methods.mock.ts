@@ -30,7 +30,7 @@ export function getPaymentMethodCulqi(): PaymentMethod {
         id: 'culqi',
         gateway: undefined,
         config: {
-            displayName: 'Pagar con Culqi - App Engine',
+            displayName: 'Pagar con Culqi - Sphere',
             hasDefaultStoredInstrument: false,
             helpText: "",
             testMode: true
