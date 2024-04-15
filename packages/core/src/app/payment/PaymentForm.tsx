@@ -153,9 +153,8 @@ const PaymentForm: FunctionComponent<
                     />
                 )}
 
-                {/* shouldHidePaymentSubmitButton ? */}
                 <div className="form-actions">
-                    {true ? (
+                    {shouldHidePaymentSubmitButton ? (
                         <PaymentMethodSubmitButtonContainer />
                     ) : (
                         <PaymentSubmitButton
