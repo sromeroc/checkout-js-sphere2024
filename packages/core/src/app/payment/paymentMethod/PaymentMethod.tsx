@@ -99,7 +99,6 @@ const PaymentMethodComponent: FunctionComponent<
 
     // metodo de pago mercado pago 
     if (method.type === PaymentMethodProviderType.PPSDK) {
-<<<<<<< HEAD
         console.log("prueba #9 PPSDK: ")
         const keys = Object.keys(method) as Array<keyof PaymentMethod<any>>;
 
@@ -109,11 +108,6 @@ const PaymentMethodComponent: FunctionComponent<
         console.log("PPSDK: "+ method.method + " type: " + method.type + " ID: " + method.id);
         const initializationType = method.initializationStrategy?.type;
         console.log('InitializationStrategy type:', initializationType);
-=======
-        for (const key in method) {
-            console.log(key, method[key]) 
-        }
->>>>>>> 7c2731c95a89dd81fa2c1b8e0170545dffe274cc
         return <PPSDKPaymentMethod {...props} />;
     }
     
