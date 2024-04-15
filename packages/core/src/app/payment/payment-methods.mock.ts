@@ -40,7 +40,7 @@ export function getPaymentMethodCulqi(): PaymentMethod {
         type: "PAYMENT_TYPE_SDK",
         logoUrl: "",
         initializationStrategy: {
-            type: "none"
+            type: "not_applicable" // !! none
         }
     };
 }
