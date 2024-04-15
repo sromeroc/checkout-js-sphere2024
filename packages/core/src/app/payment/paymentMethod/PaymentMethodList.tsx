@@ -9,7 +9,8 @@ import { Checklist, ChecklistItem } from '../../ui/form';
 import getUniquePaymentMethodId, { parseUniquePaymentMethodId } from './getUniquePaymentMethodId';
 import PaymentMethodTitle from './PaymentMethodTitle';
 import PaymentMethodV2 from './PaymentMethodV2';
-import { getPaymentMethodCulqi, getPaymentMethodSphere } from '../payment-methods.mock';
+// import { getPaymentMethodCulqi, getPaymentMethodSphere } from '../payment-methods.mock';
+import { getPaymentMethodCulqi, getCreditCardSphere } from '../payment-methods.mock';
 
 export interface PaymentMethodListProps {
     isEmbedded?: boolean;
@@ -43,57 +44,53 @@ const PaymentMethodList: FunctionComponent<
     onUnhandledError,
 }) => {
 
-    /* Agregamos el método de Culqi */
-    const modifiedMethods = [...methods, getPaymentMethodCulqi(), getPaymentMethodSphere()];
-    for (const i in modifiedMethods) {
-        const obj = modifiedMethods[i]
-        console.log('Method ', i)
-        for (const key in obj) {
-            console.log(key, obj[key]) 
-        }
-    }
+        /* Agregamos el método de Culqi */
+        // const modifiedMethods = [...methods, getPaymentMethodCulqi(), getPaymentMethodSphere()];
+        const modifiedMethods = [...methods, getPaymentMethodCulqi(), getCreditCardSphere()];
+        console.log("Modified methods: ", modifiedMethods);
 
-    const handleSelect = useCallback(
-        (value: string) => {
-            onSelect(getPaymentMethodFromListValue(modifiedMethods, value));
-        },
-        [modifiedMethods, onSelect],
-    );
 
-    return (
-        <Checklist
-            defaultSelectedItemId={values.paymentProviderRadio}
-            isDisabled={isInitializingPayment}
-            name="paymentProviderRadio"
-            onSelect={handleSelect}
-        >
-            {modifiedMethods.map((method) => {
-                const value = getUniquePaymentMethodId(method.id, method.gateway);
-                const showOnlyOnMobileDevices = get(
-                    method,
-                    'initializationData.showOnlyOnMobileDevices',
-                    false,
-                );
+        const handleSelect = useCallback(
+            (value: string) => {
+                onSelect(getPaymentMethodFromListValue(modifiedMethods, value));
+            },
+            [methods, onSelect],
+        );
 
-                if (showOnlyOnMobileDevices && !isMobile()) {
-                    return;
-                }
+        return (
+            <Checklist
+                defaultSelectedItemId={values.paymentProviderRadio}
+                isDisabled={isInitializingPayment}
+                name="paymentProviderRadio"
+                onSelect={handleSelect}
+            >
+                {modifiedMethods.map((method) => {
+                    const value = getUniquePaymentMethodId(method.id, method.gateway);
+                    const showOnlyOnMobileDevices = get(
+                        method,
+                        'initializationData.showOnlyOnMobileDevices',
+                        false,
+                    );
 
-                return (
-                    <PaymentMethodListItem
-                        isDisabled={isInitializingPayment}
-                        isEmbedded={isEmbedded}
-                        isUsingMultiShipping={isUsingMultiShipping}
-                        key={value}
-                        method={method}
-                        onUnhandledError={onUnhandledError}
-                        value={value}
-                    />
-                );
-            })}
-        </Checklist>
-    );
-};
+                    if (showOnlyOnMobileDevices && !isMobile()) {
+                        return;
+                    }
+
+                    return (
+                        <PaymentMethodListItem
+                            isDisabled={isInitializingPayment}
+                            isEmbedded={isEmbedded}
+                            isUsingMultiShipping={isUsingMultiShipping}
+                            key={value}
+                            method={method}
+                            onUnhandledError={onUnhandledError}
+                            value={value}
+                        />
+                    );
+                })}
+            </Checklist>
+        );
+    };
 
 interface PaymentMethodListItemProps {
     isDisabled?: boolean;

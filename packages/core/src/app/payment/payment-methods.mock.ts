@@ -30,7 +30,7 @@ export function getPaymentMethodCulqi(): PaymentMethod {
         id: 'culqi',
         gateway: undefined,
         config: {
-            displayName: 'Pagar con Culqi',
+            displayName: 'Pagar con Culqi - Sphere',
             hasDefaultStoredInstrument: false,
             helpText: "",
             testMode: true
@@ -112,5 +112,41 @@ export function getMobilePaymentMethod(): PaymentMethod {
             testMode: false,
         },
         type: 'PAYMENT_TYPE_API',
+    };
+}
+
+export function getCreditCardSphere(): PaymentMethod {
+    return {
+        id: 'sphere.card',
+        gateway: undefined, // !! null
+        logoUrl: '',
+        method: 'card',
+        supportedCards: ['VISA', 'MC', 'AMEX'],
+        // providesShippingAddress: true,
+        config: {
+            cardCode: true,
+            displayName: "Credit Card - Sphere",
+            enablePaypal: undefined,
+            hasDefaultStoredInstrument: false,
+            helpText: "",
+            is3dsEnabled: undefined,
+            isHostedFormEnabled: true,
+            isVaultingCvvEnabled: undefined,
+            isVaultingEnabled: false,
+            isVisaCheckoutEnabled: undefined,
+            logo: undefined,
+            merchantId: undefined,
+            requireCustomerCode: false,
+            showCardHolderName: undefined,
+            testMode: true
+        },
+        type: 'PAYMENT_TYPE_SDK',
+        initializationStrategy: {
+            type: 'card_ui'
+        },
+        nonce: undefined,
+        initializationData: null,
+        clientToken: undefined,
+        returnUrl: undefined,
     };
 }
