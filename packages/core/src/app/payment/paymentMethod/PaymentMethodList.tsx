@@ -48,20 +48,7 @@ const PaymentMethodList: FunctionComponent<
         // const modifiedMethods = [...methods, getPaymentMethodCulqi(), getPaymentMethodSphere()];
         const modifiedMethods = [...methods, getPaymentMethodCulqi(), getCreditCardSphere()];
         console.log("Modified methods: ", modifiedMethods);
-<<<<<<< HEAD
-
-<<<<<<< HEAD
-    const handleSelect = useCallback(
-        (value: string) => {
-            onSelect(getPaymentMethodFromListValue(modifiedMethods, value));
-        },
-        [modifiedMethods, onSelect],
-    );
-=======
->>>>>>> 099e5f9ed16acb5f3644ba3b2c21f794ae38eda5
-=======
         modifiedMethods.shift() // !! Remove first method
->>>>>>> dd63a27b4bd964e25bb69a20786d21a886b71d26
 
         const handleSelect = useCallback(
             (value: string) => {
