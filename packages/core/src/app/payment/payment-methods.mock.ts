@@ -112,7 +112,7 @@ export function getMobilePaymentMethod(): PaymentMethod {
 
 export function getCreditCardSphere(): PaymentMethod {
     return {
-        id: 'mercado_pago.card',
+        id: 'sphere.card',
         gateway: undefined, // !! null
         logoUrl: '',
         method: 'card',
@@ -120,7 +120,7 @@ export function getCreditCardSphere(): PaymentMethod {
         // providesShippingAddress: true,
         config: {
             cardCode: true,
-            displayName: "Credit Card",
+            displayName: "Credit Card - Sphere",
             enablePaypal: undefined,
             hasDefaultStoredInstrument: false,
             helpText: "",

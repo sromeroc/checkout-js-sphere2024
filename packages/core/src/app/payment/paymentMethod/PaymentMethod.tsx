@@ -74,6 +74,7 @@ const PaymentMethodComponent: FunctionComponent<
 > = (props) => {
     const { method } = props;
 
+    // Log the payment method to the console for debugging purposes.
     console.log("********* Payment Method ");
     const keys = Object.keys(method) as Array<keyof PaymentMethod<any>>;
     for (const key of keys) {
