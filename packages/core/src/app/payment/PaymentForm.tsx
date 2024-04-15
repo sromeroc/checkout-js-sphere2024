@@ -139,11 +139,18 @@ const PaymentForm: FunctionComponent<
                     values={values}
                 />
 
+<<<<<<< HEAD
                 {/* <CulqiPaymentMethod onSelect={() => {
                     console.log(`Se esta seleccionando el evento de culqui`);
                     console.log(methods, values);
 
                 }} /> */}
+=======
+                {false && <CulqiPaymentMethod onSelect={() => {
+                    console.log(`Se esta seleccionando el evento de culqui`);
+                    console.log(methods, values);
+                }} />}
+>>>>>>> 099e5f9ed16acb5f3644ba3b2c21f794ae38eda5
 
                 <PaymentRedeemables />
 
