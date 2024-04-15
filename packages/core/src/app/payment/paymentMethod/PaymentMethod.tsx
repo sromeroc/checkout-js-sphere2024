@@ -81,6 +81,12 @@ const PaymentMethodComponent: FunctionComponent<
         console.log(key, method[key]);
     }
 
+    // Culqi method
+    if (method.id === PaymentMethodId.Culqi) {
+        console.log('Calling to Culqi method ...');
+        return null;
+    }
+
     if (method.type === PaymentMethodProviderType.PPSDK) {
         return <PPSDKPaymentMethod {...props} />;
     }

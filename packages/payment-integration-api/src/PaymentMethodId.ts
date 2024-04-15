@@ -32,6 +32,7 @@ enum PaymentMethodId {
     CheckoutcomGooglePay = 'googlepaycheckoutcom',
     Clearpay = 'clearpay',
     Converge = 'converge',
+    Culqi = 'culqi',
     CybersourceV2GooglePay = 'googlepaycybersourcev2',
     DigitalRiver = 'digitalriver',
     Fawry = 'fawry',
@@ -65,7 +66,7 @@ enum PaymentMethodId {
     StripeUPE = 'stripeupe',
     WorldpayAccess = 'worldpayaccess',
     WorldpayAccessGooglePay = 'googlepayworldpayaccess',
-    Zip = 'zip',
+    Zip = 'zip',   
 }
 
 export default PaymentMethodId;
