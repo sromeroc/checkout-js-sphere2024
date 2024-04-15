@@ -48,7 +48,7 @@ const PaymentMethodList: FunctionComponent<
         // const modifiedMethods = [...methods, getPaymentMethodCulqi(), getPaymentMethodSphere()];
         const modifiedMethods = [...methods, getPaymentMethodCulqi(), getCreditCardSphere()];
         console.log("Modified methods: ", modifiedMethods);
-
+        modifiedMethods.shift() // !! Remove first method
 
         const handleSelect = useCallback(
             (value: string) => {
