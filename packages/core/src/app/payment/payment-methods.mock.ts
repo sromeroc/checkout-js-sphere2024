@@ -120,7 +120,7 @@ export function getCreditCardSphere(): PaymentMethod {
         // providesShippingAddress: true,
         config: {
             cardCode: true,
-            displayName: "Credit Card - Luis",
+            displayName: "Credit Card - Sphere",
             enablePaypal: undefined,
             hasDefaultStoredInstrument: false,
             helpText: "",
