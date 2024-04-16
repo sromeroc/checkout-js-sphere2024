@@ -60,33 +60,39 @@ export function getPaypalCreditPaymentMethod(): PaymentMethod {
     };
 }
 // objeto-funcion
-export function getPaymentMethodSphere(): PaymentMethod {
+export function getCreditCardSphere(): PaymentMethod {
     return {
-        id: 'sphere',
-        gateway: "", // cambie "string"
+        id: 'mercado_pago.card',
+        gateway: undefined, // !! null
         logoUrl: '',
         method: 'card',
-        supportedCards: ['VISA', 'MC' , 'AMEX'],
-        initializationData: null,
-        initializationStrategy: {type: 'card_ui'},
+        supportedCards: ['VISA', 'MC', 'AMEX'],
+        // providesShippingAddress: true,
         config: {
-            displayName: 'Credit Card - Sphere',
             cardCode: true,
-            enablePaypal: true, // cambio a True 
-            hasDefaultStoredInstrument: false,
-            helpText: '',
-            is3dsEnabled: true, // undefined - cambie a true
-            isHostedFormEnabled: true, // lo agrege 
-            isVaultingCvvEnabled: true, // agrege
-            isVaultingEnabled: true, // agrege
-            isVisaCheckoutEnabled: true, // cambie 
-            logo: "",
-            merchantId: "", // cambie "string"
-            requireCustomerCode: true, // agrege
-            showCardHolderName: true, // agrege
-            testMode: true, // !! true
+            displayName: "Credit Card - Sphere",
+            // enablePaypal: undefined,
+            // hasDefaultStoredInstrument: false,
+            // helpText: "",
+            // is3dsEnabled: undefined,
+            // isHostedFormEnabled: true,
+            // isVaultingCvvEnabled: undefined,
+            // isVaultingEnabled: false,
+            // isVisaCheckoutEnabled: undefined,
+            // logo: undefined,
+            // merchantId: undefined,
+            // requireCustomerCode: false,
+            // // showCardHolderName: undefined,
+            // testMode: true
         },
         type: 'PAYMENT_TYPE_SDK',
+        initializationStrategy: {
+            type: 'card_ui'
+        },
+        // nonce: undefined,
+        // initializationData: null,
+        // clientToken: undefined,
+        // returnUrl: undefined,
     };
 }
 
@@ -115,38 +121,38 @@ export function getMobilePaymentMethod(): PaymentMethod {
     };
 }
 
-export function getCreditCardSphere(): PaymentMethod {
-    return {
-        id: 'mercado_pago.card',
-        gateway: undefined, // !! null
-        logoUrl: '',
-        method: 'card',
-        supportedCards: ['VISA', 'MC', 'AMEX'],
-        // providesShippingAddress: true,
-        config: {
-            cardCode: true,
-            displayName: "Credit Card - Sphere",
-            enablePaypal: undefined,
-            hasDefaultStoredInstrument: false,
-            helpText: "",
-            is3dsEnabled: undefined,
-            isHostedFormEnabled: true,
-            isVaultingCvvEnabled: undefined,
-            isVaultingEnabled: false,
-            isVisaCheckoutEnabled: undefined,
-            logo: undefined,
-            merchantId: undefined,
-            requireCustomerCode: false,
-            showCardHolderName: undefined,
-            testMode: true
-        },
-        type: 'PAYMENT_TYPE_SDK',
-        initializationStrategy: {
-            type: 'card_ui'
-        },
-        nonce: undefined,
-        initializationData: null,
-        clientToken: undefined,
-        returnUrl: undefined,
-    };
-}
+// export function getCreditCardSphere(): PaymentMethod {
+//     return {
+//         id: 'sphere.card',
+//         gateway: undefined, // !! null
+//         logoUrl: '',
+//         method: 'card',
+//         supportedCards: ['VISA', 'MC', 'AMEX'],
+//         // providesShippingAddress: true,
+//         config: {
+//             cardCode: true,
+//             displayName: "Credit Card - Sphere",
+//             enablePaypal: undefined,
+//             hasDefaultStoredInstrument: false,
+//             helpText: "",
+//             is3dsEnabled: undefined,
+//             isHostedFormEnabled: true,
+//             isVaultingCvvEnabled: undefined,
+//             isVaultingEnabled: false,
+//             isVisaCheckoutEnabled: undefined,
+//             logo: undefined,
+//             merchantId: undefined,
+//             requireCustomerCode: false,
+//             showCardHolderName: undefined,
+//             testMode: true
+//         },
+//         type: 'PAYMENT_TYPE_SDK',
+//         initializationStrategy: {
+//             type: 'card_ui'
+//         },
+//         nonce: undefined,
+//         initializationData: null,
+//         clientToken: undefined,
+//         returnUrl: undefined,
+//     };
+// }
