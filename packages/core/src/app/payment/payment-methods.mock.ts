@@ -30,7 +30,7 @@ export function getPaymentMethodCulqi(): PaymentMethod {
         id: 'culqi',
         gateway: undefined,
         config: {
-            displayName: 'Pagar con Culqi - Sphere',
+            displayName: 'Pagar con Culqi Nuevo - Sphere',
             hasDefaultStoredInstrument: false,
             helpText: "",
             testMode: true
@@ -55,31 +55,6 @@ export function getPaypalCreditPaymentMethod(): PaymentMethod {
         method: 'paypal',
         initializationData: {
             payPalCreditProductBrandName: { credit: 'Pay in 3' },
-        },
-        type: 'PAYMENT_TYPE_API',
-    };
-}
-
-export function getPaymentMethodSphere(): PaymentMethod {
-    return {
-        id: 'sphere',
-        gateway: undefined,
-        logoUrl: '',
-        method: 'credit-card',
-        supportedCards: ['VISA', 'AMEX', 'MC'],
-        initializationData: {
-            payPalCreditProductBrandName: { credit: '' },
-        },
-        config: {
-            displayName: 'Credit Card - Sphere',
-            cardCode: true,
-            enablePaypal: undefined,
-            hasDefaultStoredInstrument: false,
-            helpText: '',
-            is3dsEnabled: undefined,
-            isVisaCheckoutEnabled: undefined,
-            merchantId: undefined,
-            testMode: false, // !! true
         },
         type: 'PAYMENT_TYPE_API',
     };

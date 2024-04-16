@@ -22,7 +22,9 @@ import ChasePayPaymentMethod from './ChasePayPaymentMethod';
 import CheckoutCustomPaymentMethod from './CheckoutcomCustomPaymentMethod';
 import DigitalRiverPaymentMethod from './DigitalRiverPaymentMethod';
 import GooglePayPaymentMethod from './GooglePayPaymentMethod';
+
 import HostedCreditCardPaymentMethod from './HostedCreditCardPaymentMethod';
+
 import HostedPaymentMethod from './HostedPaymentMethod';
 import KlarnaPaymentMethod from './KlarnaPaymentMethod';
 import KlarnaV2PaymentMethod from './KlarnaV2PaymentMethod';
@@ -30,9 +32,12 @@ import MasterpassPaymentMethod from './MasterpassPaymentMethod';
 import MolliePaymentMethod from './MolliePaymentMethod';
 import MonerisPaymentMethod from './MonerisPaymentMethod';
 import OpyPaymentMethod from './OpyPaymentMethod';
+
+// ESTOS SE LLAMAN EN EL INDEX 
 import PaymentMethodId from './PaymentMethodId';
 import PaymentMethodProviderType from './PaymentMethodProviderType';
 import PaymentMethodType from './PaymentMethodType';
+
 import PaypalCommerceCreditCardPaymentMethod from './PaypalCommerceCreditCardPaymentMethod';
 import PaypalExpressPaymentMethod from './PaypalExpressPaymentMethod';
 import PaypalPaymentsProPaymentMethod from './PaypalPaymentsProPaymentMethod';
@@ -40,7 +45,10 @@ import PPSDKPaymentMethod from './PPSDKPaymentMethod';
 import SquarePaymentMethod from './SquarePaymentMethod';
 import StripePaymentMethod from './StripePaymentMethod';
 import StripeUPEPaymentMethod from './StripeUPEPaymentMethod';
+
+// METODO DE VISA 
 import VisaCheckoutPaymentMethod from './VisaCheckoutPaymentMethod';
+
 import WorldpayCreditCardPaymentMethod from './WorldpayCreditCardPaymentMethod';
 
 export interface PaymentMethodProps {
@@ -74,16 +82,35 @@ const PaymentMethodComponent: FunctionComponent<
 > = (props) => {
     const { method } = props;
 
-    // Log the payment method to the console for debugging purposes.
-    console.log("********* Payment Method ");
-    const keys = Object.keys(method) as Array<keyof PaymentMethod<any>>;
-    for (const key of keys) {
-        console.log(key, method[key]);
-    }
+    // prueba #8
+    if (method.id === PaymentMethodId.Sphere && method.type === PaymentMethodProviderType.PPSDK) {
+        console.log("prueba #9 SPHERE: ")
+        // confirma el metodo sea el adecuado para probar 
+        const keys = Object.keys(method) as Array<keyof PaymentMethod<any>>;
 
-    if (method.type === PaymentMethodProviderType.PPSDK) {
+        for (const key of keys) {
+            console.log(key, method[key]);
+        }
+        console.log("Sphere: " + method.method + " type: " + method.type + " ID: " + method.id);
+        const initializationType = method.initializationStrategy?.type;
+        console.log('InitializationStrategy type:', initializationType);
         return <PPSDKPaymentMethod {...props} />;
     }
+
+    // metodo de pago mercado pago 
+    if (method.type === PaymentMethodProviderType.PPSDK) {
+        console.log("prueba #9 PPSDK: ")
+        const keys = Object.keys(method) as Array<keyof PaymentMethod<any>>;
+
+        for (const key of keys) {
+            console.log(key, method[key]);
+        }
+        console.log("PPSDK: "+ method.method + " type: " + method.type + " ID: " + method.id);
+        const initializationType = method.initializationStrategy?.type;
+        console.log('InitializationStrategy type:', initializationType);
+        return <PPSDKPaymentMethod {...props} />;
+    }
+    
 
 
     if (method.id === PaymentMethodId.SquareV2) {
@@ -128,6 +155,7 @@ const PaymentMethodComponent: FunctionComponent<
 
     if (method.gateway === PaymentMethodId.Checkoutcom) {
         if (method.id === 'credit_card' || method.id === 'card') {
+            console.log("Checkout.com: " + method.method + "mas " + method.type);
             return <HostedCreditCardPaymentMethod {...props} />;
         }
 
@@ -146,6 +174,7 @@ const PaymentMethodComponent: FunctionComponent<
     }
 
     if (method.id === PaymentMethodId.BraintreeVisaCheckout) {
+        console.log("VISAJR: " + method.method + "mas " + method.type);
         return <VisaCheckoutPaymentMethod {...props} />;
     }
 
@@ -167,6 +196,7 @@ const PaymentMethodComponent: FunctionComponent<
     }
 
     if (method.id === PaymentMethodId.Masterpass) {
+        console.log("MASTERPASS: " + method.method + "mas " + method.type);
         return <MasterpassPaymentMethod {...props} />;
     }
 
@@ -175,10 +205,12 @@ const PaymentMethodComponent: FunctionComponent<
     }
 
     if (method.id === PaymentMethodId.PaypalCommerceCreditCards) {
+        console.log("PAYPALCREDITCARD: " + method.method + "mas " + method.type);
         return <PaypalCommerceCreditCardPaymentMethod {...props} />;
     }
 
     if (method.id === PaymentMethodId.PaypalExpress) {
+        console.log("PAYPALSXPRESS: " + method.method + "mas " + method.type);
         return <PaypalExpressPaymentMethod {...props} />;
     }
 
@@ -229,15 +261,25 @@ const PaymentMethodComponent: FunctionComponent<
         return <MolliePaymentMethod {...props} />;
     }
 
-    // NOTE: Some payment methods have `method` as `credit-card` but they are
-    // actually not. Therefore, as a workaround, we are doing the following
-    // check last.
+        // NOTE: Some payment methods have `method` as `credit-card` but they are
+        // actually not. Therefore, as a workaround, we are doing the following
+        // check last.
     if (
         method.method === PaymentMethodType.CreditCard ||
         method.type === PaymentMethodProviderType.Api
     ) {
-        return <HostedCreditCardPaymentMethod {...props} />;
+        // ver que envia 
+        console.log("prueba #8 CreditCard: ")
+        const keys = Object.keys(method) as Array<keyof PaymentMethod<any>>;
+
+        for (const key of keys) {
+            console.log(key, method[key]);
+        }
+        console.log("CreditCard: "+ method.method + " type: " + method.type + " ID: " + method.id);
+        const initializationType = method.initializationStrategy?.type;
+        console.log('InitializationStrategy type:', initializationType);
     }
+
 
     return null;
 };
