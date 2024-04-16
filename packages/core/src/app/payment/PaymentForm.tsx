@@ -13,13 +13,13 @@ import { Fieldset, Form } from '../ui/form';
 
 import getPaymentValidationSchema from './getPaymentValidationSchema';
 import {
-    getPaymentMethodName,
+    // getPaymentMethodName,
     getUniquePaymentMethodId,
-    PaymentMethodId,
+    // PaymentMethodId,
     PaymentMethodList,
 } from './paymentMethod';
 import PaymentRedeemables from './PaymentRedeemables';
-import PaymentSubmitButton from './PaymentSubmitButton';
+// import PaymentSubmitButton from './PaymentSubmitButton';
 import SpamProtectionField from './SpamProtectionField';
 import { StoreCreditField, StoreCreditOverlay } from './storeCredit';
 // import CulqiPaymentMethod from './paymentMethod/Culqi/CulqiPaymentMethod';
@@ -62,49 +62,49 @@ const PaymentForm: FunctionComponent<
     isTermsConditionsRequired,
     isStoreCreditApplied,
     isUsingMultiShipping,
-    language,
+    // language,
     methods,
     onMethodSelect,
     onStoreCreditChange,
     onUnhandledError,
     resetForm,
-    selectedMethod,
-    shouldDisableSubmit,
-    shouldHidePaymentSubmitButton,
+    // selectedMethod,
+    // shouldDisableSubmit,
+    // shouldHidePaymentSubmitButton,
     shouldExecuteSpamCheck,
     termsConditionsText = '',
     termsConditionsUrl,
     usableStoreCredit = 0,
     values,
 }) => {
-        const selectedMethodId = useMemo(() => {
-            if (!selectedMethod) {
-                return;
-            }
+        // const selectedMethodId = useMemo(() => {
+        //     if (!selectedMethod) {
+        //         return;
+        //     }
 
-            switch (selectedMethod.id) {
-                case PaymentMethodId.AmazonPay:
-                    if (selectedMethod.initializationData.paymentToken) {
-                        return;
-                    }
+        //     switch (selectedMethod.id) {
+        //         case PaymentMethodId.AmazonPay:
+        //             if (selectedMethod.initializationData.paymentToken) {
+        //                 return;
+        //             }
 
-                    return selectedMethod.id;
+        //             return selectedMethod.id;
 
-                default:
-                    return selectedMethod.id;
-            }
-        }, [selectedMethod]);
+        //         default:
+        //             return selectedMethod.id;
+        //     }
+        // }, [selectedMethod]);
 
-        const brandName = useMemo(() => {
-            if (!selectedMethod) {
-                return;
-            }
+        // const brandName = useMemo(() => {
+        //     if (!selectedMethod) {
+        //         return;
+        //     }
 
-            return (
-                selectedMethod.initializationData?.payPalCreditProductBrandName?.credit ||
-                selectedMethod.initializationData?.payPalCreditProductBrandName
-            );
-        }, [selectedMethod]);
+        //     return (
+        //         selectedMethod.initializationData?.payPalCreditProductBrandName?.credit ||
+        //         selectedMethod.initializationData?.payPalCreditProductBrandName
+        //     );
+        // }, [selectedMethod]);
 
         if (shouldExecuteSpamCheck) {
             return (
@@ -142,7 +142,6 @@ const PaymentForm: FunctionComponent<
                 {/* <CulqiPaymentMethod onSelect={() => {
                     console.log(`Se esta seleccionando el evento de culqui`);
                     console.log(methods, values);
-
                 }} /> */}
 
                 <PaymentRedeemables />
@@ -154,7 +153,7 @@ const PaymentForm: FunctionComponent<
                     />
                 )}
 
-                <div className="form-actions">
+                {/* <div className="form-actions">
                     {shouldHidePaymentSubmitButton ? (
                         <PaymentMethodSubmitButtonContainer />
                     ) : (
@@ -173,14 +172,14 @@ const PaymentForm: FunctionComponent<
                             methodType={selectedMethod && selectedMethod.method}
                         />
                     )}
-                </div>
+                </div> */}
             </Form>
         );
     };
 
-const PaymentMethodSubmitButtonContainer: FunctionComponent = () => {
-    return <div className="submitButtonContainer" id="checkout-payment-continue" />;
-};
+// const PaymentMethodSubmitButtonContainer: FunctionComponent = () => {
+//     return <div className="submitButtonContainer" id="checkout-payment-continue" />;
+// };
 
 interface PaymentMethodListFieldsetProps {
     isEmbedded?: boolean;

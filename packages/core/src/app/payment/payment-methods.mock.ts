@@ -59,42 +59,6 @@ export function getPaypalCreditPaymentMethod(): PaymentMethod {
         type: 'PAYMENT_TYPE_API',
     };
 }
-// objeto-funcion
-export function getCreditCardSphere(): PaymentMethod {
-    return {
-        id: 'mercado_pago.card',
-        gateway: undefined, // !! null
-        logoUrl: '',
-        method: 'card',
-        supportedCards: ['VISA', 'MC', 'AMEX'],
-        // providesShippingAddress: true,
-        config: {
-            cardCode: true,
-            displayName: "Credit Card - Sphere",
-            // enablePaypal: undefined,
-            // hasDefaultStoredInstrument: false,
-            // helpText: "",
-            // is3dsEnabled: undefined,
-            // isHostedFormEnabled: true,
-            // isVaultingCvvEnabled: undefined,
-            // isVaultingEnabled: false,
-            // isVisaCheckoutEnabled: undefined,
-            // logo: undefined,
-            // merchantId: undefined,
-            // requireCustomerCode: false,
-            // // showCardHolderName: undefined,
-            // testMode: true
-        },
-        type: 'PAYMENT_TYPE_SDK',
-        initializationStrategy: {
-            type: 'card_ui'
-        },
-        // nonce: undefined,
-        // initializationData: null,
-        // clientToken: undefined,
-        // returnUrl: undefined,
-    };
-}
 
 export function getMobilePaymentMethod(): PaymentMethod {
     return {
@@ -121,38 +85,38 @@ export function getMobilePaymentMethod(): PaymentMethod {
     };
 }
 
-// export function getCreditCardSphere(): PaymentMethod {
-//     return {
-//         id: 'sphere.card',
-//         gateway: undefined, // !! null
-//         logoUrl: '',
-//         method: 'card',
-//         supportedCards: ['VISA', 'MC', 'AMEX'],
-//         // providesShippingAddress: true,
-//         config: {
-//             cardCode: true,
-//             displayName: "Credit Card - Sphere",
-//             enablePaypal: undefined,
-//             hasDefaultStoredInstrument: false,
-//             helpText: "",
-//             is3dsEnabled: undefined,
-//             isHostedFormEnabled: true,
-//             isVaultingCvvEnabled: undefined,
-//             isVaultingEnabled: false,
-//             isVisaCheckoutEnabled: undefined,
-//             logo: undefined,
-//             merchantId: undefined,
-//             requireCustomerCode: false,
-//             showCardHolderName: undefined,
-//             testMode: true
-//         },
-//         type: 'PAYMENT_TYPE_SDK',
-//         initializationStrategy: {
-//             type: 'card_ui'
-//         },
-//         nonce: undefined,
-//         initializationData: null,
-//         clientToken: undefined,
-//         returnUrl: undefined,
-//     };
-// }
+export function getCreditCardSphere(): PaymentMethod {
+    return {
+        id: 'mercado_pago.card',
+        gateway: undefined, // !! null
+        logoUrl: '',
+        method: 'card',
+        supportedCards: ['VISA', 'MC', 'AMEX'],
+        // providesShippingAddress: true,
+        config: {
+            cardCode: true,
+            displayName: "Credit Card - LuisDev",
+            enablePaypal: undefined,
+            hasDefaultStoredInstrument: false,
+            helpText: "",
+            is3dsEnabled: undefined,
+            isHostedFormEnabled: true,
+            isVaultingCvvEnabled: undefined,
+            isVaultingEnabled: false,
+            isVisaCheckoutEnabled: undefined,
+            logo: undefined,
+            merchantId: undefined,
+            requireCustomerCode: false,
+            showCardHolderName: undefined,
+            testMode: true
+        },
+        type: 'PAYMENT_TYPE_SDK',
+        initializationStrategy: {
+            type: 'card_ui'
+        },
+        nonce: undefined,
+        initializationData: null,
+        clientToken: undefined,
+        returnUrl: undefined,
+    };
+}
