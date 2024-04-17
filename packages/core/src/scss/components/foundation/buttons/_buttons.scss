@@ -22,14 +22,14 @@
 
         // scss-lint:disable NestingDepth
         &.is-loading {
-            color: color("whites");
+            color: color("blue");
 
             &.button--primary {
                 color: color("greys", "darker");
             }
 
             &[disabled] {
-                color: color("greys", "light");
+                color: color("black", "light");
             }
 
             &::before {
