@@ -175,6 +175,9 @@ const PaymentForm: FunctionComponent<
                             />
                         ))}
                 </div>
+
+                <h3>My culqi button</h3>
+                <CulqiSubmitButton />
             </Form>
         );
     };
