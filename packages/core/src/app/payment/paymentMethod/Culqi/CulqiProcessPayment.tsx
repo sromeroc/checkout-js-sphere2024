@@ -71,8 +71,7 @@ const CulqiProcessPayment = () => {
 
 export const openCulqi = () => Culqi.open();
 
-// export const closeCulqi = () => document.head.removeChild(script);
-export const closeCulqi = () => Culqi.close();
+export const closeCulqi = () => document.head.removeChild(script);
 
 
 export default CulqiProcessPayment;
