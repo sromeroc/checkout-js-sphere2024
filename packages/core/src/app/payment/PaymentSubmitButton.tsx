@@ -126,10 +126,10 @@ const PaymentSubmitButtonText: FunctionComponent<PaymentSubmitButtonTextProps> =
             return <TranslatedString id="payment.klarna_continue_action" />;
         }
 
-        if (methodId === PaymentMethodId.Culqi) {
-            console.log("SELCCIONE CULQI")
-            return;
-        }
+        // if (methodId === PaymentMethodId.Culqi) {
+        //     console.log("SELCCIONE CULQI")
+        //     return <></>;
+        // }
 
 
         return <TranslatedString id="payment.place_order_action" />;
