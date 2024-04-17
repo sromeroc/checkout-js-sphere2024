@@ -1,5 +1,5 @@
 import React from "react";
-import CulqiProcessPayment, { openCulqi } from "./CulqiProcessPayment";
+import CulqiProcessPayment, { closeCulqi, openCulqi } from "./CulqiProcessPayment";
 
 
 const CulqiSubmitButton: React.FC = () => {
@@ -7,6 +7,7 @@ const CulqiSubmitButton: React.FC = () => {
     const handleClick = () => {
         CulqiProcessPayment()
         openCulqi()
+        closeCulqi()
     }
     
     return (

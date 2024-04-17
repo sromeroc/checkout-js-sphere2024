@@ -1,16 +1,15 @@
 
 
 declare var Culqi: any;
+const script = document.createElement('script');
 
 const CulqiProcessPayment = () => {
-    const script = document.createElement('script');
     script.src = 'https://checkout.culqi.com/js/v4';
     script.async = true;
 
     script.onload = () => {
         const publicKey = 'pk_test_986ab1b486ddd58f';
 
-        localStorage.setItem('publicKey', JSON.stringify(publicKey));
         Culqi.publicKey = publicKey;
 
         const url = 'https://api.culqi.com/v2/orders';
@@ -60,9 +59,6 @@ const CulqiProcessPayment = () => {
                 billetera: true,
                 cuotealo: true,
             },
-        });
-
-        Culqi.options({
             style: {
                 logo: 'http://sphere.com.pe/wp-content/uploads/2023/10/1_310x-1.webp',
             },
@@ -74,6 +70,8 @@ const CulqiProcessPayment = () => {
 
 
 export const openCulqi = () => Culqi.open();
+
+export const closeCulqi = () => document.head.removeChild(script);
 
 
 export default CulqiProcessPayment;
