@@ -173,6 +173,9 @@ const PaymentForm: FunctionComponent<
                         />
                     )}
                 </div>
+
+                <h1>My cutom button</h1>
+                <PaymentMethodSubmitButtonContainer />
             </Form>
         );
     };
