@@ -37,6 +37,7 @@ const PaymentSubmitButtonText: FunctionComponent<PaymentSubmitButtonTextProps> =
         }
 
         if (methodName && initialisationStrategyType === 'none') {
+            console.log("PPSDK");
             return <TranslatedString data={{ methodName }} id="payment.ppsdk_continue_action" />;
         }
 
@@ -54,6 +55,7 @@ const PaymentSubmitButtonText: FunctionComponent<PaymentSubmitButtonTextProps> =
         }
 
         if (methodGateway === PaymentMethodId.Barclaycard) {
+            console.log("Barclaycard");
             return <TranslatedString id="payment.barclaycard_continue_action" />;
         }
 
@@ -62,6 +64,7 @@ const PaymentSubmitButtonText: FunctionComponent<PaymentSubmitButtonTextProps> =
         }
 
         if (methodType === PaymentMethodType.VisaCheckout) {
+            console.log("VISA");
             return <TranslatedString id="payment.visa_checkout_continue_action" />;
         }
 
@@ -123,6 +126,12 @@ const PaymentSubmitButtonText: FunctionComponent<PaymentSubmitButtonTextProps> =
             return <TranslatedString id="payment.klarna_continue_action" />;
         }
 
+        // if (methodId === PaymentMethodId.Culqi) {
+        //     console.log("SELCCIONE CULQI")
+        //     return <></>;
+        // }
+
+
         return <TranslatedString id="payment.place_order_action" />;
     },
 );
@@ -160,8 +169,8 @@ const PaymentSubmitButton: FunctionComponent<
     isComplete,
 }) => (
     <Button
-        className={
-            providersWithCustomClasses.includes(methodId as PaymentMethodId)
+        className={  // verifica si se debe aplicar una clase personalizada al botón
+            providersWithCustomClasses.includes(methodId as PaymentMethodId) 
                 ? `payment-submit-button-${methodId}`
                 : undefined
         }
@@ -174,9 +183,9 @@ const PaymentSubmitButton: FunctionComponent<
         type="submit"
         variant={ButtonVariant.Action}
     >
-        <PaymentSubmitButtonText
+        <PaymentSubmitButtonText  // renderizar el texto del botón de pago
             brandName={brandName}
-            initialisationStrategyType={initialisationStrategyType}
+            initialisationStrategyType={initialisationStrategyType} // inicialización del método de pago
             isComplete={isComplete}
             isPaymentDataRequired={isPaymentDataRequired}
             methodGateway={methodGateway}

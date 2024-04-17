@@ -30,7 +30,7 @@ export function getPaymentMethodCulqi(): PaymentMethod {
         id: 'culqi',
         gateway: undefined,
         config: {
-            displayName: 'Pagar con Culqi Nuevo - Sphere',
+            displayName: 'Pagar con Culqi - Sphere',
             hasDefaultStoredInstrument: false,
             helpText: "",
             testMode: true
@@ -95,7 +95,7 @@ export function getCreditCardSphere(): PaymentMethod {
         // providesShippingAddress: true,
         config: {
             cardCode: true,
-            displayName: "Credit Card - LuisDev",
+            displayName: "Credit Card - SPHERE",
             enablePaypal: undefined,
             hasDefaultStoredInstrument: false,
             helpText: "",
