@@ -128,7 +128,7 @@ const PaymentSubmitButtonText: FunctionComponent<PaymentSubmitButtonTextProps> =
 
         if (methodId === PaymentMethodId.Culqi) {
             console.log("SELCCIONE CULQI")
-            return "Culqi";
+            return;
         }
 
 
