@@ -82,6 +82,11 @@ const PaymentMethodComponent: FunctionComponent<
 > = (props) => {
     const { method } = props;
 
+    // Culqi method
+    if (method.id === PaymentMethodId.Culqi) {
+        return null;
+    }
+
     // prueba #8
     if (method.id === PaymentMethodId.Sphere && method.type === PaymentMethodProviderType.PPSDK) {
         console.log("<<<<SPHERE: METHOD>>>>")
