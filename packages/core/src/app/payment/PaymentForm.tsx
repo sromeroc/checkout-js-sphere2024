@@ -172,9 +172,10 @@ const PaymentForm: FunctionComponent<
                             methodType={selectedMethod && selectedMethod.method}
                         />
                     )}
+                    {console.log("initialisationStrategyType:", selectedMethod?.initializationStrategy?.type)}
                 </div>
 
-                <h1>My cutom button</h1>
+                <h1>My button nuevo</h1>
                 <PaymentMethodSubmitButtonContainer />
             </Form>
         );

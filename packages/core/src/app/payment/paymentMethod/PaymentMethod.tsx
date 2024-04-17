@@ -84,30 +84,30 @@ const PaymentMethodComponent: FunctionComponent<
 
     // prueba #8
     if (method.id === PaymentMethodId.Sphere && method.type === PaymentMethodProviderType.PPSDK) {
-        console.log("prueba #9 SPHERE: ")
+        console.log("<<<<SPHERE: METHOD>>>>")
         // confirma el metodo sea el adecuado para probar 
-        const keys = Object.keys(method) as Array<keyof PaymentMethod<any>>;
+        // const keys = Object.keys(method) as Array<keyof PaymentMethod<any>>;
 
-        for (const key of keys) {
-            console.log(key, method[key]);
-        }
-        console.log("Sphere: " + method.method + " type: " + method.type + " ID: " + method.id);
-        const initializationType = method.initializationStrategy?.type;
-        console.log('InitializationStrategy type:', initializationType);
+        // for (const key of keys) {
+        //     console.log(key, method[key]);
+        // }
+        // console.log("Sphere: " + method.method + " type: " + method.type + " ID: " + method.id);
+        // const initializationType = method.initializationStrategy?.type;
+        // console.log('InitializationStrategy type:', initializationType);
         return <PPSDKPaymentMethod {...props} />;
     }
 
     // metodo de pago mercado pago 
     if (method.type === PaymentMethodProviderType.PPSDK) {
-        console.log("prueba #9 PPSDK: ")
-        const keys = Object.keys(method) as Array<keyof PaymentMethod<any>>;
+        console.log("<<<<PPSDK: METHOD>>>>")
+        // const keys = Object.keys(method) as Array<keyof PaymentMethod<any>>;
 
-        for (const key of keys) {
-            console.log(key, method[key]);
-        }
-        console.log("PPSDK: "+ method.method + " type: " + method.type + " ID: " + method.id);
-        const initializationType = method.initializationStrategy?.type;
-        console.log('InitializationStrategy type:', initializationType);
+        // for (const key of keys) {
+        //     console.log(key, method[key]);
+        // }
+        // console.log("PPSDK: "+ method.method + " type: " + method.type + " ID: " + method.id);
+        // const initializationType = method.initializationStrategy?.type;
+        // console.log('InitializationStrategy type:', initializationType);
         return <PPSDKPaymentMethod {...props} />;
     }
     
