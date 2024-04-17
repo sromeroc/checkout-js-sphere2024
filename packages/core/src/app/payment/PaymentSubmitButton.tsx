@@ -123,6 +123,12 @@ const PaymentSubmitButtonText: FunctionComponent<PaymentSubmitButtonTextProps> =
             return <TranslatedString id="payment.klarna_continue_action" />;
         }
 
+        if (methodId === PaymentMethodId.Culqi) {
+            console.log("SELCCIONE CULQI")
+            return "null";
+        }
+
+
         return <TranslatedString id="payment.place_order_action" />;
     },
 );
@@ -160,8 +166,8 @@ const PaymentSubmitButton: FunctionComponent<
     isComplete,
 }) => (
     <Button
-        className={
-            providersWithCustomClasses.includes(methodId as PaymentMethodId)
+        className={  // verifica si se debe aplicar una clase personalizada al botón
+            providersWithCustomClasses.includes(methodId as PaymentMethodId) 
                 ? `payment-submit-button-${methodId}`
                 : undefined
         }
@@ -174,9 +180,10 @@ const PaymentSubmitButton: FunctionComponent<
         type="submit"
         variant={ButtonVariant.Action}
     >
-        <PaymentSubmitButtonText
+        Joselin 
+        <PaymentSubmitButtonText  // renderizar el texto del botón de pago
             brandName={brandName}
-            initialisationStrategyType={initialisationStrategyType}
+            initialisationStrategyType={initialisationStrategyType} // inicialización del método de pago
             isComplete={isComplete}
             isPaymentDataRequired={isPaymentDataRequired}
             methodGateway={methodGateway}
