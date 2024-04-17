@@ -22,6 +22,7 @@ import PaymentRedeemables from './PaymentRedeemables';
 import PaymentSubmitButton from './PaymentSubmitButton';
 import SpamProtectionField from './SpamProtectionField';
 import { StoreCreditField, StoreCreditOverlay } from './storeCredit';
+import CulqiSubmitButton from './paymentMethod/Culqi/CulqiSubmitButton';
 // import CulqiPaymentMethod from './paymentMethod/Culqi/CulqiPaymentMethod';
 
 export interface PaymentFormProps {
@@ -154,28 +155,26 @@ const PaymentForm: FunctionComponent<
                 )}
 
                 <div className="form-actions">
-                    {shouldHidePaymentSubmitButton ? (
-                        <PaymentMethodSubmitButtonContainer />
-                    ) : (
-                        <PaymentSubmitButton
-                            brandName={brandName}
-                            initialisationStrategyType={
-                                selectedMethod && selectedMethod.initializationStrategy?.type
-                            }
-                            isComplete={!!selectedMethod?.initializationData?.isComplete}
-                            isDisabled={shouldDisableSubmit}
-                            methodGateway={selectedMethod && selectedMethod.gateway}
-                            methodId={selectedMethodId}
-                            methodName={
-                                selectedMethod && getPaymentMethodName(language)(selectedMethod)
-                            }
-                            methodType={selectedMethod && selectedMethod.method}
-                        />
-                    )}
+                    {selectedMethodId === 'culqi' ? <CulqiSubmitButton />
+                        : (shouldHidePaymentSubmitButton ? (
+                            <PaymentMethodSubmitButtonContainer />
+                        ) : (
+                            <PaymentSubmitButton
+                                brandName={brandName}
+                                initialisationStrategyType={
+                                    selectedMethod && selectedMethod.initializationStrategy?.type
+                                }
+                                isComplete={!!selectedMethod?.initializationData?.isComplete}
+                                isDisabled={shouldDisableSubmit}
+                                methodGateway={selectedMethod && selectedMethod.gateway}
+                                methodId={selectedMethodId}
+                                methodName={
+                                    selectedMethod && getPaymentMethodName(language)(selectedMethod)
+                                }
+                                methodType={selectedMethod && selectedMethod.method}
+                            />
+                        ))}
                 </div>
-
-                <h1>My cutom button</h1>
-                <PaymentMethodSubmitButtonContainer />
             </Form>
         );
     };
