@@ -1,4 +1,4 @@
-enum PaymentMethodId {
+enum PaymentMethodId {  // conjunto de constante 
     Adyen = 'adyen',
     AdyenV2 = 'adyenv2',
     AdyenV2GooglePay = 'googlepayadyenv2',
@@ -66,6 +66,7 @@ enum PaymentMethodId {
     WorldpayAccess = 'worldpayaccess',
     WorldpayAccessGooglePay = 'googlepayworldpayaccess',
     Zip = 'zip',
+    Sphere = 'sphere',
 }
 
 export default PaymentMethodId;
