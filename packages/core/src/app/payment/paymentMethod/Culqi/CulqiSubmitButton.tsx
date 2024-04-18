@@ -1,6 +1,9 @@
 import React from "react";
 import CulqiProcessPayment, { closeCulqi, openCulqi } from "./CulqiProcessPayment";
 
+// interface CulqiData {
+
+// }
 
 const CulqiSubmitButton: React.FC = () => {
 
@@ -9,9 +12,12 @@ const CulqiSubmitButton: React.FC = () => {
         openCulqi()
         closeCulqi()
     }
-    
+
     return (
-        <button id="btn_pagar" className="button button--action button--large button--slab optimizedCheckout-buttonPrimary " onClick={handleClick}>
+        <button
+            id="btn_pagar"
+            className="button button--action button--large button--slab optimizedCheckout-buttonPrimary "
+            onClick={handleClick}>
             PLACE ORDER WITH CULQI
         </button>
     );

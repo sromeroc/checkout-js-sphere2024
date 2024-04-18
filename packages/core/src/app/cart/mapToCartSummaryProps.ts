@@ -21,6 +21,8 @@ export default function mapToCartSummaryProps(
         return null;
     }
 
+    console.log("At map, checkout: ", checkout);
+    
     const { isStoreCreditApplied, grandTotal } = checkout;
     const { storeCredit } = customer;
     const updatedCartModal = config?.checkoutSettings.features['CHECKOUT-7403.updated_cart_summary_modal'] ?? false;

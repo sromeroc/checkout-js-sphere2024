@@ -38,7 +38,7 @@ const CulqiProcessPayment = () => {
         })
             .then(response => response.json())
             .then(data => {
-                console.log('data.id=' + data.id);
+                console.log('data.id: ' + data.id);
                 Culqi.settings({
                     title: 'Culqi Store',
                     currency: 'PEN',
