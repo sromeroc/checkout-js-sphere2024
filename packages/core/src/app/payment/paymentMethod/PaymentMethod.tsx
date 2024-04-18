@@ -5,6 +5,7 @@ import {
     PaymentInitializeOptions,
     PaymentMethod,
     PaymentRequestOptions,
+    CheckoutService,
 } from '@bigcommerce/checkout-sdk';
 import React, { FunctionComponent, memo } from 'react';
 
@@ -85,7 +86,7 @@ const PaymentMethodComponent: FunctionComponent<
     // Culqi method
     if (method.id === PaymentMethodId.Culqi) {
         console.log("Culqi method selected!!");
-        
+        console.log('Datos de CheckoutSelectors:', CheckoutSelectors, CheckoutService);
         return null;
     }
 
