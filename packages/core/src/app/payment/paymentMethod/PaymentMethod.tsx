@@ -84,6 +84,8 @@ const PaymentMethodComponent: FunctionComponent<
 
     // Culqi method
     if (method.id === PaymentMethodId.Culqi) {
+        console.log("Culqi method selected!!");
+        
         return null;
     }
 
