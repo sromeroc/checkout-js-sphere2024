@@ -209,7 +209,7 @@ const PaymentMethodListFieldset: FunctionComponent<PaymentMethodListFieldsetProp
     const { setSubmitted } = useContext(FormContext);
 
     const commonValues = useMemo(() => ({ terms: values.terms }), [values.terms]);
-    console.log("VALUES: ", commonValues);
+    // console.log("VALUES: ", commonValuess);
 
     const handlePaymentMethodSelect = useCallback(
         (method: PaymentMethod) => {
@@ -285,6 +285,7 @@ const paymentFormConfig: WithFormikConfig<PaymentFormProps & WithLanguageProps, 
     }),
 
     handleSubmit: (values, { props: { onSubmit = noop } }) => {
+        console.log("handleSubmit VALUES: ", values);
         onSubmit(
             omitBy(
                 values,
