@@ -33,7 +33,10 @@ export function getPaymentMethodCulqi(): PaymentMethod {
             displayName: 'Pagar con Culqi - Sphere',
             hasDefaultStoredInstrument: false,
             helpText: "",
-            testMode: true
+            isHostedFormEnabled: false,
+            isVaultingEnabled: false,
+            requireCustomerCode: false,
+            testMode: true,
         },
         method: 'hosted',
         supportedCards: ['VISA', 'MC'],

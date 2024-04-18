@@ -209,6 +209,7 @@ const PaymentMethodListFieldset: FunctionComponent<PaymentMethodListFieldsetProp
     const { setSubmitted } = useContext(FormContext);
 
     const commonValues = useMemo(() => ({ terms: values.terms }), [values.terms]);
+    console.log("VALUES: ", { commonValues });
 
     const handlePaymentMethodSelect = useCallback(
         (method: PaymentMethod) => {
