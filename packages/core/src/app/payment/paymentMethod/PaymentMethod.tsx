@@ -4,9 +4,9 @@ import {
     CustomerRequestOptions,
     PaymentInitializeOptions,
     PaymentMethod,
-    PaymentRequestOptions,
+    PaymentRequestOptions
 } from '@bigcommerce/checkout-sdk';
-import React, { FunctionComponent, memo } from 'react';
+import React, { FunctionComponent, memo} from 'react';
 
 import { CheckoutContextProps } from '@bigcommerce/checkout/payment-integration-api';
 
@@ -82,10 +82,12 @@ const PaymentMethodComponent: FunctionComponent<
 > = (props) => {
     const { method } = props;
 
+
     // Culqi method
     if (method.id === PaymentMethodId.Culqi) {
         console.log("Culqi method selected!!");
-        
+        // console.log('Datos de CheckoutSelectors:', cartAmount);
+       
         return null;
     }
 
@@ -94,7 +96,6 @@ const PaymentMethodComponent: FunctionComponent<
         console.log("<<<<SPHERE: METHOD>>>>")
         // confirma el metodo sea el adecuado para probar 
         // const keys = Object.keys(method) as Array<keyof PaymentMethod<any>>;
-
         // for (const key of keys) {
         //     console.log(key, method[key]);
         // }
@@ -106,19 +107,9 @@ const PaymentMethodComponent: FunctionComponent<
 
     // metodo de pago mercado pago 
     if (method.type === PaymentMethodProviderType.PPSDK) {
-        console.log("<<<<PPSDK: METHOD>>>>")
-        // const keys = Object.keys(method) as Array<keyof PaymentMethod<any>>;
-
-        // for (const key of keys) {
-        //     console.log(key, method[key]);
-        // }
-        // console.log("PPSDK: "+ method.method + " type: " + method.type + " ID: " + method.id);
-        // const initializationType = method.initializationStrategy?.type;
-        // console.log('InitializationStrategy type:', initializationType);
+        console.log("<<<<PPSDK2: METHOD>>>>");
         return <PPSDKPaymentMethod {...props} />;
     }
-    
-
 
     if (method.id === PaymentMethodId.SquareV2) {
         return <SquarePaymentMethod {...props} />;
