@@ -89,7 +89,6 @@ const PaymentMethodComponent: FunctionComponent<
 > = (props) => {
     const { method } = props;
 
-    console.log("TOTAL CartSummary, Checkout DE JR: ", props.checkout.subtotal);
     // Culqi method
     if (method.id === PaymentMethodId.Culqi) {
         console.log("Culqi method selected!!");
@@ -115,7 +114,7 @@ const PaymentMethodComponent: FunctionComponent<
     // metodo de pago mercado pago 
     if (method.type === PaymentMethodProviderType.PPSDK) {
         console.log("<<<<PPSDK #3: METHOD>>>>");
-        console.log("TOTAL CartSummary, Checkout DE JR>>>: ", props.checkout.subtotal);
+        console.log("TOTAL CartSummary, Checkout DE JR>>>: ", props.checkout);
         return <PPSDKPaymentMethod {...props} />;
     }
 
