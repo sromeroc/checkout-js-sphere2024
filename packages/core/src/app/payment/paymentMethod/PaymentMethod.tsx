@@ -4,7 +4,8 @@ import {
     CustomerRequestOptions,
     PaymentInitializeOptions,
     PaymentMethod,
-    PaymentRequestOptions
+    PaymentRequestOptions,
+    Checkout
 } from '@bigcommerce/checkout-sdk';
 import React, { FunctionComponent, memo} from 'react';
 
@@ -60,11 +61,17 @@ export interface PaymentMethodProps {
 }
 
 export interface WithCheckoutPaymentMethodProps {
+    checkout: Checkout;
     isInitializing: boolean;
     deinitializeCustomer(options: CustomerRequestOptions): Promise<CheckoutSelectors>;
     deinitializePayment(options: PaymentRequestOptions): Promise<CheckoutSelectors>;
     initializeCustomer(options: CustomerInitializeOptions): Promise<CheckoutSelectors>;
     initializePayment(options: PaymentInitializeOptions): Promise<CheckoutSelectors>;
+}
+
+// prueba
+export type CheckoutCartSummaryProps = {
+    checkout: Checkout;
 }
 
 /**
@@ -82,7 +89,7 @@ const PaymentMethodComponent: FunctionComponent<
 > = (props) => {
     const { method } = props;
 
-
+    console.log("TOTAL CartSummary, Checkout DE JR: ", props.checkout.subtotal);
     // Culqi method
     if (method.id === PaymentMethodId.Culqi) {
         console.log("Culqi method selected!!");
