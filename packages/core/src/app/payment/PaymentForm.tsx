@@ -78,6 +78,7 @@ const PaymentForm: FunctionComponent<
     usableStoreCredit = 0,
     values,
 }) => {
+        console.log("values (form): ", values);
         const selectedMethodId = useMemo(() => {
             if (!selectedMethod) {
                 return;
@@ -115,6 +116,7 @@ const PaymentForm: FunctionComponent<
                 />
             );
         }
+
 
         return (
             <Form className="checkout-form" testId="payment-form">
@@ -209,7 +211,6 @@ const PaymentMethodListFieldset: FunctionComponent<PaymentMethodListFieldsetProp
     const { setSubmitted } = useContext(FormContext);
 
     const commonValues = useMemo(() => ({ terms: values.terms }), [values.terms]);
-    // console.log("VALUES: ", commonValuess);
 
     const handlePaymentMethodSelect = useCallback(
         (method: PaymentMethod) => {
