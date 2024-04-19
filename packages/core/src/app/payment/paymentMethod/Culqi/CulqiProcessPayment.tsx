@@ -6,6 +6,13 @@ const script = document.createElement('script');
 const CulqiProcessPayment = () => {
     script.src = 'https://checkout.culqi.com/js/v4';
     script.async = true;
+    
+    // Obtenemos el amount
+    let amount = 600
+    const grandTotalString = localStorage.getItem('grandtotal');
+    if (grandTotalString !== null) {
+        amount = parseFloat(grandTotalString) * 100;
+    }
 
     script.onload = () => {
         const publicKey = 'pk_test_986ab1b486ddd58f';
@@ -22,7 +29,7 @@ const CulqiProcessPayment = () => {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-                amount: 600,
+                amount,
                 currency_code: 'PEN',
                 description: 'Venta de polo',
                 order_number: '3007',
@@ -42,7 +49,7 @@ const CulqiProcessPayment = () => {
                 Culqi.settings({
                     title: 'Culqi Store',
                     currency: 'PEN',
-                    amount: 600,
+                    amount,
                     order: data.id,
                 });
             })

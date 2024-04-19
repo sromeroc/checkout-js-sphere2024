@@ -24,6 +24,7 @@ const CartSummary: FunctionComponent<WithCheckoutCartSummaryProps> = ({ cartUrl,
 
     console.log("At CartSummary, cartUrl: ", cartUrl);
     console.log("At CartSummary, Checkout: ", props.checkout);
+    localStorage.setItem('grandtotal', props.checkout.grandTotal.toString());
     
     return withRedeemable(OrderSummary)({
         ...props,
