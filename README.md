@@ -64,11 +64,4 @@ We currently do not accept Pull Requests from external parties. However, if you 
 
 More information can be found in the [contribution guide](CONTRIBUTING.md) and [code of conduct](CODE_OF_CONDUCT.md) for this project.
 
-
-<<<<<<< HEAD
-Copyright (C) 2019-Present BigCommerce Inc. All rights reserved. JR
-=======
 Copyright (C) 2019-Present BigCommerce Inc. All rights reserved.
-
-esto es una prueba 
->>>>>>> 3e5817092c56c9034e4f03ad222c4f27c2a1ebe2
