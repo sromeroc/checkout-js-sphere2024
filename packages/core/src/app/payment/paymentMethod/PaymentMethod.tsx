@@ -4,8 +4,7 @@ import {
     CustomerRequestOptions,
     PaymentInitializeOptions,
     PaymentMethod,
-    PaymentRequestOptions,
-    Checkout
+    PaymentRequestOptions
 } from '@bigcommerce/checkout-sdk';
 import React, { FunctionComponent, memo} from 'react';
 
@@ -61,17 +60,11 @@ export interface PaymentMethodProps {
 }
 
 export interface WithCheckoutPaymentMethodProps {
-    checkout: Checkout;
     isInitializing: boolean;
     deinitializeCustomer(options: CustomerRequestOptions): Promise<CheckoutSelectors>;
     deinitializePayment(options: PaymentRequestOptions): Promise<CheckoutSelectors>;
     initializeCustomer(options: CustomerInitializeOptions): Promise<CheckoutSelectors>;
     initializePayment(options: PaymentInitializeOptions): Promise<CheckoutSelectors>;
-}
-
-// prueba
-export type CheckoutCartSummaryProps = {
-    checkout: Checkout;
 }
 
 /**
@@ -92,7 +85,6 @@ const PaymentMethodComponent: FunctionComponent<
     // Culqi method
     if (method.id === PaymentMethodId.Culqi) {
         console.log("Culqi method selected!!");
-        // console.log('Datos de CheckoutSelectors:', cartAmount);
        
         return null;
     }
@@ -114,7 +106,6 @@ const PaymentMethodComponent: FunctionComponent<
     // metodo de pago mercado pago 
     if (method.type === PaymentMethodProviderType.PPSDK) {
         console.log("<<<<PPSDK #3: METHOD>>>>");
-        console.log("TOTAL CartSummary, Checkout DE JR>>>: ", props.checkout);
         return <PPSDKPaymentMethod {...props} />;
     }
 
@@ -274,15 +265,15 @@ const PaymentMethodComponent: FunctionComponent<
         method.type === PaymentMethodProviderType.Api
     ) {
         // ver que envia 
-        console.log("prueba #8 CreditCard: ")
-        const keys = Object.keys(method) as Array<keyof PaymentMethod<any>>;
+        console.log("CreditCard: ");
+        // const keys = Object.keys(method) as Array<keyof PaymentMethod<any>>;
 
-        for (const key of keys) {
-            console.log(key, method[key]);
-        }
-        console.log("CreditCard: "+ method.method + " type: " + method.type + " ID: " + method.id);
-        const initializationType = method.initializationStrategy?.type;
-        console.log('InitializationStrategy type:', initializationType);
+        // for (const key of keys) {
+        //     console.log(key, method[key]);
+        // }
+        // console.log("CreditCard: "+ method.method + " type: " + method.type + " ID: " + method.id);
+        // const initializationType = method.initializationStrategy?.type;
+        // console.log('InitializationStrategy type:', initializationType);
     }
 
 
