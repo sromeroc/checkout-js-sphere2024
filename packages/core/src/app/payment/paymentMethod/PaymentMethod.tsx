@@ -115,6 +115,7 @@ const PaymentMethodComponent: FunctionComponent<
     // metodo de pago mercado pago 
     if (method.type === PaymentMethodProviderType.PPSDK) {
         console.log("<<<<PPSDK2: METHOD>>>>");
+        console.log("TOTAL CartSummary, Checkout DE JR>>>: ", props.checkout.subtotal);
         return <PPSDKPaymentMethod {...props} />;
     }
 
