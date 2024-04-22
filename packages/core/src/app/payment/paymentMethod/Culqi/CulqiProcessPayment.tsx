@@ -28,7 +28,7 @@ const CulqiProcessPayment = (checkoutData: Checkout | undefined) => {
                     amount,
                     currency_code: 'PEN',
                     description: 'Venta de polo',
-                    order_number: '3007',
+                    order_number: checkoutData.orderId?.toString(),
                     expiration_date: '1731019303',
                     client_details: {
                         first_name: 'Sandro',
