@@ -159,7 +159,7 @@ const PaymentForm: FunctionComponent<
                 )}
 
                 <div className="form-actions">
-                    {selectedMethodId === 'culqi' ? <CulqiSubmitButton />
+                    {selectedMethodId === 'culqi' ? <CulqiSubmitButton/>
                         : (shouldHidePaymentSubmitButton ? (
                             <PaymentMethodSubmitButtonContainer />
                         ) : (
