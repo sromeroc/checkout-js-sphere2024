@@ -1,11 +1,11 @@
 import React from "react";
 import CulqiProcessPayment, { closeCulqi, openCulqi } from "./CulqiProcessPayment";
 
-// interface CulqiData {
+interface CulqiData {
+    cartItem: number;
+}
 
-// }
-
-const CulqiSubmitButton: React.FC = () => {
+const CulqiSubmitButton: React.FC<CulqiData> = ({cartItem}) => {
 
     const handleClick = () => {
         CulqiProcessPayment()
@@ -18,7 +18,7 @@ const CulqiSubmitButton: React.FC = () => {
             id="btn_pagar"
             className="button button--action button--large button--slab optimizedCheckout-buttonPrimary "
             onClick={handleClick}>
-            PLACE ORDER WITH CULQI
+            PLACE ORDER WITH CULQI + {cartItem}
         </button>
     );
 };

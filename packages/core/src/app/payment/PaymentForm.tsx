@@ -78,7 +78,7 @@ const PaymentForm: FunctionComponent<
     usableStoreCredit = 0,
     values,
 }) => {
-        console.log("values (form): ", values);
+
         const selectedMethodId = useMemo(() => {
             if (!selectedMethod) {
                 return;
@@ -101,7 +101,7 @@ const PaymentForm: FunctionComponent<
             if (!selectedMethod) {
                 return;
             }
-
+            console.log("DAtaaa ", selectedMethod.initializationData);
             return (
                 selectedMethod.initializationData?.payPalCreditProductBrandName?.credit ||
                 selectedMethod.initializationData?.payPalCreditProductBrandName
@@ -157,7 +157,7 @@ const PaymentForm: FunctionComponent<
                 )}
 
                 <div className="form-actions">
-                    {selectedMethodId === 'culqi' ? <CulqiSubmitButton />
+                    {selectedMethodId === 'culqi' ? <CulqiSubmitButton cartItem={brandName} />
                         : (shouldHidePaymentSubmitButton ? (
                             <PaymentMethodSubmitButtonContainer />
                         ) : (

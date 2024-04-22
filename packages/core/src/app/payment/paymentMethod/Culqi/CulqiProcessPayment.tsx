@@ -1,5 +1,4 @@
 
-
 declare var Culqi: any;
 const script = document.createElement('script');
 

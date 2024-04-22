@@ -105,7 +105,7 @@ const PaymentMethodComponent: FunctionComponent<
 
     // metodo de pago mercado pago 
     if (method.type === PaymentMethodProviderType.PPSDK) {
-        console.log("<<<<PPSDK #3: METHOD>>>>");
+        // console.log("<<<<PPSDK #3: METHOD>>>>");
         return <PPSDKPaymentMethod {...props} />;
     }
 

@@ -51,7 +51,7 @@ export default class CheckoutApp extends Component<CheckoutAppProps> {
 
     componentDidMount(): void {
         const { containerId } = this.props;
-
+        console.log("Prueba app");
         ReactModal.setAppElement(`#${containerId}`);
     }
 
