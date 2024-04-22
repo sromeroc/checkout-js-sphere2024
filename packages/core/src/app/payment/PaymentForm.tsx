@@ -5,7 +5,7 @@ import React, { FunctionComponent, memo, useCallback, useContext, useMemo } from
 import { ObjectSchema } from 'yup';
 
 import { withLanguage, WithLanguageProps } from '@bigcommerce/checkout/locale';
-import { PaymentFormValues, useCheckout } from '@bigcommerce/checkout/payment-integration-api';
+import { PaymentFormValues } from '@bigcommerce/checkout/payment-integration-api';
 import { FormContext } from '@bigcommerce/checkout/ui';
 
 import { TermsConditions } from '../termsConditions';
@@ -78,10 +78,10 @@ const PaymentForm: FunctionComponent<
     usableStoreCredit = 0,
     values,
 }) => {
-        const { checkoutState } = useCheckout();
-        const { data } = checkoutState;
-        console.log("FROM FORM: ", data.getCheckout());
-        
+        // const { checkoutState } = useCheckout();
+        // const { data } = checkoutState;
+        // console.log("FROM FORM: ", data.getCart());
+
         const selectedMethodId = useMemo(() => {
             if (!selectedMethod) {
                 return;
@@ -104,7 +104,6 @@ const PaymentForm: FunctionComponent<
             if (!selectedMethod) {
                 return;
             }
-            console.log("DAtaaa ", selectedMethod.initializationData);
             return (
                 selectedMethod.initializationData?.payPalCreditProductBrandName?.credit ||
                 selectedMethod.initializationData?.payPalCreditProductBrandName
