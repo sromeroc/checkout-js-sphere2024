@@ -28,7 +28,7 @@ const CulqiProcessPayment = (checkoutData: Checkout | undefined) => {
                     amount,
                     currency_code: 'PEN',
                     description: 'Venta de polo',
-                    order_number: checkoutData.orderId?.toString(),
+                    order_number: "3930",
                     expiration_date: '1731019303',
                     client_details: {
                         first_name: 'Sandro',
@@ -75,7 +75,7 @@ const CulqiProcessPayment = (checkoutData: Checkout | undefined) => {
     }
 }
 
-const culqi = (checkoutData2: Checkout | undefined) => {
+export function culqi(checkoutData2: Checkout | undefined){
     if (checkoutData2) {
         let amount = checkoutData2.subtotal * 100;
 
@@ -149,4 +149,4 @@ export const closeCulqi = () => document.head.removeChild(script);
 // export OrdenCulqi;
 
 export default CulqiProcessPayment;
-export { culqi }
+// export { culqi }
