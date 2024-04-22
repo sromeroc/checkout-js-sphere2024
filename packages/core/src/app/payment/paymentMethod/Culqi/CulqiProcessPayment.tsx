@@ -8,10 +8,10 @@ const CulqiProcessPayment = () => {
     
     // Obtenemos el amount
     let amount = 600
-    const grandTotalString = localStorage.getItem('grandtotal');
-    if (grandTotalString !== null) {
-        amount = parseFloat(grandTotalString) * 100;
-    }
+    // const grandTotalString = localStorage.getItem('grandtotal');
+    // if (grandTotalString !== null) {
+    //     amount = parseFloat(grandTotalString) * 100;
+    // }
 
     script.onload = () => {
         const publicKey = 'pk_test_986ab1b486ddd58f';
