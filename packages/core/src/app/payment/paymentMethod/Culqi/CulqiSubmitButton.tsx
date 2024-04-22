@@ -2,12 +2,6 @@ import React from "react";
 import CulqiProcessPayment, { closeCulqi, openCulqi } from "./CulqiProcessPayment";
 import { useCheckout } from "@bigcommerce/checkout/payment-integration-api";
 
-interface CulqiData {
-    cartItem: number;
-}
-
-// }
-
 const CulqiSubmitButton: React.FC = () => {
     const { checkoutState } = useCheckout();
     const { data } = checkoutState;
