@@ -78,7 +78,10 @@ const PaymentForm: FunctionComponent<
     usableStoreCredit = 0,
     values,
 }) => {
-        console.log("values (form): ", values);
+        const { checkoutState } = useCheckout();
+        const { data } = checkoutState;
+        console.log("FROM FORM: ", data.getCheckout());
+        
         const selectedMethodId = useMemo(() => {
             if (!selectedMethod) {
                 return;
