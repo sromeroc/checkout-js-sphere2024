@@ -75,10 +75,77 @@ const CulqiProcessPayment = (checkoutData: Checkout | undefined) => {
     }
 }
 
+const OrdenCulqi = (checkoutData2: Checkout | undefined) => {
+    if (checkoutData2) {
+        let amount = checkoutData2.subtotal * 100;
+        if ( Culqi.token ) {  // ¡Objeto Token creado exitosamente!
+
+            const token = Culqi.token.id;
+            console.log( 'Se ha creado un Token: ', token );
+            // En esta línea de código, debes enviar el "Culqi.token.id"
+            // hacia tu servidor con Ajax
+            {
+                const data = JSON.stringify({
+                    amount,
+                    "currency_code": "PEN",
+                    "email": "tiendaMascota@outlook.com",
+                    "source_id": token,
+                    "capture": true,
+                    "description": "Prueba",
+                    "installments": 0,
+                    "metadata": {
+                        "dni": "09928494"
+                    },
+                    "antifraud_details": {
+                        "address": "Avenida Lima 213",
+                        "address_city": "Lima",
+                        "country_code": "PE",
+                        "first_name": "Sandro2",
+                        "last_name": "Romero",
+                        "phone_number": "911111111"
+                    }
+                });
+
+                //var XMLHttpRequest = require('xhr2');
+                const xhr = new XMLHttpRequest();
+                xhr.withCredentials = false;
+
+                xhr.addEventListener( "readystatechange", function () {
+                    if ( this.readyState === this.DONE ) {
+                    console.log( this.responseText );
+                    }
+                });
+                
+                console.log( 'Antes del cargo' );
+                console.log( 'Data: ', data );
+                console.log( 'Despues del cargo' );
+
+                xhr.open( "POST", "https://api.culqi.com/v2/charges" );
+                xhr.setRequestHeader( "Authorization", "Bearer sk_test_kW32mQUjBB3KnfUD" );
+                xhr.setRequestHeader( "content-type", "application/json" );
+                
+                xhr.send( data );
+            }   
+
+        } else if (Culqi.order) {  // ¡Objeto Order creado exitosamente!
+
+            const order = Culqi.order;
+            console.log('Se ha creado el objeto Order: ', order);
+
+        } else {
+
+            // Mostramos JSON de objeto error en la consola
+            console.log('Error : ', Culqi.error);
+
+        }
+    }
+}
 
 export const openCulqi = () => Culqi.open();
 
 export const closeCulqi = () => document.head.removeChild(script);
 
+// export OrdenCulqi;
 
 export default CulqiProcessPayment;
+export { OrdenCulqi }
