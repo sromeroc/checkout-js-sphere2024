@@ -1,5 +1,5 @@
 import React from "react";
-import CulqiProcessPayment, { closeCulqi, openCulqi } from "./CulqiProcessPayment";
+import CulqiProcessPayment from "./CulqiProcessPayment";
 import { useCheckout } from "@bigcommerce/checkout/payment-integration-api";
 
 const CulqiSubmitButton: React.FC = () => {
@@ -9,8 +9,8 @@ const CulqiSubmitButton: React.FC = () => {
     
     const handleClick = () => {
         CulqiProcessPayment(data.getCheckout())
-        openCulqi()
-        closeCulqi()
+        // openCulqi()
+        // closeCulqi()
     }
 
     return (

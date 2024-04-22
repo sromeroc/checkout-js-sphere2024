@@ -17,6 +17,20 @@ const CulqiProcessPayment = (checkoutData: Checkout | undefined) => {
 
             const url = 'https://api.culqi.com/v2/orders';
             const token = 'Bearer sk_test_kW32mQUjBB3KnfUD';
+            const bodyOptions = {
+                amount: checkoutData.subtotal * 100,
+                currency_code: 'PEN',
+                    description: 'Venta de polo',
+                    order_number: checkoutData.orderId?.toString(),
+                    expiration_date: '1731019303',
+                    client_details: {
+                        first_name: checkoutData.billingAddress?.firstName,
+                        last_name: checkoutData.billingAddress?.lastName,
+                        email: checkoutData.billingAddress?.email,
+                        phone_number: checkoutData.billingAddress?.phone,
+                    },
+                    confirm: false,
+            }
 
             fetch(url, {
                 method: 'POST',
@@ -24,20 +38,7 @@ const CulqiProcessPayment = (checkoutData: Checkout | undefined) => {
                     'Authorization': token,
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({
-                    amount,
-                    currency_code: 'PEN',
-                    description: 'Venta de polo',
-                    order_number: checkoutData.orderId?.toString(),
-                    expiration_date: '1731019303',
-                    client_details: {
-                        first_name: 'Sandro',
-                        last_name: 'Romero',
-                        email: 'sandro30@outlook.com',
-                        phone_number: '968272374',
-                    },
-                    confirm: false,
-                }),
+                body: JSON.stringify(bodyOptions),
             })
                 .then(response => response.json())
                 .then(data => {
@@ -56,7 +57,7 @@ const CulqiProcessPayment = (checkoutData: Checkout | undefined) => {
                 installments: false,
                 paymentMethods: {
                     tarjeta: true,
-                    yape: true,
+                    yape: true, 
                     bancaMovil: true,
                     agente: true,
                     billetera: true,
@@ -67,8 +68,10 @@ const CulqiProcessPayment = (checkoutData: Checkout | undefined) => {
                 },
             });
         };
-
+        
         document.head.appendChild(script);
+        Culqi.open()
+        document.head.removeChild(script)
     }
     else {
         console.log('ERROR: CheckoutData is undefined');
