@@ -75,9 +75,10 @@ const CulqiProcessPayment = (checkoutData: Checkout | undefined) => {
     }
 }
 
-const OrdenCulqi = (checkoutData2: Checkout | undefined) => {
+const culqi = (checkoutData2: Checkout | undefined) => {
     if (checkoutData2) {
         let amount = checkoutData2.subtotal * 100;
+
         if ( Culqi.token ) {  // ¡Objeto Token creado exitosamente!
 
             const token = Culqi.token.id;
@@ -148,4 +149,4 @@ export const closeCulqi = () => document.head.removeChild(script);
 // export OrdenCulqi;
 
 export default CulqiProcessPayment;
-export { OrdenCulqi }
+export { culqi }
