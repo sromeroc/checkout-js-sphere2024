@@ -1,16 +1,30 @@
-import React from "react";
-import CulqiProcessPayment from "./CulqiProcessPayment";
+import React, { useEffect } from "react";
 import { useCheckout } from "@bigcommerce/checkout/payment-integration-api";
+import { Checkout } from "@bigcommerce/checkout-sdk";
 
 const CulqiSubmitButton: React.FC = () => {
+    // Use checkcoutContext
     const { checkoutState } = useCheckout();
     const { data } = checkoutState;
-    console.log('Checkout data: ', data.getCheckout());
-    
+    const checkoutData = data.getCheckout()
+    console.log('Checkout data: ', checkoutData);
+
+    // Integrate Culqi Checkout
+    useEffect(() => {
+        const script = document.createElement('script');
+        script.src = 'https://checkout.culqi.com/js/v4';
+        script.async = true;
+        document.body.appendChild(script);
+        script.onload = () => setupCheckout(checkoutData);
+
+        return () => {
+            document.body.removeChild(script);
+        };
+    }, []);
+
     const handleClick = () => {
-        CulqiProcessPayment(data.getCheckout())
-        // openCulqi()
-        // closeCulqi()
+        openCulqi()
+        createCharge(checkoutData)
     }
 
     return (
@@ -23,4 +37,84 @@ const CulqiSubmitButton: React.FC = () => {
     );
 };
 
+
+const setupCheckout = (checkoutData: Checkout | undefined) => {
+    if (checkoutData) {
+        window.Culqi.publicKey = 'pk_test_986ab1b486ddd58f';
+        window.Culqi.settings({
+            title: 'BigCommerce',
+            currency: 'PEN',
+            amount: checkoutData.subtotal * 100,
+            // xculqirsaid: 'Inserta aquí el id de tu llave pública RSA',
+            // rsapublickey: 'Inserta aquí tu llave pública RSA',
+        });
+    }
+    else {
+        console.log('ERROR at setupCheckout: CheckoutData is undefined');
+    }
+}
+
+const createCharge = (checkoutData: Checkout | undefined) => {
+    if (window.Culqi.token) {  // ¡Objeto Token creado exitosamente!
+        if (checkoutData) {
+            const token = window.Culqi.token.id;
+            console.log('Se ha creado un Token: ', token);
+            // En esta línea de código, debes enviar el "Culqi.token.id"
+            // hacia tu servidor con Ajax
+            const data = JSON.stringify({
+                "amount": 600,
+                "currency_code": "PEN",
+                "email": checkoutData.billingAddress?.email,
+                "source_id": token,
+                "capture": true,
+                "description": "BigCommerce",
+                "installments": 0,
+                "metadata": {
+                    "dni": "09928494"
+                },
+                "antifraud_details": {
+                    "address": checkoutData.billingAddress?.address1,
+                    "address_city": checkoutData.billingAddress?.city,
+                    "country_code": checkoutData.billingAddress?.countryCode,
+                    "first_name": checkoutData.billingAddress?.firstName,
+                    "last_name": checkoutData.billingAddress?.lastName,
+                    "phone_number": checkoutData.billingAddress?.phone
+                }
+            });
+
+            //var XMLHttpRequest = require('xhr2');
+            const xhr = new XMLHttpRequest();
+            xhr.withCredentials = false;
+
+            xhr.addEventListener("readystatechange", function () {
+                if (this.readyState === this.DONE) {
+                    console.log(this.responseText);
+                }
+            });
+
+            console.log('Antes del cargo');
+            console.log('Data: ', data);
+            console.log('Despues del cargo');
+
+            xhr.open("POST", "https://api.culqi.com/v2/charges");
+            xhr.setRequestHeader("Authorization", "Bearer sk_test_kW32mQUjBB3KnfUD");
+            xhr.setRequestHeader("content-type", "application/json");
+
+            xhr.send(data);
+        }
+        else {
+            console.log('ERROR at createCharge: CheckoutData is undefined');
+        }
+    } else {
+
+        // Mostramos JSON de objeto error en la consola
+        console.log('Error : ', window.Culqi.error);
+
+    }
+}
+
+const openCulqi = () => window.Culqi.open();
+
 export default CulqiSubmitButton;
+
+
