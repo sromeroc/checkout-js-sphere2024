@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useCheckout } from "@bigcommerce/checkout/payment-integration-api";
 import { Checkout } from "@bigcommerce/checkout-sdk";
+declare var Culqi: any;
 
 const CulqiSubmitButton: React.FC = () => {
     // Use checkcoutContext
@@ -40,8 +41,8 @@ const CulqiSubmitButton: React.FC = () => {
 
 const setupCheckout = (checkoutData: Checkout | undefined) => {
     if (checkoutData) {
-        window.Culqi.publicKey = 'pk_test_986ab1b486ddd58f';
-        window.Culqi.settings({
+        Culqi.publicKey = 'pk_test_986ab1b486ddd58f';
+        Culqi.settings({
             title: 'BigCommerce',
             currency: 'PEN',
             amount: checkoutData.subtotal * 100,
@@ -55,9 +56,9 @@ const setupCheckout = (checkoutData: Checkout | undefined) => {
 }
 
 const createCharge = (checkoutData: Checkout | undefined) => {
-    if (window.Culqi.token) {  // ¡Objeto Token creado exitosamente!
+    if (Culqi.token) {  // ¡Objeto Token creado exitosamente!
         if (checkoutData) {
-            const token = window.Culqi.token.id;
+            const token = Culqi.token.id;
             console.log('Se ha creado un Token: ', token);
             // En esta línea de código, debes enviar el "Culqi.token.id"
             // hacia tu servidor con Ajax
@@ -108,12 +109,12 @@ const createCharge = (checkoutData: Checkout | undefined) => {
     } else {
 
         // Mostramos JSON de objeto error en la consola
-        console.log('Error : ', window.Culqi.error);
+        console.log('Error : ', Culqi.error);
 
     }
 }
 
-const openCulqi = () => window.Culqi.open();
+const openCulqi = () => Culqi.open();
 
 export default CulqiSubmitButton;
 
