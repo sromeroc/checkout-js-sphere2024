@@ -25,7 +25,7 @@ const CulqiSubmitButton2: React.FC = () => {
 
     const handleClick = () => {
         openCulqi()
-        createCharge(checkoutData)
+        culqi(checkoutData)
     }
 
     return (
@@ -55,7 +55,7 @@ const setupCheckout = (checkoutData: Checkout | undefined) => {
     }
 }
 
-const createCharge = (checkoutData: Checkout | undefined) => {
+const culqi = (checkoutData: Checkout | undefined) => {
     if (Culqi.token) {  // ¡Objeto Token creado exitosamente!
         if (checkoutData) {
             const token = Culqi.token.id;
@@ -104,7 +104,7 @@ const createCharge = (checkoutData: Checkout | undefined) => {
             xhr.send(data);
         }
         else {
-            console.log('ERROR at createCharge: CheckoutData is undefined');
+            console.log('ERROR at culqi: CheckoutData is undefined');
         }
     } else {
 
