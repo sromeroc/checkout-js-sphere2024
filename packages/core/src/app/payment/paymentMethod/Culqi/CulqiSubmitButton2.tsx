@@ -1,14 +1,14 @@
 import React, { useEffect } from "react";
 import { useCheckout } from "@bigcommerce/checkout/payment-integration-api";
 import { Checkout } from "@bigcommerce/checkout-sdk";
+const { checkoutState } = useCheckout();
+const { data } = checkoutState;
+const checkoutData = data.getCheckout()
+console.log('Checkout data: ', checkoutData);
 declare var Culqi: any;
 
 const CulqiSubmitButton2: React.FC = () => {
     // Use checkcoutContext
-    const { checkoutState } = useCheckout();
-    const { data } = checkoutState;
-    const checkoutData = data.getCheckout()
-    console.log('Checkout data: ', checkoutData);
 
     // Integrate Culqi Checkout
     useEffect(() => {
@@ -16,7 +16,10 @@ const CulqiSubmitButton2: React.FC = () => {
         script.src = 'https://checkout.culqi.com/js/v4';
         script.async = true;
         document.body.appendChild(script);
-        script.onload = () => setupCheckout(checkoutData);
+        script.onload = () => {
+            setupCheckout(checkoutData)
+            culqi
+        };
 
         return () => {
             document.body.removeChild(script);
@@ -25,7 +28,6 @@ const CulqiSubmitButton2: React.FC = () => {
 
     const handleClick = () => {
         openCulqi()
-        culqi(checkoutData)
     }
 
     return (
@@ -55,7 +57,7 @@ const setupCheckout = (checkoutData: Checkout | undefined) => {
     }
 }
 
-const culqi = (checkoutData: Checkout | undefined) => {
+const culqi = () => {
     if (Culqi.token) {  // ¡Objeto Token creado exitosamente!
         if (checkoutData) {
             const token = Culqi.token.id;
