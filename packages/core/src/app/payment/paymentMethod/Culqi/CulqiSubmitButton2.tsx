@@ -18,7 +18,7 @@ const CulqiSubmitButton2: React.FC = () => {
         document.body.appendChild(script);
         script.onload = () => {
             setupCheckout(checkoutData)
-            culqi
+            culqi()
         };
 
         return () => {
