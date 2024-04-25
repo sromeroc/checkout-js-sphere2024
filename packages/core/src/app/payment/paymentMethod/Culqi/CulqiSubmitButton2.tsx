@@ -1,6 +1,11 @@
 import React, { useEffect } from "react";
 import { useCheckout } from "@bigcommerce/checkout/payment-integration-api";
 import { Checkout } from "@bigcommerce/checkout-sdk";
+
+interface Window {
+    culqi: any;
+}
+
 declare var Culqi: any;
 
 const CulqiSubmitButton2: React.FC = () => {
@@ -79,7 +84,8 @@ const CulqiSubmitButton2: React.FC = () => {
         script.onload = () => {
             setupCheckout(checkoutData)
         };
-        
+        window.culqi = culqi
+
         // Add script to the body
         document.body.appendChild(script);
         return () => {
@@ -89,7 +95,6 @@ const CulqiSubmitButton2: React.FC = () => {
 
     const handleClick = () => {
         Culqi.open()
-        culqi()
     }
 
     return (
