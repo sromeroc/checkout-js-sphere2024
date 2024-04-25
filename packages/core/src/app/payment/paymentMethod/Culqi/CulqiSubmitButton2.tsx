@@ -74,8 +74,8 @@ const CulqiSubmitButton2: React.FC = () => {
     useEffect(() => {
         // Create script
         const script = document.createElement('script');
-        script.src = 'https://checkout.culqi.com/js/v4';
         script.async = true;
+        script.src = 'https://checkout.culqi.com/js/v4';
         script.onload = () => {
             setupCheckout(checkoutData)
         };
