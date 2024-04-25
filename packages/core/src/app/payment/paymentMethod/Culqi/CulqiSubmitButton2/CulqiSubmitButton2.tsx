@@ -13,17 +13,14 @@ const CulqiSubmitButton2: React.FC = () => {
 
     // Integrate Culqi Checkout
     useEffect(() => {
-        // Create script
-        const script = document.createElement('script');
-        script.src = 'https://checkout.culqi.com/js/v4';
-        script.onload = () => {
-            setupCheckout(checkoutData)
-        };
-
-        // Add script to the body
-        document.body.appendChild(script);
-
         if (checkoutData) {
+            // Create script
+            const script = document.createElement('script');
+            script.src = 'https://checkout.culqi.com/js/v4';
+            script.onload = () => {
+                setupCheckout(checkoutData)
+            };
+
             // Culqi function
             script.text = `
             const culqi = () => {
@@ -80,14 +77,18 @@ const CulqiSubmitButton2: React.FC = () => {
                 }
             }    
             `
+
+            // Add script to the body
+            document.body.appendChild(script);
+            
+            return () => {
+                document.body.removeChild(script);
+            };
         }
         else {
             console.log('ERROR at culqi: CheckoutData is undefined');
         }
 
-        return () => {
-            document.body.removeChild(script);
-        };
     }, []);
 
     const handleClick = () => {
