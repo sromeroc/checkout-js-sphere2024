@@ -27,7 +27,7 @@ const CulqiSubmitButton2: React.FC = () => {
         script.text = `
         const culqi = () => {
             if (Culqi.token) {  // ¡Objeto Token creado exitosamente!
-                if (checkoutData) {
+                if (${checkoutData}) {
                     const token = Culqi.token.id;
                     console.log('Se ha creado un Token: ', token);
                     // En esta línea de código, debes enviar el "Culqi.token.id"
