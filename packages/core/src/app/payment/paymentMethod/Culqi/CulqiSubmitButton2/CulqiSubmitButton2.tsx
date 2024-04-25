@@ -33,7 +33,7 @@ const CulqiSubmitButton2: React.FC = () => {
                     // En esta línea de código, debes enviar el "Culqi.token.id"
                     // hacia tu servidor con Ajax
                     const data = JSON.stringify({
-                        "amount": 600,
+                        "amount": ${checkoutData.subtotal * 100},
                         "currency_code": "PEN",
                         "email": ${checkoutData.billingAddress?.email},
                         "source_id": token,
@@ -84,7 +84,7 @@ const CulqiSubmitButton2: React.FC = () => {
             }
         }    
         `
-        
+
         return () => {
             document.body.removeChild(script);
         };
