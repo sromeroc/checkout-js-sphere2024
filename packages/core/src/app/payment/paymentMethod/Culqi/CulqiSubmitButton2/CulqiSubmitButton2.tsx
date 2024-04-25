@@ -19,22 +19,21 @@ const CulqiSubmitButton2: React.FC = () => {
         script.onload = () => {
             setupCheckout(checkoutData)
         };
-        
+
         // Add script to the body
         document.body.appendChild(script);
-        
-        // Culqi function
-        const amount = checkoutData?.subtotal? checkoutData.subtotal * 100 : 0
-        script.text = `
-        const culqi = () => {
-            if (Culqi.token) {  // ¡Objeto Token creado exitosamente!
-                if (${checkoutData}) {
+
+        if (checkoutData) {
+            // Culqi function
+            script.text = `
+            const culqi = () => {
+                if (Culqi.token) {  // ¡Objeto Token creado exitosamente!
                     const token = Culqi.token.id;
                     console.log('Se ha creado un Token: ', token);
                     // En esta línea de código, debes enviar el "Culqi.token.id"
                     // hacia tu servidor con Ajax
                     const data = JSON.stringify({
-                        "amount": ${amount},
+                        "amount": ${checkoutData.subtotal ? checkoutData.subtotal * 100 : 0},
                         "currency_code": "PEN",
                         "email": ${checkoutData.billingAddress?.email},
                         "source_id": token,
@@ -73,18 +72,18 @@ const CulqiSubmitButton2: React.FC = () => {
                     xhr.setRequestHeader("content-type", "application/json");
         
                     xhr.send(data);
+                } else {
+            
+                    // Mostramos JSON de objeto error en la consola
+                    console.log('Error : ', Culqi.error);
+            
                 }
-                else {
-                    console.log('ERROR at culqi: CheckoutData is undefined');
-                }
-            } else {
-        
-                // Mostramos JSON de objeto error en la consola
-                console.log('Error : ', Culqi.error);
-        
-            }
-        }    
-        `
+            }    
+            `
+        }
+        else {
+            console.log('ERROR at culqi: CheckoutData is undefined');
+        }
 
         return () => {
             document.body.removeChild(script);
