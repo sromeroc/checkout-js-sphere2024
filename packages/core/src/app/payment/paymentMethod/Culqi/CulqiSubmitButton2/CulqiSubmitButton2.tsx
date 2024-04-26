@@ -31,7 +31,6 @@ const CulqiSubmitButton2: React.FC = () => {
                     console.log('Script cargado correctamente:', script);
 
                     // Culqi function
-                    script.text = `
                     const culqi = () => {
                         if (Culqi.token) {  // ¡Objeto Token creado exitosamente!
                             const token = Culqi.token.id;
@@ -39,9 +38,9 @@ const CulqiSubmitButton2: React.FC = () => {
                             // En esta línea de código, debes enviar el "Culqi.token.id"
                             // hacia tu servidor con Ajax
                             const data = JSON.stringify({
-                                "amount": ${checkoutData.subtotal ? checkoutData.subtotal * 100 : 0},
+                                "amount": checkoutData.subtotal ? checkoutData.subtotal * 100 : 0,
                                 "currency_code": "PEN",
-                                "email": ${checkoutData.billingAddress?.email},
+                                "email": checkoutData.billingAddress?.email,
                                 "source_id": token,
                                 "capture": true,
                                 "description": "BigCommerce",
@@ -50,12 +49,12 @@ const CulqiSubmitButton2: React.FC = () => {
                                     "dni": "09928494"
                                 },
                                 "antifraud_details": {
-                                    "address": ${checkoutData.billingAddress?.address1},
-                                    "address_city": ${checkoutData.billingAddress?.city},
-                                    "country_code": ${checkoutData.billingAddress?.countryCode},
-                                    "first_name": ${checkoutData.billingAddress?.firstName},
-                                    "last_name": ${checkoutData.billingAddress?.lastName},
-                                    "phone_number": ${checkoutData.billingAddress?.phone}
+                                    "address": checkoutData.billingAddress?.address1,
+                                    "address_city": checkoutData.billingAddress?.city,
+                                    "country_code": checkoutData.billingAddress?.countryCode,
+                                    "first_name": checkoutData.billingAddress?.firstName,
+                                    "last_name": checkoutData.billingAddress?.lastName,
+                                    "phone_number": checkoutData.billingAddress?.phone
                                 }
                             });
                 
@@ -74,7 +73,7 @@ const CulqiSubmitButton2: React.FC = () => {
                             console.log('Despues del cargo');
                 
                             xhr.open("POST", "https://api.culqi.com/v2/charges");
-                            xhr.setRequestHeader("Authorization", ${`Bearer ${sk}`});
+                            xhr.setRequestHeader("Authorization", `Bearer ${sk}`);
                             xhr.setRequestHeader("content-type", "application/json");
                 
                             xhr.send(data);
@@ -85,7 +84,8 @@ const CulqiSubmitButton2: React.FC = () => {
                     
                         }
                     }    
-                    `
+
+                    window.onload = culqi
 
                     script.onload = () => {
                         // Setup Checkout
@@ -120,7 +120,7 @@ const CulqiSubmitButton2: React.FC = () => {
             id="btn_pagar"
             className="button button--action button--large button--slab optimizedCheckout-buttonPrimary "
             onClick={handleClick}>
-            PLACE ORDER
+            PLACE ORDER WITH CULQI
         </button>
     );
 };
