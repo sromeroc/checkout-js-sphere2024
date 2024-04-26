@@ -2,16 +2,16 @@ import React, { useEffect } from "react";
 import { useCheckout } from "@bigcommerce/checkout/payment-integration-api";
 import { setupCheckout } from "./setupCheckout";
 
-declare var window: any
+declare var window: any;
 declare var Culqi: any;
 const sk = "sk_test_kW32mQUjBB3KnfUD"
 const script = document.createElement('script');
 
 // Create promise to load culqi checkout
-const loadScript = (url: string): Promise<HTMLScriptElement> => {
+const loadScript = (url: string) => {
     return new Promise((resolve, reject) => {
         script.src = url;
-        script.onload = () => resolve(script);
+        script.onload = resolve;
         script.onerror = reject;
     });
 };
@@ -28,7 +28,7 @@ const CulqiSubmitButton2: React.FC = () => {
         if (checkoutData) {
             // Create script
             loadScript('https://checkout.culqi.com/js/v4')
-                .then((script: HTMLScriptElement) => {
+                .then(() => {
                     console.log('Script cargado correctamente:', script);
 
                     // Culqi function
