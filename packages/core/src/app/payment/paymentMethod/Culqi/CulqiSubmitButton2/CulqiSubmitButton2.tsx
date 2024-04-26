@@ -108,7 +108,7 @@ const CulqiSubmitButton2: React.FC = () => {
         return () => {
             document.body.removeChild(script);
         };
-    }, [checkoutData]);
+    }, []);
 
     const handleClick = () => {
         Culqi.open()
