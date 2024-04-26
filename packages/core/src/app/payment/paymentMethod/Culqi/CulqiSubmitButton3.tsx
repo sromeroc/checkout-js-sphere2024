@@ -1,27 +1,27 @@
 import React, { useEffect } from "react";
 
 declare var Culqi: any;
-Culqi.publicKey = "pk_test_986ab1b486ddd58f"
 
 const CulqiSubmitButton2: React.FC = () => {
-
+    
     // Integrate Culqi Checkout
     useEffect(() => {
         const script = document.createElement('script');
         script.src = "https://checkout.culqi.com/js/v4";
         document.body.appendChild(script);
-
+        
         const script2 = document.createElement('script');
         script2.src = "./script.js"
         document.body.appendChild(script2);
-
+        
         return () => {
             document.body.removeChild(script);
             document.body.removeChild(script2);
         };
     }, []);
-
+    
     const handleClick = () => {
+        Culqi.publicKey = "pk_test_986ab1b486ddd58f"
         Culqi.open()
     }
 
