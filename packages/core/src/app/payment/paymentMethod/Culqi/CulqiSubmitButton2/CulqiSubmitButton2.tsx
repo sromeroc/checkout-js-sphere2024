@@ -17,9 +17,6 @@ const CulqiSubmitButton2: React.FC = () => {
             // Create script
             const script = document.createElement('script');
             script.src = 'https://checkout.culqi.com/js/v4';
-            script.onload = () => {
-                setupCheckout(checkoutData)
-            };
 
             // Culqi function
             script.text = `
@@ -77,6 +74,11 @@ const CulqiSubmitButton2: React.FC = () => {
                 }
             }    
             `
+
+            script.onload = () => {
+                // Setup Checkout
+                setupCheckout(checkoutData)
+            };
 
             // Add script to the body
             document.body.appendChild(script);
