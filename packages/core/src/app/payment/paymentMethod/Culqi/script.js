@@ -1,4 +1,4 @@
-
+Culqi.publicKey = "pk_test_986ab1b486ddd58f"
 const url = 'https://api.culqi.com/v2/orders';
 const amount = 600
 
