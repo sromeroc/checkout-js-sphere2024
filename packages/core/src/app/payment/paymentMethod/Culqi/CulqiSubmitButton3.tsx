@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 
 declare var Culqi: any;
+Culqi.publicKey = "pk_test_986ab1b486ddd58f"
 
 const CulqiSubmitButton2: React.FC = () => {
 
