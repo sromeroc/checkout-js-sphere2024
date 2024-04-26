@@ -84,11 +84,11 @@ const CulqiSubmitButton2: React.FC = () => {
             }    
             `
 
-            setupCheckout(checkoutData)
+            script.onload = () => setupCheckout(checkoutData)
 
             // Add script to the body
             document.body.appendChild(script);
-            
+
             return () => {
                 document.body.removeChild(script);
             };
