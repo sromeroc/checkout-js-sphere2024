@@ -102,7 +102,7 @@ const CulqiSubmitButton2: React.FC = () => {
             id="btn_pagar"
             className="button button--action button--large button--slab optimizedCheckout-buttonPrimary "
             onClick={handleClick}>
-            PLACE ORDER WITH CULQI
+            PLACE ORDER 
         </button>
     );
 };
