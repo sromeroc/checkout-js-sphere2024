@@ -31,65 +31,62 @@ const CulqiSubmitButton2: React.FC = () => {
                     console.log('Script cargado correctamente:', script);
 
                     script.text = `
-            const culqi = () => {
-                if (Culqi.token) {  // ¡Objeto Token creado exitosamente!
-                    const token = Culqi.token.id;
-                    console.log('Se ha creado un Token: ', token);
-                    // En esta línea de código, debes enviar el "Culqi.token.id"
-                    // hacia tu servidor con Ajax
-                    const data = JSON.stringify({
-                        "amount": ${checkoutData.subtotal ? checkoutData.subtotal * 100 : 0},
-                        "currency_code": "PEN",
-                        "email": ${checkoutData.billingAddress?.email},
-                        "source_id": token,
-                        "capture": true,
-                        "description": "BigCommerce",
-                        "installments": 0,
-                        "metadata": {
-                            "dni": "09928494"
-                        },
-                        "antifraud_details": {
-                            "address": ${checkoutData.billingAddress?.address1},
-                            "address_city": ${checkoutData.billingAddress?.city},
-                            "country_code": ${checkoutData.billingAddress?.countryCode},
-                            "first_name": ${checkoutData.billingAddress?.firstName},
-                            "last_name": ${checkoutData.billingAddress?.lastName},
-                            "phone_number": ${checkoutData.billingAddress?.phone}
+                    const culqi = () => {
+                        if (Culqi.token) {  // ¡Objeto Token creado exitosamente!
+                            const token = Culqi.token.id;
+                            console.log('Se ha creado un Token: ', token);
+                            // En esta línea de código, debes enviar el "Culqi.token.id"
+                            // hacia tu servidor con Ajax
+                            const data = JSON.stringify({
+                                "amount": ${checkoutData.subtotal ? checkoutData.subtotal * 100 : 0},
+                                "currency_code": "PEN",
+                                "email": ${checkoutData.billingAddress?.email},
+                                "source_id": token,
+                                "capture": true,
+                                "description": "BigCommerce",
+                                "installments": 0,
+                                "metadata": {
+                                    "dni": "09928494"
+                                },
+                                "antifraud_details": {
+                                    "address": ${checkoutData.billingAddress?.address1},
+                                    "address_city": ${checkoutData.billingAddress?.city},
+                                    "country_code": ${checkoutData.billingAddress?.countryCode},
+                                    "first_name": ${checkoutData.billingAddress?.firstName},
+                                    "last_name": ${checkoutData.billingAddress?.lastName},
+                                    "phone_number": ${checkoutData.billingAddress?.phone}
+                                }
+                            });
+                
+                            //var XMLHttpRequest = require('xhr2');
+                            const xhr = new XMLHttpRequest();
+                            xhr.withCredentials = false;
+                
+                            xhr.addEventListener("readystatechange", function () {
+                                if (this.readyState === this.DONE) {
+                                    console.log(this.responseText);
+                                }
+                            });
+                
+                            console.log('Antes del cargo');
+                            console.log('Data: ', data);
+                            console.log('Despues del cargo');
+                
+                            xhr.open("POST", "https://api.culqi.com/v2/charges");
+                            xhr.setRequestHeader("Authorization", "Bearer ${sk}");
+                            xhr.setRequestHeader("content-type", "application/json");
+                
+                            xhr.send(data);
+                        } else {
+                    
+                            // Mostramos JSON de objeto error en la consola
+                            console.log('Error : ', Culqi.error);
+                    
                         }
-                    });
-        
-                    //var XMLHttpRequest = require('xhr2');
-                    const xhr = new XMLHttpRequest();
-                    xhr.withCredentials = false;
-        
-                    xhr.addEventListener("readystatechange", function () {
-                        if (this.readyState === this.DONE) {
-                            console.log(this.responseText);
-                        }
-                    });
-        
-                    console.log('Antes del cargo');
-                    console.log('Data: ', data);
-                    console.log('Despues del cargo');
-        
-                    xhr.open("POST", "https://api.culqi.com/v2/charges");
-                    xhr.setRequestHeader("Authorization", "Bearer ${sk}");
-                    xhr.setRequestHeader("content-type", "application/json");
-        
-                    xhr.send(data);
-                } else {
-            
-                    // Mostramos JSON de objeto error en la consola
-                    console.log('Error : ', Culqi.error);
-            
-                }
-            }    
-            `
+                    }    
+                    `
 
-                    script.onload = () => {
-                        // Setup Checkout
-                        setupCheckout(checkoutData)
-                    };
+                    setupCheckout(checkoutData)
 
                     // Add script to the body
                     document.body.appendChild(script);
