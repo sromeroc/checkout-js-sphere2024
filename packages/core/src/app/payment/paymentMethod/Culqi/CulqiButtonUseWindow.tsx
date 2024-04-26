@@ -74,7 +74,7 @@ function culqi() {
         // hacia tu servidor con Ajax
         {
             const data = JSON.stringify({
-                "amount": 600,
+                "amount": 23.6 * 100,
                 "currency_code": "PEN",
                 "email": "correo2@outlook.com",
                 "source_id": token,
