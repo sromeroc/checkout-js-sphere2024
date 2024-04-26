@@ -4,7 +4,6 @@ import { setupCheckout } from "./setupCheckout";
 
 declare var Culqi: any;
 const sk = "sk_test_kW32mQUjBB3KnfUD"
-const script = document.createElement('script');
 
 // Create promise to load culqi checkout
 // const loadScript = (url: string) => {
@@ -21,11 +20,12 @@ const CulqiSubmitButton2: React.FC = () => {
     const { data } = checkoutState;
     const checkoutData = data.getCheckout()
     console.log('Checkout data: ', checkoutData);
-
+    
     // Integrate Culqi Checkout
     useEffect(() => {
         if (checkoutData) {
             // Create script
+            const script = document.createElement('script');
             script.src = "https://checkout.culqi.com/js/v4";
     
             script.text = `
@@ -88,14 +88,15 @@ const CulqiSubmitButton2: React.FC = () => {
 
             // Add script to the body
             document.body.appendChild(script);
+            
+            return () => {
+                document.body.removeChild(script);
+            };
         }
         else {
             console.log('ERROR at culqi: CheckoutData is undefined');
         }
 
-        return () => {
-            document.body.removeChild(script);
-        };
     }, []);
 
     const handleClick = () => {
