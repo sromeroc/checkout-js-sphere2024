@@ -23,7 +23,7 @@ import PaymentSubmitButton from './PaymentSubmitButton';
 import SpamProtectionField from './SpamProtectionField';
 import { StoreCreditField, StoreCreditOverlay } from './storeCredit';
 // import CulqiSubmitButton from './paymentMethod/Culqi/CulqiSubmitButton';
-import CulqiSubmitButton2 from './paymentMethod/Culqi/CulqiSubmitButton2/CulqiSubmitButton2';
+import CulqiSubmitButton3 from './paymentMethod/Culqi/CulqiSubmitButton3';
 // import CulqiPaymentMethod from './paymentMethod/Culqi/CulqiPaymentMethod';
 
 export interface PaymentFormProps {
@@ -160,7 +160,7 @@ const PaymentForm: FunctionComponent<
                 )}
 
                 <div className="form-actions">
-                    {selectedMethodId === 'culqi' ? <CulqiSubmitButton2/>
+                    {selectedMethodId === 'culqi' ? <CulqiSubmitButton3/>
                         : (shouldHidePaymentSubmitButton ? (
                             <PaymentMethodSubmitButtonContainer />
                         ) : (

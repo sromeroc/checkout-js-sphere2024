@@ -1,6 +1,6 @@
 
 const url = 'https://api.culqi.com/v2/orders';
-const amount = checkoutData.subtotal * 100
+const amount = 600
 
 // Authorization token
 const token = 'Bearer sk_test_kW32mQUjBB3KnfUD';
@@ -47,7 +47,7 @@ fetch(url, options)
         Culqi.settings({
             title: 'Culqi Store',
             currency: 'PEN',  // Este parámetro es requerido para realizar pagos yape
-            amount: 600 ,  // Este parámetro es requerido para realizar pagos yape
+            amount,  // Este parámetro es requerido para realizar pagos yape
             order: data.id //, // Este parámetro es requerido para realizar pagos con pagoEfectivo, billeteras y Cuotéalo
             // xculqirsaid: xculqirsaid, //'sk_test_kW32mQUjBB3KnfUD',
             // rsapublickey: rsapublickey //'pk_test_986ab1b486ddd58f',
@@ -130,7 +130,7 @@ function culqi() {
         // hacia tu servidor con Ajax
         {
             const data = JSON.stringify({
-                "amount": 600,
+                amount,
                 "currency_code": "PEN",
                 "email": "correo2@outlook.com",
                 "source_id": token,
