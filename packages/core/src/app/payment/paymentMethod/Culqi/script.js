@@ -1,3 +1,4 @@
+Culqi.publicKey = "pk_test_986ab1b486ddd58f"
 const url = 'https://api.culqi.com/v2/orders';
 const amount = 600
 
@@ -90,30 +91,30 @@ Culqi.options({
 
 
 
-const radioCulqi = document.getElementById( 'radioCulqi' );
+// const radioCulqi = document.getElementById( 'radioCulqi' );
 
-radioCulqi.addEventListener('change', function () {
-    // Habilitar el botón "Pagar" si se selecciona "Pagar con Culqi", de lo contrario, deshabilitarlo.
-    if (radioCulqi.checked) {
-        btnPagar.removeAttribute('disabled');
-    } else {
-        btnPagar.setAttribute('disabled', 'true');
-    }
-});
-
-
+// radioCulqi.addEventListener('change', function () {
+//     // Habilitar el botón "Pagar" si se selecciona "Pagar con Culqi", de lo contrario, deshabilitarlo.
+//     if (radioCulqi.checked) {
+//         btnPagar.removeAttribute('disabled');
+//     } else {
+//         btnPagar.setAttribute('disabled', 'true');
+//     }
+// });
 
 
 
-const btnPagar = document.getElementById( 'btn_pagar' );
 
-btn_pagar.addEventListener( 'click', function (e) {
-    // Abre el formulario con la configuración en Culqi.settings y CulqiOptions
-    Culqi.open();
-    //crearOrden();
-    culqi();
-    e.preventDefault();
-});
+
+// const btnPagar = document.getElementById( 'btn_pagar' );
+
+// btn_pagar.addEventListener( 'click', function (e) {
+//     // Abre el formulario con la configuración en Culqi.settings y CulqiOptions
+//     Culqi.open();
+//     //crearOrden();
+//     culqi();
+//     e.preventDefault();
+// });
 
 
 

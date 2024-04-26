@@ -21,7 +21,6 @@ const CulqiSubmitButton2: React.FC = () => {
     }, []);
     
     const handleClick = () => {
-        Culqi.publicKey = "pk_test_986ab1b486ddd58f"
         Culqi.open()
     }
 
