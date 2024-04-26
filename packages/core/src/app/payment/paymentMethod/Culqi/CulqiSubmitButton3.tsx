@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 
 declare var Culqi: any;
 
-const CulqiSubmitButton2: React.FC = () => {
+const CulqiSubmitButton3: React.FC = () => {
     
     // Integrate Culqi Checkout
     useEffect(() => {
@@ -34,5 +34,5 @@ const CulqiSubmitButton2: React.FC = () => {
     );
 };
 
-export default CulqiSubmitButton2;
+export default CulqiSubmitButton3;
 
