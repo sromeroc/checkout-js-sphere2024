@@ -11,7 +11,7 @@ const CulqiSubmitButton2: React.FC = () => {
         document.body.appendChild(script);
         
         const script2 = document.createElement('script');
-        script2.src = "./script.js"
+        script2.src = `${window.location.origin}/script.js`;
         document.body.appendChild(script2);
         
         return () => {
