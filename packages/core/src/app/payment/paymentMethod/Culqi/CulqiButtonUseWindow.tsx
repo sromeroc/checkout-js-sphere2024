@@ -109,7 +109,7 @@ function culqi() {
             console.log('Despues del cargo');
 
             xhr.open("POST", "https://api.culqi.com/v2/charges");
-            xhr.setRequestHeader("Authorization", `Bearer ${sk}`);
+            xhr.setRequestHeader("Authorization", `Bearer sk_test_kW32mQUjBB3KnfUD`);
             xhr.setRequestHeader("content-type", "application/json");
 
             xhr.send(data);
