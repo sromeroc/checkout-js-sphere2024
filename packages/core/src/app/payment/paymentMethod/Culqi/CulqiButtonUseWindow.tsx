@@ -31,6 +31,7 @@ const CulqiButtonUseWindow: React.FC = () => {
             const currency = checkoutData.cart.currency.code
             const title = 'Tienda de Mascotas'
             const description = "BigCommerce"
+            const phone = checkoutData.customer?.addresses[0].phone
             setTimeout(() => {
                 const Culqi = window.Culqi;
                 Culqi.publicKey = pk;
@@ -47,7 +48,7 @@ const CulqiButtonUseWindow: React.FC = () => {
                         first_name: checkoutData.customer?.firstName,
                         last_name: checkoutData.customer?.lastName,
                         email: checkoutData.customer?.email,
-                        phone_number: checkoutData.customer?.addresses?.phone,
+                        phone_number: phone,
                     },
                 };
                 // Define order options
