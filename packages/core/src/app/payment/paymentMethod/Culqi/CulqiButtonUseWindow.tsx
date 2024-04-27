@@ -23,14 +23,32 @@ const CulqiButtonUseWindow: React.FC = () => {
             // Create script
             const script = document.createElement('script');
             script.src = "https://checkout.culqi.com/js/v4";
+            const amount = checkoutData.subtotal ? checkoutData.subtotal * 100 : 600
             setTimeout(() => {
                 const Culqi = window.Culqi;
                 Culqi.publicKey = pk;
                 Culqi.init();
+                // const orderData = {
+                //     amount,
+                //     currency_code: "PEN",
+                //     description: "BigCommerce",
+                //     order_number: "",
+                //     expiration_date: "1731019303",
+                //     client_details: {
+                //         first_name: checkoutData.customer?.firstName,
+                //         last_name: "Romero",
+                //         email: "sandro30@outlook.com",
+                //         phone_number: "968272374"
+                //     },
+                //     // confirm: false
+                //     /*metadata: {
+                //         dni: "00012347"
+                //     }*/
+                // };
                 Culqi.settings({
                     title: 'Tienda de Mascotas',
                     currency: 'PEN',
-                    amount: checkoutData.subtotal ? checkoutData.subtotal * 100 : 600,
+                    amount,
                 });
                 setTimeout(() => { }, 2000);
                 window.culqi = culqi;
@@ -109,7 +127,7 @@ function culqi() {
             console.log('Despues del cargo');
 
             xhr.open("POST", "https://api.culqi.com/v2/charges");
-            xhr.setRequestHeader("Authorization", `Bearer sk_test_kW32mQUjBB3KnfUD`);
+            xhr.setRequestHeader("Authorization", `Bearer ${sk}`);
             xhr.setRequestHeader("content-type", "application/json");
 
             xhr.send(data);
