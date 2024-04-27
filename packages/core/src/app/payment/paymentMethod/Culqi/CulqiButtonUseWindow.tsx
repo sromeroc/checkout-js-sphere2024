@@ -23,34 +23,59 @@ const CulqiButtonUseWindow: React.FC = () => {
             // Create script
             const script = document.createElement('script');
             script.src = "https://checkout.culqi.com/js/v4";
-            const amount = checkoutData.subtotal ? checkoutData.subtotal * 100 : 600
+            // Data
+            const amount = checkoutData.grandTotal * 100
+            const createdTime = new Date(checkoutData.cart.createdTime)
+            const creationDate = createdTime.getTime() / 1000;
+            const expirationTime = createdTime.setFullYear(createdTime.getFullYear() + 1) / 1000
+            const currency = checkoutData.cart.currency.code
+            const title = 'Tienda de Mascotas'
+            const description = "BigCommerce"
             setTimeout(() => {
                 const Culqi = window.Culqi;
                 Culqi.publicKey = pk;
                 Culqi.init();
-                // const orderData = {
-                //     amount,
-                //     currency_code: "PEN",
-                //     description: "BigCommerce",
-                //     order_number: "",
-                //     expiration_date: "1731019303",
-                //     client_details: {
-                //         first_name: checkoutData.customer?.firstName,
-                //         last_name: "Romero",
-                //         email: "sandro30@outlook.com",
-                //         phone_number: "968272374"
-                //     },
-                //     // confirm: false
-                //     /*metadata: {
-                //         dni: "00012347"
-                //     }*/
-                // };
-                Culqi.settings({
-                    title: 'Tienda de Mascotas',
-                    currency: 'PEN',
+                // Define order data
+                const orderData = {
                     amount,
-                });
+                    currency_code: currency,
+                    description,
+                    order_number: checkoutData.cart.id,
+                    creation_date: creationDate,
+                    expiration_date: expirationTime,
+                    client_details: {
+                        first_name: checkoutData.customer?.firstName,
+                        last_name: checkoutData.customer?.lastName,
+                        email: checkoutData.customer?.email,
+                        phone_number: checkoutData.customer?.addresses?.phone,
+                    },
+                };
+                // Define order options
+                const orderOptions = {
+                    method: 'POST', // or 'GET', 'PUT', etc.
+                    headers: {
+                        'Authorization': `Bearer ${sk}`,
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(orderData) // body data type must match "Content-Type" header
+                };
+                // Create order
+                fetch('https://api.culqi.com/v2/orders', orderOptions)
+                    .then(response => response.json()) // assuming the response is in JSON format
+                    .then(data => {
+                        console.log('data.id:', data.id);
+                        Culqi.settings({
+                            title,
+                            currency,  // Este parámetro es requerido para realizar pagos yape
+                            amount,  // Este parámetro es requerido para realizar pagos yape
+                            order: data.id //, // Este parámetro es requerido para realizar pagos con pagoEfectivo, billeteras y Cuotéalo
+                            // xculqirsaid: xculqirsaid, //'sk_test_kW32mQUjBB3KnfUD',
+                            // rsapublickey: rsapublickey //'pk_test_986ab1b486ddd58f',
+                        });
+                    })
+                    .catch(error => console.error('Error when post order:', error));
                 setTimeout(() => { }, 2000);
+                // Add the culqi function 
                 window.culqi = culqi;
             }, 2000)
 
@@ -94,7 +119,7 @@ function culqi() {
             const data = JSON.stringify({
                 "amount": 2360,
                 "currency_code": "PEN",
-                "email": "correo3@outlook.com",
+                "email": "correo4@outlook.com",
                 "source_id": token,
                 "capture": true,
                 "description": "Prueba",
