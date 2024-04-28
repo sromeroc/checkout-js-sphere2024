@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { useCheckout } from "@bigcommerce/checkout/payment-integration-api";
+import { generateUniqueId } from './utils'
 
 const sk = "sk_test_kW32mQUjBB3KnfUD"
 const pk = "pk_test_986ab1b486ddd58f"
@@ -27,7 +28,7 @@ const CulqiButtonUseWindow: React.FC = () => {
             const amount = checkoutData.grandTotal * 100
             const createdTime = new Date(checkoutData.cart.createdTime)
             const creationDate = createdTime.getTime() / 1000;
-            const expirationTime = createdTime.setFullYear(createdTime.getFullYear() + 1) / 1000
+            const expirationDate = createdTime.setFullYear(createdTime.getFullYear() + 1) / 1000
             const currency = checkoutData.cart.currency.code
             const title = 'Tienda de Mascotas'
             const description = "BigCommerce"
@@ -40,9 +41,9 @@ const CulqiButtonUseWindow: React.FC = () => {
                     amount,
                     currency_code: currency,
                     description,
-                    order_number: checkoutData.cart.id,
+                    order_number: generateUniqueId(),
                     creation_date: creationDate,
-                    expiration_date: expirationTime,
+                    expiration_date: expirationDate,
                     client_details: {
                         first_name: checkoutData.customer?.firstName,
                         last_name: checkoutData.customer?.lastName,
