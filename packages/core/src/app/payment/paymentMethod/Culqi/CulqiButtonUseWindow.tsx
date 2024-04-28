@@ -120,9 +120,6 @@ const CulqiButtonUseWindow: React.FC = () => {
                                 "capture": true,
                                 "description": description,
                                 "installments": 0,
-                                "metadata": {
-                                    "dni": token.metadata.dni
-                                },
                                 "antifraud_details": {
                                     "address": address,
                                     "address_city": city,
