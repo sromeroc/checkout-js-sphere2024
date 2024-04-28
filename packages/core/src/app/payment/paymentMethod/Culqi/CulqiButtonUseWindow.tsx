@@ -35,7 +35,6 @@ const CulqiButtonUseWindow: React.FC = () => {
             setTimeout(() => {
                 const Culqi = window.Culqi;
                 Culqi.publicKey = pk;
-                Culqi.init();
                 // Define order data
                 const orderData = {
                     amount,
@@ -65,6 +64,7 @@ const CulqiButtonUseWindow: React.FC = () => {
                     .then(response => response.json()) // assuming the response is in JSON format
                     .then(data => {
                         console.log('data.id:', data.id);
+                        // Checkout settings
                         Culqi.settings({
                             title,
                             currency,  // Este parámetro es requerido para realizar pagos yape
@@ -73,8 +73,22 @@ const CulqiButtonUseWindow: React.FC = () => {
                             // xculqirsaid: xculqirsaid, //'sk_test_kW32mQUjBB3KnfUD',
                             // rsapublickey: rsapublickey //'pk_test_986ab1b486ddd58f',
                         });
+                        // Checkout options
+                        Culqi.options({
+                            lang: "auto",
+                            installments: false, // Habilitar o deshabilitar el campo de cuotas
+                            paymentMethods: {
+                                tarjeta: true,
+                                yape: true,
+                                bancaMovil: true,
+                                agente: true,
+                                billetera: true,
+                                cuotealo: true,
+                            }
+                        });
                     })
                     .catch(error => console.error('Error when post order:', error));
+                // Wait for 2 seconds
                 setTimeout(() => { }, 2000);
                 // Add the culqi function 
                 window.culqi = culqi;
