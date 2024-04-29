@@ -37,8 +37,7 @@ const CulqiButtonUseWindow: React.FC = () => {
             const countryCode = checkoutData.customer?.addresses[0].countryCode
 
             // Add Culqi public key
-            const Culqi = window.Culqi;
-            Culqi.publicKey = "pk_test_986ab1b486ddd58f";
+            window.Culqi.publicKey = "pk_test_986ab1b486ddd58f";
 
             // Define order data
             const orderData = {
@@ -74,7 +73,7 @@ const CulqiButtonUseWindow: React.FC = () => {
                 .then(data => {
                     console.log('data.id:', data.id);
                     // Checkout settings
-                    Culqi.settings({
+                    window.Culqi.settings({
                         title,
                         currency,  // Este parámetro es requerido para realizar pagos yape
                         amount,  // Este parámetro es requerido para realizar pagos yape
@@ -83,7 +82,7 @@ const CulqiButtonUseWindow: React.FC = () => {
                         // rsapublickey: rsapublickey //'pk_test_986ab1b486ddd58f',
                     });
                     // Checkout options
-                    Culqi.options({
+                    window.Culqi.options({
                         lang: "auto",
                         installments: false, // Habilitar o deshabilitar el campo de cuotas
                         paymentMethods: {
@@ -191,7 +190,8 @@ const CulqiButtonUseWindow: React.FC = () => {
         <button
             id="btn_pagar"
             className="button button--action button--large button--slab optimizedCheckout-buttonPrimary "
-            onClick={handleClick}>
+            onClick={handleClick}
+            type="button">
             PLACE ORDER WITH CULQI
         </button>
     );
