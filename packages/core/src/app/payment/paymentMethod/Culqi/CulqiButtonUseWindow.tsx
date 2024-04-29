@@ -53,6 +53,7 @@ const CulqiButtonUseWindow: React.FC = () => {
                     email,
                     phone_number: phone,
                 },
+                confirm: false
             };
 
             // Define order options
