@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useCheckout } from "@bigcommerce/checkout/payment-integration-api";
 import { generateUniqueID } from './utils'
 
@@ -15,6 +15,9 @@ const CulqiButtonUseWindow: React.FC = () => {
     const { data } = checkoutState;
     const checkoutData = data.getCheckout()
     console.log('Checkout data: ', checkoutData);
+
+    // Public Key as State
+    const [publicKey] = useState<string>("pk_test_986ab1b486ddd58f");
 
     const onCulqiLoad = () => {
         if (checkoutData) {
@@ -37,7 +40,7 @@ const CulqiButtonUseWindow: React.FC = () => {
             const countryCode = checkoutData.customer?.addresses[0].countryCode
 
             // Add Culqi public key
-            window.Culqi.publicKey = "pk_test_986ab1b486ddd58f";
+            window.Culqi.publicKey = publicKey;
 
             // Define order data
             const orderData = {
@@ -178,7 +181,7 @@ const CulqiButtonUseWindow: React.FC = () => {
         return () => {
             document.body.removeChild(script);
         };
-    }, []);
+    }, [publicKey, checkoutData]);
 
     const handleClick = () => {
         if (window.Culqi) {
