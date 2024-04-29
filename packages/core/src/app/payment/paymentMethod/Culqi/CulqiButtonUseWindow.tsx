@@ -99,16 +99,15 @@ const CulqiButtonUseWindow: React.FC = () => {
                         const Culqi = window.Culqi;
                         if (Culqi.token) {  // ¡Objeto Token creado exitosamente!
 
-                            const token = Culqi.token;
-                            console.log('Se ha creado un Token: ', token);
+                            console.log('Se ha creado un Token: ', Culqi.token);
                             // En esta línea de código, debes enviar el "Culqi.token.id"
                             // hacia tu servidor con Ajax
                             {
                                 const data = JSON.stringify({
                                     "amount": amount.toString(),
                                     "currency_code": "PEN",
-                                    "email": token.email,
-                                    "source_id": token.id,
+                                    "email": email,
+                                    "source_id": Culqi.token.id,
                                     "capture": true,
                                     "description": description,
                                     "installments": 0,
