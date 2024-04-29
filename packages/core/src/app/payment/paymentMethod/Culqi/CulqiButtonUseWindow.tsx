@@ -2,8 +2,6 @@ import React, { useEffect } from "react";
 import { useCheckout } from "@bigcommerce/checkout/payment-integration-api";
 import { generateUniqueID } from './utils'
 
-const sk = "sk_test_kW32mQUjBB3KnfUD"
-const pk = "pk_test_986ab1b486ddd58f"
 declare global {
     interface Window {
         culqi: any;
@@ -40,7 +38,7 @@ const CulqiButtonUseWindow: React.FC = () => {
 
             // Add Culqi public key
             const Culqi = window.Culqi;
-            Culqi.publicKey = pk;
+            Culqi.publicKey = "pk_test_986ab1b486ddd58f";
 
             // Define order data
             const orderData = {
@@ -59,6 +57,7 @@ const CulqiButtonUseWindow: React.FC = () => {
             };
 
             // Define order options
+            const sk = "sk_test_kW32mQUjBB3KnfUD"
             const orderOptions = {
                 method: 'POST', // or 'GET', 'PUT', etc.
                 headers: {
