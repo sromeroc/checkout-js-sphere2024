@@ -1,6 +1,8 @@
 import React, { useEffect } from "react";
 import { useCheckout } from "@bigcommerce/checkout/payment-integration-api";
 import { generateUniqueID } from './utils'
+import dotenv from 'dotenv';
+dotenv.config();
 
 declare global {
     interface Window {
