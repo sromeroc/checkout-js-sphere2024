@@ -28,9 +28,9 @@ const CulqiButtonUseWindow: React.FC = () => {
             const description = "BigCommerce"
 
             // Client details
-            const firstName = checkoutData.customer?.firstName
-            const lastName = checkoutData.customer?.lastName
-            const email = checkoutData.customer?.email
+            const firstName = checkoutData.billingAddress?.firstName
+            const lastName = checkoutData.billingAddress?.lastName
+            const email = checkoutData.billingAddress?.email
             const address = checkoutData.billingAddress?.address1
             const phone = checkoutData.billingAddress?.phone
             const city = checkoutData.billingAddress?.city
