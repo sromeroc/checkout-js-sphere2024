@@ -40,7 +40,6 @@ const CulqiButtonUseWindow: React.FC = () => {
             window.Culqi.publicKey = process.env.REACT_APP_CULQI_PK;
             console.log(`Culqi pk: ${window.Culqi.publicKey}`);
             
-            
             // Define order data
             const orderData = {
                 amount,
@@ -61,6 +60,7 @@ const CulqiButtonUseWindow: React.FC = () => {
             // Define order options
             const sk = process.env.REACT_APP_CULQI_SK
             console.log(`Culqi sk: ${sk}`);
+
             const orderOptions = {
                 method: 'POST', // or 'GET', 'PUT', etc.
                 headers: {
