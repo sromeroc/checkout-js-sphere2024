@@ -1,8 +1,6 @@
 import React, { useEffect } from "react";
 import { useCheckout } from "@bigcommerce/checkout/payment-integration-api";
 import { generateUniqueID } from './utils'
-import dotenv from 'dotenv';
-dotenv.config();
 
 declare global {
     interface Window {
@@ -41,7 +39,7 @@ const CulqiButtonUseWindow: React.FC = () => {
             // Add Culqi public key
             window.Culqi.publicKey = process.env.REACT_APP_CULQI_PK;
             console.log(`Culqi pk: ${window.Culqi.publicKey}`);
-            
+
             // Define order data
             const orderData = {
                 amount,
