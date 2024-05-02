@@ -37,6 +37,8 @@ const CulqiButtonUseWindow: React.FC = () => {
             const countryCode = checkoutData.billingAddress?.countryCode
 
             // Add Culqi public key
+            console.log("Env variable:", process.env.REACT_APP_CULQI_PK || 'pk undefined');
+            
             window.Culqi.publicKey = "pk_test_986ab1b486ddd58f";
 
             // Define order data
@@ -171,16 +173,6 @@ const CulqiButtonUseWindow: React.FC = () => {
         script.src = "https://checkout.culqi.com/js/v4";
         script.async = true;
         script.onload = onCulqiLoad;
-
-        // Test server
-        fetch('http://localhost:3005/')
-            .then(response => response.text())
-            .then(data => {
-                console.log(data); // Imprime el mensaje en la consola
-            })
-            .catch(error => {
-                console.error('Error fetching data:', error);
-            });
 
         // Add script to the body
         document.body.appendChild(script);
