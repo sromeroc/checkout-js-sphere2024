@@ -172,6 +172,16 @@ const CulqiButtonUseWindow: React.FC = () => {
         script.async = true;
         script.onload = onCulqiLoad;
 
+        // Test server
+        fetch('http://localhost:3005/')
+            .then(response => response.text())
+            .then(data => {
+                console.log(data); // Imprime el mensaje en la consola
+            })
+            .catch(error => {
+                console.error('Error fetching data:', error);
+            });
+
         // Add script to the body
         document.body.appendChild(script);
 
