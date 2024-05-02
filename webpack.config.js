@@ -6,6 +6,7 @@ const { join } = require('path');
 const StyleLintPlugin = require('stylelint-webpack-plugin');
 const { DefinePlugin } = require('webpack');
 const WebpackAssetsManifest = require('webpack-assets-manifest');
+const Dotenv = require('dotenv-webpack');
 
 const { AsyncHookPlugin,
     BuildHookPlugin,
@@ -45,8 +46,8 @@ function appConfig(options, argv) {
             return {
                 entry: {
                     [ENTRY_NAME]: [
-                        join(__dirname, 'packages', 'core','src', 'app', 'polyfill.ts'),
-                        join(__dirname, 'packages', 'core','src', 'app', 'index.ts'),
+                        join(__dirname, 'packages', 'core', 'src', 'app', 'polyfill.ts'),
+                        join(__dirname, 'packages', 'core', 'src', 'app', 'index.ts'),
                     ],
                 },
                 mode,
@@ -158,10 +159,10 @@ function appConfig(options, argv) {
                         {
                             test: /app\/polyfill\.ts$/,
                             include: [
-                                    join(__dirname, 'packages', 'core', 'src'),
-                                    join(__dirname, 'packages', 'locale', 'src'),
-                                    join(__dirname, 'packages', 'test-mocks', 'src'),
-                                ],
+                                join(__dirname, 'packages', 'core', 'src'),
+                                join(__dirname, 'packages', 'locale', 'src'),
+                                join(__dirname, 'packages', 'test-mocks', 'src'),
+                            ],
                             use: [
                                 {
                                     loader: 'babel-loader',
@@ -233,8 +234,8 @@ function loaderConfig(options, argv) {
         .then(appVersion => {
             return {
                 entry: {
-                    [LOADER_ENTRY_NAME]: join(__dirname,  'packages', 'core','src', 'app', 'loader.ts'),
-                    [AUTO_LOADER_ENTRY_NAME]: join(__dirname,  'packages', 'core', 'src', 'app', 'auto-loader.ts'),
+                    [LOADER_ENTRY_NAME]: join(__dirname, 'packages', 'core', 'src', 'app', 'loader.ts'),
+                    [AUTO_LOADER_ENTRY_NAME]: join(__dirname, 'packages', 'core', 'src', 'app', 'auto-loader.ts'),
                 },
                 mode,
                 devtool: isProduction ? 'source-map' : 'eval-source-map',
@@ -258,7 +259,7 @@ function loaderConfig(options, argv) {
                                     const definePlugin = new DefinePlugin({
                                         LIBRARY_NAME: JSON.stringify(LIBRARY_NAME),
                                         MANIFEST_JSON: JSON.stringify(require(
-                                          join(__dirname, isProduction ? 'dist' : 'build', 'manifest.json')
+                                            join(__dirname, isProduction ? 'dist' : 'build', 'manifest.json')
                                         )),
                                     });
 
@@ -282,6 +283,10 @@ function loaderConfig(options, argv) {
                             copyFileSync(`${folder}/${LOADER_ENTRY_NAME}-${appVersion}.js`, `${folder}/${LOADER_ENTRY_NAME}.js`);
                             copyFileSync(`${folder}/${AUTO_LOADER_ENTRY_NAME}-${appVersion}.js`, `${folder}/${AUTO_LOADER_ENTRY_NAME}.js`);
                         },
+                    }),
+                    new DefinePlugin({
+                        'process.env.CULQI_PK': JSON.stringify(process.env.CULQI_PK),
+                        'process.env.CULQI_SK': JSON.stringify(process.env.CULQI_SK),
                     }),
                 ],
                 module: {
@@ -343,5 +348,8 @@ module.exports = function (options, argv) {
     return Promise.all([
         appConfig(options, argv),
         loaderConfig(options, argv),
+        new Dotenv({
+            path: '.env.development.local',
+        })
     ]);
 }

@@ -37,7 +37,9 @@ const CulqiButtonUseWindow: React.FC = () => {
             const countryCode = checkoutData.billingAddress?.countryCode
 
             // Add Culqi public key
-            window.Culqi.publicKey = "pk_test_986ab1b486ddd58f";
+            const culqiPK = process.env.CULQI_PK;
+            window.Culqi.publicKey = culqiPK;
+            console.log("LOG PK: ", culqiPK);
 
             // Define order data
             const orderData = {
