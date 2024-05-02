@@ -21,7 +21,7 @@ const CulqiButtonUseWindow: React.FC = () => {
     const onCulqiLoad = () => {
         if (checkoutData) {
             // Checkout data
-            const amount = Math.floor(checkoutData.grandTotal * 100)
+            const amount = checkoutData.grandTotal * 100
             const createdTime = new Date(checkoutData.cart.createdTime)
             const creationDate = createdTime.getTime() / 1000;
             const expirationDate = createdTime.setFullYear(createdTime.getFullYear() + 1) / 1000
@@ -107,7 +107,7 @@ const CulqiButtonUseWindow: React.FC = () => {
                             // hacia tu servidor con Ajax
                             {
                                 const data = JSON.stringify({
-                                    "amount": amount,
+                                    "amount": amount.toString(),
                                     "currency_code": "PEN",
                                     "email": email,
                                     "source_id": Culqi.token.id,
