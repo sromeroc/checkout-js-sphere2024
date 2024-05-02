@@ -15,6 +15,8 @@ const CulqiButtonUseWindow: React.FC = () => {
     const { data } = checkoutState;
     const checkoutData = data.getCheckout()
     console.log('Checkout data: ', checkoutData);
+    console.log('ENV variable:', process.env.HELLO || 'HELLO var is missing');
+    
 
     const onCulqiLoad = () => {
         if (checkoutData) {
