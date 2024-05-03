@@ -1,11 +1,11 @@
-require('dotenv').config();
+// require('dotenv').config();
 const CircularDependencyPlugin = require('circular-dependency-plugin');
 const EventEmitter = require('events');
 const { copyFileSync } = require('fs');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { join } = require('path');
 const StyleLintPlugin = require('stylelint-webpack-plugin');
-const { DefinePlugin } = require('webpack');
+const { DefinePlugin, ProvidePlugin } = require('webpack');
 const WebpackAssetsManifest = require('webpack-assets-manifest');
 
 const { AsyncHookPlugin,
@@ -261,7 +261,7 @@ function loaderConfig(options, argv) {
                                         MANIFEST_JSON: JSON.stringify(require(
                                             join(__dirname, isProduction ? 'dist' : 'build', 'manifest.json')
                                         )),
-                                        'process.env': JSON.stringify(process.env)
+                                        // 'process.env': JSON.stringify(process.env)
                                     });
 
                                     definePlugin.apply(compiler);
@@ -285,6 +285,9 @@ function loaderConfig(options, argv) {
                             copyFileSync(`${folder}/${AUTO_LOADER_ENTRY_NAME}-${appVersion}.js`, `${folder}/${AUTO_LOADER_ENTRY_NAME}.js`);
                         },
                     }),
+                    new ProvidePlugin({
+                        process: 'process/browser'
+                    })
                 ],
                 module: {
                     rules: [
