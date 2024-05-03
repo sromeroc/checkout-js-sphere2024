@@ -240,7 +240,10 @@ function loaderConfig(options, argv) {
                 mode,
                 devtool: isProduction ? 'source-map' : 'eval-source-map',
                 resolve: {
-                    alias,
+                    alias: {
+                        ...alias, // mantén los alias existentes
+                        process: "process/browser", // agrega el alias para process
+                    },
                     extensions: ['.ts', '.tsx', '.js'],
                     mainFields: ['module', 'browser', 'main'],
                 },
