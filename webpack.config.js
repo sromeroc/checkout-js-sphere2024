@@ -5,7 +5,7 @@ const { copyFileSync } = require('fs');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { join } = require('path');
 const StyleLintPlugin = require('stylelint-webpack-plugin');
-const { DefinePlugin } = require('webpack');
+const { DefinePlugin, EnvironmentPlugin } = require('webpack');
 const WebpackAssetsManifest = require('webpack-assets-manifest');
 
 const { AsyncHookPlugin,
@@ -253,10 +253,10 @@ function loaderConfig(options, argv) {
                     new AsyncHookPlugin({
                         onRun({ compiler, done }) {
                             let wasTriggeredBefore = false;
-                            const myDefinedVars = {
-                                "process.env.REACT_APP_CULQI_PK": JSON.stringify(process.env.REACT_APP_CULQI_PK),
-                                "process.env.REACT_APP_CULQI_SK": JSON.stringify(process.env.REACT_APP_CULQI_SK),
-                            }
+                            // const myDefinedVars = {
+                            //     "process.env.REACT_APP_CULQI_PK": JSON.stringify(process.env.REACT_APP_CULQI_PK),
+                            //     "process.env.REACT_APP_CULQI_SK": JSON.stringify(process.env.REACT_APP_CULQI_SK),
+                            // }
 
                             eventEmitter.on('app:done', () => {
                                 if (!wasTriggeredBefore) {
@@ -265,7 +265,7 @@ function loaderConfig(options, argv) {
                                         MANIFEST_JSON: JSON.stringify(require(
                                             join(__dirname, isProduction ? 'dist' : 'build', 'manifest.json')
                                         )),
-                                        ...myDefinedVars
+                                        // ...myDefinedVars
                                     });
 
                                     definePlugin.apply(compiler);
@@ -277,10 +277,10 @@ function loaderConfig(options, argv) {
                             });
 
                             eventEmitter.on('app:error', () => {
-                                // Add to definePlugin my defined vars in case of error
-                                const definePlugin = new DefinePlugin(myDefinedVars)
-                                definePlugin.apply(compiler);
-                                
+                                // // Add to definePlugin my defined vars in case of error
+                                // const definePlugin = new DefinePlugin(myDefinedVars)
+                                // definePlugin.apply(compiler);
+
                                 eventEmitter.emit('loader:error');
                                 done();
                             });
@@ -293,6 +293,7 @@ function loaderConfig(options, argv) {
                             copyFileSync(`${folder}/${AUTO_LOADER_ENTRY_NAME}-${appVersion}.js`, `${folder}/${AUTO_LOADER_ENTRY_NAME}.js`);
                         },
                     }),
+                    new EnvironmentPlugin(['REACT_APP_CULQI_PK', 'REACT_APP_CULQI_SK'])
                 ],
                 module: {
                     rules: [
