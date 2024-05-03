@@ -260,7 +260,6 @@ function loaderConfig(options, argv) {
                                         MANIFEST_JSON: JSON.stringify(require(
                                             join(__dirname, isProduction ? 'dist' : 'build', 'manifest.json')
                                         )),
-                                        "process.env.NODE_ENV": JSON.stringify(process.env.NODE_ENV),
                                         "process.env.REACT_APP_CULQI_PK": JSON.stringify(process.env.REACT_APP_CULQI_PK),
                                         "process.env.REACT_APP_CULQI_SK": JSON.stringify(process.env.REACT_APP_CULQI_SK),
                                     });
