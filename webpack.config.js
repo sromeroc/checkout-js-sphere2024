@@ -1,3 +1,4 @@
+require('dotenv').config();
 const CircularDependencyPlugin = require('circular-dependency-plugin');
 const EventEmitter = require('events');
 const { copyFileSync } = require('fs');
@@ -260,6 +261,9 @@ function loaderConfig(options, argv) {
                                         MANIFEST_JSON: JSON.stringify(require(
                                           join(__dirname, isProduction ? 'dist' : 'build', 'manifest.json')
                                         )),
+                                        'NODE_ENV': JSON.stringify(process.env.NODE_ENV),
+                                        'REACT_APP_CULQI_PK': JSON.stringify(process.env.REACT_APP_CULQI_PK),
+                                        'REACT_APP_CULQI_SK': JSON.stringify(process.env.REACT_APP_CULQI_SK)
                                     });
 
                                     definePlugin.apply(compiler);
