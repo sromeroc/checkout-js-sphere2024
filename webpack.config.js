@@ -240,6 +240,7 @@ function loaderConfig(options, argv) {
                 mode,
                 devtool: isProduction ? 'source-map' : 'eval-source-map',
                 resolve: {
+                    alias,
                     extensions: ['.ts', '.tsx', '.js'],
                     mainFields: ['module', 'browser', 'main'],
                 },
