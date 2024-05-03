@@ -5,7 +5,7 @@ const { copyFileSync } = require('fs');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { join } = require('path');
 const StyleLintPlugin = require('stylelint-webpack-plugin');
-const { DefinePlugin, ProvidePlugin } = require('webpack');
+const { DefinePlugin, EnvironmentPlugins } = require('webpack');
 const WebpackAssetsManifest = require('webpack-assets-manifest');
 
 const { AsyncHookPlugin,
@@ -240,10 +240,6 @@ function loaderConfig(options, argv) {
                 mode,
                 devtool: isProduction ? 'source-map' : 'eval-source-map',
                 resolve: {
-                    alias: {
-                        ...alias, // mantén los alias existentes
-                        process: "process/browser", // agrega el alias para process
-                    },
                     extensions: ['.ts', '.tsx', '.js'],
                     mainFields: ['module', 'browser', 'main'],
                 },
@@ -264,7 +260,9 @@ function loaderConfig(options, argv) {
                                         MANIFEST_JSON: JSON.stringify(require(
                                             join(__dirname, isProduction ? 'dist' : 'build', 'manifest.json')
                                         )),
-                                        // 'process.env': JSON.stringify(process.env)
+                                        "process.env.NODE_ENV": JSON.stringify(process.env.NODE_ENV),
+                                        "process.env.REACT_APP_CULQI_PK": JSON.stringify(process.env.REACT_APP_CULQI_PK),
+                                        "process.env.REACT_APP_CULQI_SK": JSON.stringify(process.env.REACT_APP_CULQI_SK),
                                     });
 
                                     definePlugin.apply(compiler);
@@ -288,9 +286,6 @@ function loaderConfig(options, argv) {
                             copyFileSync(`${folder}/${AUTO_LOADER_ENTRY_NAME}-${appVersion}.js`, `${folder}/${AUTO_LOADER_ENTRY_NAME}.js`);
                         },
                     }),
-                    new ProvidePlugin({
-                        process: 'process/browser'
-                    })
                 ],
                 module: {
                     rules: [
