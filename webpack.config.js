@@ -136,6 +136,10 @@ function appConfig(options, argv) {
                             eventEmitter.emit('app:error', errors);
                         },
                     }),
+                    new EnvironmentPlugin({
+                        "process.env.REACT_APP_CULQI_PK": JSON.stringify(process.env.REACT_APP_CULQI_PK),
+                        "process.env.REACT_APP_CULQI_SK": JSON.stringify(process.env.REACT_APP_CULQI_SK),
+                    })
                 ].filter(Boolean),
                 module: {
                     rules: [
@@ -293,7 +297,11 @@ function loaderConfig(options, argv) {
                             copyFileSync(`${folder}/${AUTO_LOADER_ENTRY_NAME}-${appVersion}.js`, `${folder}/${AUTO_LOADER_ENTRY_NAME}.js`);
                         },
                     }),
-                    new EnvironmentPlugin(['REACT_APP_CULQI_PK', 'REACT_APP_CULQI_SK'])
+                    // new EnvironmentPlugin(['REACT_APP_CULQI_PK', 'REACT_APP_CULQI_SK'])
+                    new EnvironmentPlugin({
+                        "process.env.REACT_APP_CULQI_PK": JSON.stringify(process.env.REACT_APP_CULQI_PK),
+                        "process.env.REACT_APP_CULQI_SK": JSON.stringify(process.env.REACT_APP_CULQI_SK),
+                    })
                 ],
                 module: {
                     rules: [
