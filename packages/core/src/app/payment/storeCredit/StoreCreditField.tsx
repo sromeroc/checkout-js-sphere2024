@@ -26,7 +26,7 @@ const StoreCreditField: FunctionComponent<StoreCreditFieldProps & WithCurrencyPr
 }) => {
     const {
         checkoutState: {
-            statuses: { isSubmittingOrder }
+            statuses: { isSubmittingOrder } // Comprueba si se está enviando el pedido actual.
         }
     } = useCheckout();
 
@@ -59,6 +59,7 @@ const StoreCreditField: FunctionComponent<StoreCreditFieldProps & WithCurrencyPr
     );
 
     return (
+        // crea los  input de tipo checkbox
         <CheckboxInput
             checked={isStoreCreditApplied}
             disabled={isSubmittingOrder()}

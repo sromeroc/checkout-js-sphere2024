@@ -88,6 +88,7 @@ const PaymentForm: FunctionComponent<
         const ordernes = data.getOrder();
         console.log('Checkout data Form: ', checkoutData);
         console.log('Data Order Form>>: ', ordernes);
+        
         console.log("handleSubmit VALUES: ", values);
 
         const selectedMethodId = useMemo(() => {
@@ -131,6 +132,7 @@ const PaymentForm: FunctionComponent<
         return (
             <Form className="checkout-form" testId="payment-form">
                 {usableStoreCredit > 0 && (
+                    // se encarga de los pagos con credito de la tienda 
                     <StoreCreditField
                         availableStoreCredit={availableStoreCredit}
                         isStoreCreditApplied={isStoreCreditApplied}
@@ -141,6 +143,7 @@ const PaymentForm: FunctionComponent<
                 )}
 
                 <PaymentMethodListFieldset
+                // crea la lista de los metodos de pagos disponiles y restaura los valores del los elementos del formulario 
                     isEmbedded={isEmbedded}
                     isInitializingPayment={isInitializingPayment}
                     isPaymentDataRequired={isPaymentDataRequired}
@@ -156,7 +159,7 @@ const PaymentForm: FunctionComponent<
                     console.log(`Se esta seleccionando el evento de culqui`);
                     console.log(methods, values);
                 }} /> */}
-
+                {/* algo con canjeables */}
                 <PaymentRedeemables />
 
                 {isTermsConditionsRequired && (
