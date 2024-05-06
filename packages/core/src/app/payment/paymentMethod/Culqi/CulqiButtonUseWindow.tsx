@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useCheckout } from "@bigcommerce/checkout/payment-integration-api";
 import { generateUniqueID } from './utils'
+import { CheckoutService } from "@bigcommerce/checkout-sdk";
 
 declare global {
     interface Window {
@@ -14,7 +15,9 @@ const CulqiButtonUseWindow: React.FC = () => {
     const { checkoutState } = useCheckout();
     const { data } = checkoutState;
     const checkoutData = data.getCheckout()
+    const ordernes = data.getOrder();
     console.log('Checkout data: ', checkoutData);
+    console.log('Data Order>>: ', ordernes);
 
     const onCulqiLoad = () => {
         if (checkoutData) {
@@ -166,6 +169,7 @@ const CulqiButtonUseWindow: React.FC = () => {
     }
 
     useEffect(() => {
+        submitOrder()
         // Include Culqi Checkout
         const script = document.createElement('script');
         script.src = "https://checkout.culqi.com/js/v4";
@@ -196,6 +200,23 @@ const CulqiButtonUseWindow: React.FC = () => {
         </button>
     );
 };
+
+const submitOrder = async () => {
+    const service = new CheckoutService();
+    const methodId = 'culqi'
+    await service.initializePayment({ methodId });
+    await service.submitOrder({
+        payment: {
+            methodId,
+            paymentData: {
+                ccExpiry: { month: 10, year: 20 },
+                ccName: 'BigCommerce',
+                ccNumber: '4111111111111111',
+                ccCvv: 123,
+            },
+        },
+    });
+}
 
 export default CulqiButtonUseWindow;
 
