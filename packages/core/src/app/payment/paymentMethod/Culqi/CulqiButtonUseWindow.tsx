@@ -202,10 +202,11 @@ const CulqiButtonUseWindow: React.FC = () => {
 };
 
 const submitOrder = async () => {
+    console.log('SubmitOrder running');
     const service = new CheckoutService();
     const methodId = 'culqi'
     await service.initializePayment({ methodId });
-    await service.submitOrder({
+    const data = await service.submitOrder({
         payment: {
             methodId,
             paymentData: {
@@ -216,6 +217,8 @@ const submitOrder = async () => {
             },
         },
     });
+    console.log(data.statuses);
+    
 }
 
 export default CulqiButtonUseWindow;
