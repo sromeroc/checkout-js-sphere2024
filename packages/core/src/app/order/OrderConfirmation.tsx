@@ -141,7 +141,7 @@ class OrderConfirmation extends Component<
                 <div className="layout-main">
                     <div className="orderConfirmation">
                         <ThankYouHeader name={order.billingAddress.firstName} />
-
+                        
                         <OrderStatus
                             config={config}
                             order={order}
@@ -175,7 +175,8 @@ class OrderConfirmation extends Component<
                         </div>
                     </div>
                 </div>
-
+                {console.log("OrderConfirmation:" + order)}
+                {console.log("OrderConfirmation:c" + config)}
                 {this.renderOrderSummary()}
                 {this.renderErrorModal()}
             </div>
