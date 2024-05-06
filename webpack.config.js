@@ -257,10 +257,6 @@ function loaderConfig(options, argv) {
                     new AsyncHookPlugin({
                         onRun({ compiler, done }) {
                             let wasTriggeredBefore = false;
-                            // const myDefinedVars = {
-                            //     "process.env.REACT_APP_CULQI_PK": JSON.stringify(process.env.REACT_APP_CULQI_PK),
-                            //     "process.env.REACT_APP_CULQI_SK": JSON.stringify(process.env.REACT_APP_CULQI_SK),
-                            // }
 
                             eventEmitter.on('app:done', () => {
                                 if (!wasTriggeredBefore) {
@@ -269,7 +265,6 @@ function loaderConfig(options, argv) {
                                         MANIFEST_JSON: JSON.stringify(require(
                                             join(__dirname, isProduction ? 'dist' : 'build', 'manifest.json')
                                         )),
-                                        // ...myDefinedVars
                                     });
 
                                     definePlugin.apply(compiler);
@@ -281,10 +276,6 @@ function loaderConfig(options, argv) {
                             });
 
                             eventEmitter.on('app:error', () => {
-                                // // Add to definePlugin my defined vars in case of error
-                                // const definePlugin = new DefinePlugin(myDefinedVars)
-                                // definePlugin.apply(compiler);
-
                                 eventEmitter.emit('loader:error');
                                 done();
                             });
