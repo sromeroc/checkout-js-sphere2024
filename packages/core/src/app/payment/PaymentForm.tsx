@@ -5,7 +5,7 @@ import React, { FunctionComponent, memo, useCallback, useContext, useMemo } from
 import { ObjectSchema } from 'yup';
 
 import { withLanguage, WithLanguageProps } from '@bigcommerce/checkout/locale';
-import { PaymentFormValues } from '@bigcommerce/checkout/payment-integration-api';
+import { PaymentFormValues, useCheckout } from '@bigcommerce/checkout/payment-integration-api';
 import { FormContext } from '@bigcommerce/checkout/ui';
 
 import { TermsConditions } from '../termsConditions';
@@ -82,6 +82,13 @@ const PaymentForm: FunctionComponent<
         // const { checkoutState } = useCheckout();
         // const { data } = checkoutState;
         // console.log("FROM FORM: ", data.getCart());
+        const { checkoutState } = useCheckout();
+        const { data } = checkoutState;
+        const checkoutData = data.getCheckout()
+        const ordernes = data.getOrder();
+        console.log('Checkout data Form: ', checkoutData);
+        console.log('Data Order Form>>: ', ordernes);
+        console.log("handleSubmit VALUES: ", values);
 
         const selectedMethodId = useMemo(() => {
             if (!selectedMethod) {
@@ -200,6 +207,7 @@ interface PaymentMethodListFieldsetProps {
     resetForm(nextValues?: PaymentFormValues): void;
 }
 
+//se encarga de manejar la selección de métodos de pago y renderizar los elementos relacionados en su estructura.
 const PaymentMethodListFieldset: FunctionComponent<PaymentMethodListFieldsetProps> = ({
     isEmbedded,
     isInitializingPayment,
@@ -212,9 +220,9 @@ const PaymentMethodListFieldset: FunctionComponent<PaymentMethodListFieldsetProp
     values,
 }) => {
     const { setSubmitted } = useContext(FormContext);
-
+    // memoriza el resultado de values.terms si cambia [values.terms]
     const commonValues = useMemo(() => ({ terms: values.terms }), [values.terms]);
-
+    // restaura los valores del los elementos del formulario 
     const handlePaymentMethodSelect = useCallback(
         (method: PaymentMethod) => {
             resetForm({
@@ -242,9 +250,10 @@ const PaymentMethodListFieldset: FunctionComponent<PaymentMethodListFieldsetProp
     );
 
     return (
+        //agrupa elementos 
         <Fieldset>
             {!isPaymentDataRequired() && <StoreCreditOverlay />}
-
+            {/* crea la lista de los metodos de pagos disponiles */}
             <PaymentMethodList
                 isEmbedded={isEmbedded}
                 isInitializingPayment={isInitializingPayment}
@@ -289,7 +298,7 @@ const paymentFormConfig: WithFormikConfig<PaymentFormProps & WithLanguageProps, 
     }),
 
     handleSubmit: (values, { props: { onSubmit = noop } }) => {
-        console.log("handleSubmit VALUES: ", values);
+        
         onSubmit(
             omitBy(
                 values,
