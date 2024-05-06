@@ -137,8 +137,8 @@ function appConfig(options, argv) {
                         },
                     }),
                     new EnvironmentPlugin({
-                        "process.env.REACT_APP_CULQI_PK": JSON.stringify(process.env.REACT_APP_CULQI_PK),
-                        "process.env.REACT_APP_CULQI_SK": JSON.stringify(process.env.REACT_APP_CULQI_SK),
+                        REACT_APP_CULQI_PK: JSON.stringify(process.env.REACT_APP_CULQI_PK),
+                        REACT_APP_CULQI_SK: JSON.stringify(process.env.REACT_APP_CULQI_SK),
                     })
                 ].filter(Boolean),
                 module: {
@@ -299,8 +299,8 @@ function loaderConfig(options, argv) {
                     }),
                     // new EnvironmentPlugin(['REACT_APP_CULQI_PK', 'REACT_APP_CULQI_SK'])
                     new EnvironmentPlugin({
-                        "process.env.REACT_APP_CULQI_PK": JSON.stringify(process.env.REACT_APP_CULQI_PK),
-                        "process.env.REACT_APP_CULQI_SK": JSON.stringify(process.env.REACT_APP_CULQI_SK),
+                        REACT_APP_CULQI_PK: JSON.stringify(process.env.REACT_APP_CULQI_PK),
+                        REACT_APP_CULQI_SK: JSON.stringify(process.env.REACT_APP_CULQI_SK),
                     })
                 ],
                 module: {
