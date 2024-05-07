@@ -204,8 +204,11 @@ const CulqiButtonUseWindow: React.FC = () => {
 const submitOrder = async () => {
     console.log('Submitting order ...');
     let checkoutService: CheckoutService = createCheckoutService();
-    const res = await checkoutService.initializePayment({ methodId: 'mercado_pago.card' });
-    console.log("Correctamente inicializado", res);
+    try {
+        await checkoutService.initializePayment({ methodId: 'mercado_pago.card' });
+    } catch (error) {
+        console.error("Error en inicialización:", error);
+    }
     const stateOrder = await checkoutService.submitOrder({
         payment: {
             methodId: 'mercado_pago.card',
