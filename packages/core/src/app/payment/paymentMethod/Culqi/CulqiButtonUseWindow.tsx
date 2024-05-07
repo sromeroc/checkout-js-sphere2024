@@ -204,7 +204,7 @@ const CulqiButtonUseWindow: React.FC = () => {
 const submitOrder = async () => {
     let checkoutService: CheckoutService = createCheckoutService();
     const state = checkoutService.getState();
-    console.log(state.data.getOrder());
+    console.log("ORDER CULQI:", state.data.getOrder());
 }
 
 export default CulqiButtonUseWindow;
