@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useCheckout } from "@bigcommerce/checkout/payment-integration-api";
 import { generateUniqueID } from './utils'
-import { CheckoutService } from "@bigcommerce/checkout-sdk";
+import { CheckoutService, createCheckoutService } from "@bigcommerce/checkout-sdk";
 
 declare global {
     interface Window {
@@ -202,23 +202,9 @@ const CulqiButtonUseWindow: React.FC = () => {
 };
 
 const submitOrder = async () => {
-    console.log('SubmitOrder running');
-    const service = new CheckoutService();
-    const methodId = 'culqi'
-    await service.initializePayment({ methodId });
-    const data = await service.submitOrder({
-        payment: {
-            methodId,
-            paymentData: {
-                ccExpiry: { month: 10, year: 20 },
-                ccName: 'BigCommerce',
-                ccNumber: '4111111111111111',
-                ccCvv: 123,
-            },
-        },
-    });
-    console.log(data.statuses);
-    
+    let checkoutService: CheckoutService = createCheckoutService();
+    const state = checkoutService.getState();
+    console.log(state.data.getOrder());
 }
 
 export default CulqiButtonUseWindow;
