@@ -215,7 +215,7 @@ const submitOrder = async (checkoutData: Checkout | undefined) => {
             console.log('At CulqiButton, PaymentMethods:', state.data.getPaymentMethods());
     
             // initializePayment
-            const methodId = 'instore'
+            const methodId = 'culqi'
             const ini = await checkoutService.initializePayment({ methodId });
             console.log('At CulqiButton, ini:', ini);
     
