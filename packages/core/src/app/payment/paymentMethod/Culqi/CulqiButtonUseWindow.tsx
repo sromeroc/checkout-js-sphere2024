@@ -202,9 +202,20 @@ const CulqiButtonUseWindow: React.FC = () => {
 };
 
 const submitOrder = async () => {
+    console.log('Submitting order ...');
     let checkoutService: CheckoutService = createCheckoutService();
-    const state = checkoutService.getState();
-    console.log("ORDER CULQI:", state.data.getOrder());
+    await checkoutService.initializePayment({ methodId: 'mercado_pago.card' });
+    await checkoutService.submitOrder({
+        payment: {
+            methodId: 'mercado_pago.card',
+            paymentData: {
+                ccExpiry: { month: 10, year: 20 },
+                ccName: 'BigCommerce',
+                ccNumber: '4111111111111111',
+                ccCvv: 123,
+            },
+        },
+    });
 }
 
 export default CulqiButtonUseWindow;
