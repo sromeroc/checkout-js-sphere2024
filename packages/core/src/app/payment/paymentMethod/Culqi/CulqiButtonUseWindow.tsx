@@ -204,8 +204,12 @@ const CulqiButtonUseWindow: React.FC = () => {
 const submitOrder = async () => {
     console.log('Submitting order ...');
     let checkoutService: CheckoutService = createCheckoutService();
-    const state = await checkoutService.loadPaymentMethods();
-    console.log(state.data.getPaymentMethods());
+    try {
+        const state = await checkoutService.loadPaymentMethods();
+        console.log(state.data.getPaymentMethods());
+    } catch (error) {
+        console.error("Error at getPaymentMethods:", error);
+    }
     // try {
     //     await checkoutService.initializePayment({ methodId: 'mercado_pago.card' });
     // } catch (error) {
