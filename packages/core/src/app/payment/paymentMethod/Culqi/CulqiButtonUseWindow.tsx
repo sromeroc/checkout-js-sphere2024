@@ -215,19 +215,20 @@ const submitOrder = async (checkoutData: Checkout | undefined) => {
             console.log('At CulqiButton, PaymentMethods:', state.data.getPaymentMethods());
     
             // initializePayment
-            const ini = await checkoutService.initializePayment({ methodId: 'mercado_pago.card' });
+            const methodId = 'instore'
+            const ini = await checkoutService.initializePayment({ methodId });
             console.log('At CulqiButton, ini:', ini);
     
             // Submit Order
             const stateOrder = await checkoutService.submitOrder({
                 payment: {
-                    methodId: 'mercado_pago.card',
-                    paymentData: {
-                        ccExpiry: { month: 10, year: 26 },
-                        ccName: 'BigCommerce',
-                        ccNumber: '4111111111111111',
-                        ccCvv: 123,
-                    },
+                    methodId,
+                    // paymentData: {
+                    //     ccExpiry: { month: 10, year: 26 },
+                    //     ccName: 'BigCommerce',
+                    //     ccNumber: '4111111111111111',
+                    //     ccCvv: 123,
+                    // },
                 },
             });
             console.log("At CulqiButton, Retrieved Order:", stateOrder.data.getOrder());
