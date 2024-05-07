@@ -215,8 +215,8 @@ const submitOrder = async (checkoutData: Checkout | undefined) => {
             console.log('At CulqiButton, PaymentMethods:', state.data.getPaymentMethods());
     
             // initializePayment
-            const ini = await checkoutService.initializePayment({ methodId: 'mercado_pago.card' });
-            console.log('At CulqiButton, ini:', ini);
+            // const ini = await checkoutService.initializePayment({ methodId: 'mercado_pago.card' });
+            // console.log('At CulqiButton, ini:', ini);
     
             // Submit Order
             const stateOrder = await checkoutService.submitOrder({
