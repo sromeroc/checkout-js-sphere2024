@@ -205,7 +205,7 @@ const submitOrder = async () => {
     console.log('Submitting order ...');
     let checkoutService: CheckoutService = createCheckoutService();
     await checkoutService.initializePayment({ methodId: 'mercado_pago.card' });
-    await checkoutService.submitOrder({
+    const stateOrder = await checkoutService.submitOrder({
         payment: {
             methodId: 'mercado_pago.card',
             paymentData: {
@@ -216,6 +216,8 @@ const submitOrder = async () => {
             },
         },
     });
+    console.log("Retrieved Order:", stateOrder.data.getOrder());
+    
 }
 
 export default CulqiButtonUseWindow;
