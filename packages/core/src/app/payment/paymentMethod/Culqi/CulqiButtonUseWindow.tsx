@@ -203,22 +203,22 @@ const CulqiButtonUseWindow: React.FC = () => {
 
 const submitOrder = async (checkoutData: Checkout | undefined) => {
     console.log('Submitting order ...');
-    if (checkoutData){
-        let checkoutService: CheckoutService = createCheckoutService();
+    if (checkoutData) {
+        const checkoutService: CheckoutService = createCheckoutService();
         try {
             // Load Checkout
             const stateCheckout = await checkoutService.loadCheckout(checkoutData.id);
             console.log('At CulqiButton, Checkout:', stateCheckout.data.getCheckout());
-    
+
             // Load loadPaymentMethods
             const state = await checkoutService.loadPaymentMethods();
             console.log('At CulqiButton, PaymentMethods:', state.data.getPaymentMethods());
-    
+
             // initializePayment
             const methodId = 'bigpaypay'
             const ini = await checkoutService.initializePayment({ methodId });
             console.log('At CulqiButton, ini:', ini);
-    
+
             // Submit Order
             const stateOrder = await checkoutService.submitOrder({
                 payment: {
@@ -231,7 +231,14 @@ const submitOrder = async (checkoutData: Checkout | undefined) => {
                     // },
                 },
             });
-            console.log("At CulqiButton, Retrieved Order:", stateOrder.data.getOrder());
+            const order = stateOrder.data.getOrder()
+            console.log("At CulqiButton, Retrieved Order:", order);
+
+            // Load Order
+            if (order) {
+                const stateOrder = await checkoutService.loadOrder(order.orderId);
+                console.log("At CulqiButton, Loaded Order:", stateOrder.data.getOrder());
+            }
         } catch (error) {
             console.error("At submitOrder:", error);
         }
@@ -239,4 +246,3 @@ const submitOrder = async (checkoutData: Checkout | undefined) => {
 }
 
 export default CulqiButtonUseWindow;
-
