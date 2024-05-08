@@ -223,12 +223,12 @@ const submitOrder = async (checkoutData: Checkout | undefined) => {
             const stateOrder = await checkoutService.submitOrder({
                 payment: {
                     methodId,
-                    // paymentData: {
-                    //     ccExpiry: { month: 10, year: 26 },
-                    //     ccName: 'BigCommerce',
-                    //     ccNumber: '4111111111111111',
-                    //     ccCvv: 123,
-                    // },
+                    paymentData: {
+                        ccExpiry: { month: 10, year: 26 },
+                        ccName: 'BigCommerce',
+                        ccNumber: '4111111111111111',
+                        ccCvv: 123,
+                    },
                 },
             });
             const order = stateOrder.data.getOrder()
