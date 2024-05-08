@@ -206,19 +206,25 @@ const submitOrder = async (checkoutData: Checkout | undefined) => {
     if (checkoutData) {
         const checkoutService: CheckoutService = createCheckoutService();
         try {
+            // Get payment method by id
+            const methodIds = ['mercado_pago.hosted']
+            const methodByIdState = await checkoutService.loadPaymentMethodByIds(methodIds);
+            const methodById = methodByIdState.data.getPaymentMethod(methodIds[0])
+            console.log(`At CulqiButton, payment method by ids: ${methodById}`);
+
             // Load Checkout
             const stateCheckout = await checkoutService.loadCheckout(checkoutData.id);
             console.log('At CulqiButton, Checkout:', stateCheckout.data.getCheckout());
-
+            
             // Load loadPaymentMethods
             const state = await checkoutService.loadPaymentMethods();
             console.log('At CulqiButton, PaymentMethods:', state.data.getPaymentMethods());
-
+            
             // initializePayment
             const methodId = 'mercado_pago.hosted'
             const ini = await checkoutService.initializePayment({ methodId });
             console.log('At CulqiButton, ini:', ini);
-
+            
             // Submit Order
             const stateOrder = await checkoutService.submitOrder({
                 payment: {
