@@ -215,7 +215,7 @@ const submitOrder = async (checkoutData: Checkout | undefined) => {
             console.log('At CulqiButton, PaymentMethods:', state.data.getPaymentMethods());
 
             // initializePayment
-            const methodId = 'bigpaypay'
+            const methodId = 'mercado_pago.hosted'
             const ini = await checkoutService.initializePayment({ methodId });
             console.log('At CulqiButton, ini:', ini);
 
