@@ -209,8 +209,8 @@ const submitOrder = async (checkoutData: Checkout | undefined) => {
             // Get payment method by id
             const methodIds = ['mercado_pago.hosted']
             const methodByIdState = await checkoutService.loadPaymentMethodByIds(methodIds);
-            const methodById = methodByIdState.data.getPaymentMethod(methodIds[0])
-            console.log(`At CulqiButton, payment method by ids: ${methodById}`);
+            const methods = methodByIdState.data.getPaymentMethods()
+            console.log(`At CulqiButton, payment method by ids: ${methods}`);
 
             // Load Checkout
             const stateCheckout = await checkoutService.loadCheckout(checkoutData.id);
