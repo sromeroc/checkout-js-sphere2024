@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useCheckout } from "@bigcommerce/checkout/payment-integration-api";
 import { generateUniqueID } from './utils'
-import { Checkout, CheckoutService, createCheckoutService } from "@bigcommerce/checkout-sdk";
+import { Checkout, CheckoutService, createCheckoutService, createStoredCardHostedFormService } from "@bigcommerce/checkout-sdk";
 
 declare global {
     interface Window {
@@ -206,11 +206,9 @@ const submitOrder = async (checkoutData: Checkout | undefined) => {
     if (checkoutData) {
         const checkoutService: CheckoutService = createCheckoutService();
         try {
-            // Get payment method by id
-            const methodIds = ['mercado_pago.hosted']
-            const methodByIdState = await checkoutService.loadPaymentMethodByIds(methodIds);
-            const methods = methodByIdState.data.getPaymentMethods()
-            console.log(`At CulqiButton, payment method by ids: ${methods}`);
+            // Create StoredCardHostedFormService
+            const formService = createStoredCardHostedFormService("")
+            console.log('At CulqiButton, formService:', formService);
 
             // Load Checkout
             const stateCheckout = await checkoutService.loadCheckout(checkoutData.id);
