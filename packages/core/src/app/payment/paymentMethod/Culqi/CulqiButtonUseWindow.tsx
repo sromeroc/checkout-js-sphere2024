@@ -206,10 +206,6 @@ const submitOrder = async (checkoutData: Checkout | undefined) => {
     if (checkoutData) {
         const checkoutService: CheckoutService = createCheckoutService();
         try {
-            // Create StoredCardHostedFormService
-            const formService = createStoredCardHostedFormService("")
-            console.log('At CulqiButton, formService:', formService);
-
             // Load Checkout
             const stateCheckout = await checkoutService.loadCheckout(checkoutData.id);
             console.log('At CulqiButton, Checkout:', stateCheckout.data.getCheckout());
