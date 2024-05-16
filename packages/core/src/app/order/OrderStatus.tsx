@@ -27,7 +27,7 @@ const OrderStatus: FunctionComponent<OrderStatusProps> = ({
     supportPhoneNumber,
 }) => {
     const paymentsWithMandates = order.payments?.filter(isPaymentWithMandate) || [];
-    console.log("OrderStatus");
+    // console.log("OrderStatus");
     return (
         <OrderConfirmationSection>
             {order.orderId && (

@@ -289,7 +289,7 @@ const paymentFormConfig: WithFormikConfig<PaymentFormProps & WithLanguageProps, 
     }),
 
     handleSubmit: (values, { props: { onSubmit = noop } }) => {
-        console.log("handleSubmit VALUES: ", values);
+        // console.log("handleSubmit VALUES: ", values);
         onSubmit(
             omitBy(
                 values,

@@ -21,7 +21,7 @@ export default function mapToCartSummaryProps(
         return null;
     }
 
-    console.log("At map, checkout: ", checkout);
+    // console.log("At map, checkout: ", checkout);
     
     const { isStoreCreditApplied, grandTotal } = checkout;
     const { storeCredit } = customer;

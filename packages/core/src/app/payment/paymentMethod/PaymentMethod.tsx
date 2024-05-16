@@ -84,14 +84,14 @@ const PaymentMethodComponent: FunctionComponent<
 
     // Culqi method
     if (method.id === PaymentMethodId.Culqi) {
-        console.log("Culqi method selected!!");
+        // console.log("Culqi method selected!!");
        
         return null;
     }
 
     // prueba #8
     if (method.id === PaymentMethodId.Sphere && method.type === PaymentMethodProviderType.PPSDK) {
-        console.log("<<<<SPHERE: METHOD>>>>")
+        // console.log("<<<<SPHERE: METHOD>>>>")
         // confirma el metodo sea el adecuado para probar 
         // const keys = Object.keys(method) as Array<keyof PaymentMethod<any>>;
         // for (const key of keys) {
@@ -151,7 +151,7 @@ const PaymentMethodComponent: FunctionComponent<
 
     if (method.gateway === PaymentMethodId.Checkoutcom) {
         if (method.id === 'credit_card' || method.id === 'card') {
-            console.log("Checkout.com: " + method.method + "mas " + method.type);
+            // console.log("Checkout.com: " + method.method + "mas " + method.type);
             return <HostedCreditCardPaymentMethod {...props} />;
         }
 
@@ -170,7 +170,7 @@ const PaymentMethodComponent: FunctionComponent<
     }
 
     if (method.id === PaymentMethodId.BraintreeVisaCheckout) {
-        console.log("VISAJR: " + method.method + "mas " + method.type);
+        // console.log("VISAJR: " + method.method + "mas " + method.type);
         return <VisaCheckoutPaymentMethod {...props} />;
     }
 
@@ -192,7 +192,7 @@ const PaymentMethodComponent: FunctionComponent<
     }
 
     if (method.id === PaymentMethodId.Masterpass) {
-        console.log("MASTERPASS: " + method.method + "mas " + method.type);
+        // console.log("MASTERPASS: " + method.method + "mas " + method.type);
         return <MasterpassPaymentMethod {...props} />;
     }
 
@@ -201,12 +201,12 @@ const PaymentMethodComponent: FunctionComponent<
     }
 
     if (method.id === PaymentMethodId.PaypalCommerceCreditCards) {
-        console.log("PAYPALCREDITCARD: " + method.method + "mas " + method.type);
+        // console.log("PAYPALCREDITCARD: " + method.method + "mas " + method.type);
         return <PaypalCommerceCreditCardPaymentMethod {...props} />;
     }
 
     if (method.id === PaymentMethodId.PaypalExpress) {
-        console.log("PAYPALSXPRESS: " + method.method + "mas " + method.type);
+        // console.log("PAYPALSXPRESS: " + method.method + "mas " + method.type);
         return <PaypalExpressPaymentMethod {...props} />;
     }
 
@@ -265,7 +265,7 @@ const PaymentMethodComponent: FunctionComponent<
         method.type === PaymentMethodProviderType.Api
     ) {
         // ver que envia 
-        console.log("CreditCard: ");
+        // console.log("CreditCard: ");
         // const keys = Object.keys(method) as Array<keyof PaymentMethod<any>>;
 
         // for (const key of keys) {

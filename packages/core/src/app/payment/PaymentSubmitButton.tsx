@@ -37,7 +37,7 @@ const PaymentSubmitButtonText: FunctionComponent<PaymentSubmitButtonTextProps> =
         }
 
         if (methodName && initialisationStrategyType === 'none') {
-            console.log("PPSDK");
+            // console.log("PPSDK");
             return <TranslatedString data={{ methodName }} id="payment.ppsdk_continue_action" />;
         }
 
@@ -55,7 +55,7 @@ const PaymentSubmitButtonText: FunctionComponent<PaymentSubmitButtonTextProps> =
         }
 
         if (methodGateway === PaymentMethodId.Barclaycard) {
-            console.log("Barclaycard");
+            // console.log("Barclaycard");
             return <TranslatedString id="payment.barclaycard_continue_action" />;
         }
 
@@ -64,7 +64,7 @@ const PaymentSubmitButtonText: FunctionComponent<PaymentSubmitButtonTextProps> =
         }
 
         if (methodType === PaymentMethodType.VisaCheckout) {
-            console.log("VISA");
+            // console.log("VISA");
             return <TranslatedString id="payment.visa_checkout_continue_action" />;
         }
 

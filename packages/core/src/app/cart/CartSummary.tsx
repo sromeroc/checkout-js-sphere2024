@@ -22,9 +22,8 @@ export type WithCheckoutCartSummaryProps = {
 const CartSummary: FunctionComponent<WithCheckoutCartSummaryProps> = ({ cartUrl, ...props }) => {
     const headerLink = isBuyNowCart() ? null : <EditLink url={cartUrl} />;
 
-    console.log("At CartSummary, cartUrl: ", cartUrl);
-    console.log("At CartSummary, Checkout: ", props.checkout);
-    // localStorage.setItem('grandtotal', props.checkout.grandTotal.toString());
+    // console.log("At CartSummary, cartUrl: ", cartUrl);
+    // console.log("At CartSummary, Checkout: ", props.checkout);
     
     return withRedeemable(OrderSummary)({
         ...props,

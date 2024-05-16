@@ -15,9 +15,9 @@ const CulqiButtonUseWindow: React.FC = () => {
     const { checkoutState } = useCheckout();
     const { data } = checkoutState;
     const checkoutData = data.getCheckout()
-    const ordernes = data.getOrder();
-    console.log('Checkout data: ', checkoutData);
-    console.log('Data Order>>: ', ordernes);
+    // const ordernes = data.getOrder();
+    // console.log('Checkout data: ', checkoutData);
+    // console.log('Data Order>>: ', ordernes);
 
     const onCulqiLoad = () => {
         if (checkoutData) {
@@ -202,7 +202,6 @@ const CulqiButtonUseWindow: React.FC = () => {
 };
 
 const submitOrder = async (checkoutData: Checkout | undefined) => {
-    console.log('Submitting order ...');
     if (checkoutData) {
         const checkoutService: CheckoutService = createCheckoutService();
         try {
