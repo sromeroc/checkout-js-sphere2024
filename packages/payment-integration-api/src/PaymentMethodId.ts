@@ -66,7 +66,7 @@ enum PaymentMethodId {  // conjunto de constante
     WorldpayAccess = 'worldpayaccess',
     WorldpayAccessGooglePay = 'googlepayworldpayaccess',
     Zip = 'zip',
-    Sphere = 'sphere',
+    Culqi = 'culqi'
 }
 
 export default PaymentMethodId;

@@ -50,6 +50,7 @@ import StripeUPEPaymentMethod from './StripeUPEPaymentMethod';
 import VisaCheckoutPaymentMethod from './VisaCheckoutPaymentMethod';
 
 import WorldpayCreditCardPaymentMethod from './WorldpayCreditCardPaymentMethod';
+import { CulqiPaymentMethod } from './Culqi/CulqiAccion';
 
 export interface PaymentMethodProps {
     method: PaymentMethod;
@@ -82,32 +83,15 @@ const PaymentMethodComponent: FunctionComponent<
 > = (props) => {
     const { method } = props;
 
-    // prueba #8
-    if (method.id === PaymentMethodId.Sphere && method.type === PaymentMethodProviderType.PPSDK) {
-        console.log("prueba #9 SPHERE: ")
-        // confirma el metodo sea el adecuado para probar 
-        const keys = Object.keys(method) as Array<keyof PaymentMethod<any>>;
-
-        for (const key of keys) {
-            console.log(key, method[key]);
-        }
-        console.log("Sphere: " + method.method + " type: " + method.type + " ID: " + method.id);
-        const initializationType = method.initializationStrategy?.type;
-        console.log('InitializationStrategy type:', initializationType);
-        return <PPSDKPaymentMethod {...props} />;
+    // metodo de pago culqi
+    if (method.id === PaymentMethodId.Culqi) {
+        console.log("Culqi: " + method.method + " type: " + method.type + " ID: " + method.id);
+        return <CulqiPaymentMethod {...props} />;
     }
 
     // metodo de pago mercado pago 
     if (method.type === PaymentMethodProviderType.PPSDK) {
-        console.log("prueba #9 PPSDK: ")
-        const keys = Object.keys(method) as Array<keyof PaymentMethod<any>>;
-
-        for (const key of keys) {
-            console.log(key, method[key]);
-        }
         console.log("PPSDK: "+ method.method + " type: " + method.type + " ID: " + method.id);
-        const initializationType = method.initializationStrategy?.type;
-        console.log('InitializationStrategy type:', initializationType);
         return <PPSDKPaymentMethod {...props} />;
     }
     
