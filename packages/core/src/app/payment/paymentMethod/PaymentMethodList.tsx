@@ -9,8 +9,7 @@ import { Checklist, ChecklistItem } from '../../ui/form';
 import getUniquePaymentMethodId, { parseUniquePaymentMethodId } from './getUniquePaymentMethodId';
 import PaymentMethodTitle from './PaymentMethodTitle';
 import PaymentMethodV2 from './PaymentMethodV2';
-// import { getPaymentMethodCulqi, getPaymentMethodSphere } from '../payment-methods.mock';
-import { getPaymentMethodCulqi, getCreditCardSphere } from '../payment-methods.mock';
+// import { getPaymentMethodCulqi, getCreditCardSphere } from '../payment-methods.mock';
 
 export interface PaymentMethodListProps {
     isEmbedded?: boolean;
@@ -44,15 +43,9 @@ const PaymentMethodList: FunctionComponent<
     onUnhandledError,
 }) => {
 
-        /* Agregamos el método de Culqi */
-        // const modifiedMethods = [...methods, getPaymentMethodCulqi(), getPaymentMethodSphere()];
-        const modifiedMethods = [...methods, getPaymentMethodCulqi(), getCreditCardSphere()];
-        console.log("Modified methods: ", modifiedMethods);
-        modifiedMethods.shift() // !! Remove first method
-
         const handleSelect = useCallback(
             (value: string) => {
-                onSelect(getPaymentMethodFromListValue(modifiedMethods, value));
+                onSelect(getPaymentMethodFromListValue(methods, value));
             },
             [methods, onSelect],
         );
@@ -64,7 +57,7 @@ const PaymentMethodList: FunctionComponent<
                 name="paymentProviderRadio"
                 onSelect={handleSelect}
             >
-                {modifiedMethods.map((method) => {
+                {methods.map((method) => {
                     const value = getUniquePaymentMethodId(method.id, method.gateway);
                     const showOnlyOnMobileDevices = get(
                         method,
