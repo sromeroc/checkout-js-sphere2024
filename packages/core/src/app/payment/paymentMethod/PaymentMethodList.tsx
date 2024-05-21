@@ -43,12 +43,13 @@ const PaymentMethodList: FunctionComponent<
     onSelect = noop,
     onUnhandledError,
 }) => {
-        const culqiMethod: PaymentMethod = getPaymentMethodCulqi();
-        methods.push(culqiMethod);
-
+        // const culqiMethod: PaymentMethod = getPaymentMethodCulqi();
+        // methods.push(culqiMethod);
+        
+        const modifiedMethods = [...methods, getPaymentMethodCulqi()];
         const handleSelect = useCallback(
             (value: string) => {
-                onSelect(getPaymentMethodFromListValue(methods, value));
+                onSelect(getPaymentMethodFromListValue(modifiedMethods, value));
             },
             [methods, onSelect],
         );
@@ -60,7 +61,7 @@ const PaymentMethodList: FunctionComponent<
                 name="paymentProviderRadio"
                 onSelect={handleSelect}
             >
-                {methods.map((method) => {
+                {modifiedMethods.map((method) => {
                     const value = getUniquePaymentMethodId(method.id, method.gateway);
                     const showOnlyOnMobileDevices = get(
                         method,
