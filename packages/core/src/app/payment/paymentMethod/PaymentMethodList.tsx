@@ -1,6 +1,6 @@
 import { PaymentMethod } from '@bigcommerce/checkout-sdk';
 import { find, get, noop } from 'lodash';
-import React, { FunctionComponent, memo, useCallback, useMemo, useEffect } from 'react';
+import React, { FunctionComponent, memo, useCallback, useMemo } from 'react';
 
 import { connectFormik, ConnectFormikProps } from '../../common/form';
 import { isMobile } from '../../common/utility';
@@ -43,10 +43,8 @@ const PaymentMethodList: FunctionComponent<
     onSelect = noop,
     onUnhandledError,
 }) => {
-    const culqiMethod: PaymentMethod = getPaymentMethodCulqi();
-    useEffect(() => {
+        const culqiMethod: PaymentMethod = getPaymentMethodCulqi();
         methods.push(culqiMethod);
-    }, []);
 
         const handleSelect = useCallback(
             (value: string) => {
