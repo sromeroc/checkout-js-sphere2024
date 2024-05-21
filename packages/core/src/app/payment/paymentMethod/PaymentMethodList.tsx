@@ -1,6 +1,6 @@
 import { PaymentMethod } from '@bigcommerce/checkout-sdk';
 import { find, get, noop } from 'lodash';
-import React, { FunctionComponent, memo, useCallback, useMemo } from 'react';
+import React, { FunctionComponent, memo, useCallback, useMemo, useEffect } from 'react';
 
 import { connectFormik, ConnectFormikProps } from '../../common/form';
 import { isMobile } from '../../common/utility';
@@ -9,8 +9,8 @@ import { Checklist, ChecklistItem } from '../../ui/form';
 import getUniquePaymentMethodId, { parseUniquePaymentMethodId } from './getUniquePaymentMethodId';
 import PaymentMethodTitle from './PaymentMethodTitle';
 import PaymentMethodV2 from './PaymentMethodV2';
-// import { getPaymentMethodCulqi, getPaymentMethodSphere } from '../payment-methods.mock';
-import { getPaymentMethodCulqi, getCreditCardSphere } from '../payment-methods.mock';
+// import { getPaymentMethodCulqi, getCreditCardSphere } from '../payment-methods.mock';
+import { getPaymentMethodCulqi } from './Culqi/metodoCulqi';
 
 export interface PaymentMethodListProps {
     isEmbedded?: boolean;
@@ -43,16 +43,14 @@ const PaymentMethodList: FunctionComponent<
     onSelect = noop,
     onUnhandledError,
 }) => {
-
-        /* Agregamos el método de Culqi */
-        // const modifiedMethods = [...methods, getPaymentMethodCulqi(), getPaymentMethodSphere()];
-        const modifiedMethods = [...methods, getPaymentMethodCulqi(), getCreditCardSphere()];
-        console.log("Modified methods: ", modifiedMethods);
-        modifiedMethods.shift() // !! Remove first method
+    const culqiMethod: PaymentMethod = getPaymentMethodCulqi();
+    useEffect(() => {
+        methods.push(culqiMethod);
+    }, []);
 
         const handleSelect = useCallback(
             (value: string) => {
-                onSelect(getPaymentMethodFromListValue(modifiedMethods, value));
+                onSelect(getPaymentMethodFromListValue(methods, value));
             },
             [methods, onSelect],
         );
@@ -64,7 +62,7 @@ const PaymentMethodList: FunctionComponent<
                 name="paymentProviderRadio"
                 onSelect={handleSelect}
             >
-                {modifiedMethods.map((method) => {
+                {methods.map((method) => {
                     const value = getUniquePaymentMethodId(method.id, method.gateway);
                     const showOnlyOnMobileDevices = get(
                         method,

@@ -80,6 +80,7 @@ export default function withHostedCreditCardFieldset<
     }) => {
         const [focusedFieldType, setFocusedFieldType] = useState<string>();
 
+        // ver mas 
         const getHostedFieldId: (name: string) => string = useCallback(
             (name) => {
                 return `${compact([method.gateway, method.id]).join('-')}-${name}`;
