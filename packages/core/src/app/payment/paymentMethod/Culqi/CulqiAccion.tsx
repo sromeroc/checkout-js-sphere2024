@@ -1,5 +1,5 @@
 import { CheckoutService, PaymentMethod } from '@bigcommerce/checkout-sdk';
-import { FunctionComponent } from 'react';
+import { FunctionComponent, useEffect } from 'react';
 
 type CheckoutServiceInstance = InstanceType<typeof CheckoutService>;
 
@@ -13,7 +13,9 @@ export interface Props {
 export const CulqiPaymentMethod: FunctionComponent<Props> = (props) => {
     const { method } = props;
 
-    return (
-        console.log(method)
-    );
+    useEffect(() => {
+        console.log(method);
+    }, [method]);
+
+    return null;
 };
