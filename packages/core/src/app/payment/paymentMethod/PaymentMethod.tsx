@@ -234,6 +234,7 @@ const PaymentMethodComponent: FunctionComponent<
         method.method === PaymentMethodType.PaypalCredit ||
         method.type === PaymentMethodProviderType.Hosted
     ) {
+        console.log("Hosted: "+ method.method + " type: " + method.type + " ID: " + method.id);
         return <HostedPaymentMethod {...props} />;
     }
 
