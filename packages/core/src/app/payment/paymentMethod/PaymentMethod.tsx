@@ -252,16 +252,8 @@ const PaymentMethodComponent: FunctionComponent<
         method.method === PaymentMethodType.CreditCard ||
         method.type === PaymentMethodProviderType.Api
     ) {
-        // ver que envia 
-        console.log("prueba #8 CreditCard: ")
-        const keys = Object.keys(method) as Array<keyof PaymentMethod<any>>;
-
-        for (const key of keys) {
-            console.log(key, method[key]);
-        }
         console.log("CreditCard: "+ method.method + " type: " + method.type + " ID: " + method.id);
-        const initializationType = method.initializationStrategy?.type;
-        console.log('InitializationStrategy type:', initializationType);
+        return <HostedCreditCardPaymentMethod {...props} />;
     }
 
 
