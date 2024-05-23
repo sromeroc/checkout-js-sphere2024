@@ -198,47 +198,47 @@ const CulqiButtonUseWindow: React.FC = () => {
     );
 };
 
-const submitOrder = async (checkoutData: Checkout | undefined) => {
-    if (checkoutData) {
-        const checkoutService: CheckoutService = createCheckoutService();
-        try {
-            // Load Checkout
-            const stateCheckout = await checkoutService.loadCheckout(checkoutData.id);
-            console.log('At CulqiButton, Checkout:', stateCheckout.data.getCheckout());
+// const submitOrder = async (checkoutData: Checkout | undefined) => {
+//     if (checkoutData) {
+//         const checkoutService: CheckoutService = createCheckoutService();
+//         try {
+//             // Load Checkout
+//             const stateCheckout = await checkoutService.loadCheckout(checkoutData.id);
+//             console.log('At CulqiButton, Checkout:', stateCheckout.data.getCheckout());
             
-            // Load loadPaymentMethods
-            const state = await checkoutService.loadPaymentMethods();
-            console.log('At CulqiButton, PaymentMethods:', state.data.getPaymentMethods());
+//             // Load loadPaymentMethods
+//             const state = await checkoutService.loadPaymentMethods();
+//             console.log('At CulqiButton, PaymentMethods:', state.data.getPaymentMethods());
             
-            // initializePayment
-            const methodId = 'instore'
-            const ini = await checkoutService.initializePayment({ methodId });
-            console.log('At CulqiButton, ini:', ini);
+//             // initializePayment
+//             const methodId = 'instore'
+//             const ini = await checkoutService.initializePayment({ methodId });
+//             console.log('At CulqiButton, ini:', ini);
             
-            // Submit Order
-            const stateOrder = await checkoutService.submitOrder({
-                payment: {
-                    methodId,
-                    paymentData: {
-                        ccExpiry: { month: 10, year: 26 },
-                        ccName: 'BigCommerce',
-                        ccNumber: '4111111111111111',
-                        ccCvv: 123,
-                    },
-                },
-            });
-            const order = stateOrder.data.getOrder()
-            console.log("At CulqiButton, Retrieved Order:", order);
+//             // Submit Order
+//             const stateOrder = await checkoutService.submitOrder({
+//                 payment: {
+//                     methodId,
+//                     paymentData: {
+//                         ccExpiry: { month: 10, year: 26 },
+//                         ccName: 'BigCommerce',
+//                         ccNumber: '4111111111111111',
+//                         ccCvv: 123,
+//                     },
+//                 },
+//             });
+//             const order = stateOrder.data.getOrder()
+//             console.log("At CulqiButton, Retrieved Order:", order);
 
-            // Load Order
-            if (order) {
-                const stateOrder = await checkoutService.loadOrder(order.orderId);
-                console.log("At CulqiButton, Loaded Order:", stateOrder.data.getOrder());
-            }
-        } catch (error) {
-            console.error("At submitOrder:", error);
-        }
-    }
-}
+//             // Load Order
+//             if (order) {
+//                 const stateOrder = await checkoutService.loadOrder(order.orderId);
+//                 console.log("At CulqiButton, Loaded Order:", stateOrder.data.getOrder());
+//             }
+//         } catch (error) {
+//             console.error("At submitOrder:", error);
+//         }
+//     }
+// }
 
 export default CulqiButtonUseWindow;
