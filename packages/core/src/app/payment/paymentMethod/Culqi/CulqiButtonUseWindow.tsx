@@ -15,9 +15,6 @@ const CulqiButtonUseWindow: React.FC = () => {
     const { checkoutState } = useCheckout();
     const { data } = checkoutState;
     const checkoutData = data.getCheckout()
-    // const ordernes = data.getOrder();
-    // console.log('Checkout data: ', checkoutData);
-    // console.log('Data Order>>: ', ordernes);
 
     const onCulqiLoad = () => {
         if (checkoutData) {
@@ -40,7 +37,7 @@ const CulqiButtonUseWindow: React.FC = () => {
             const countryCode = checkoutData.billingAddress?.countryCode
 
             // Add Culqi public key
-            window.Culqi.publicKey = process.env.REACT_APP_CULQI_PK;
+            window.Culqi.publicKey = "pk_test_986ab1b486ddd58f";
 
             // Define order data
             const orderData = {
@@ -60,7 +57,7 @@ const CulqiButtonUseWindow: React.FC = () => {
             };
 
             // Define order options
-            const sk = process.env.REACT_APP_CULQI_SK
+            const sk = "sk_test_kW32mQUjBB3KnfUD"
             const orderOptions = {
                 method: 'POST', // or 'GET', 'PUT', etc.
                 headers: {
@@ -169,7 +166,7 @@ const CulqiButtonUseWindow: React.FC = () => {
     }
 
     useEffect(() => {
-        submitOrder(checkoutData)
+        // submitOrder(checkoutData)
         // Include Culqi Checkout
         const script = document.createElement('script');
         script.src = "https://checkout.culqi.com/js/v4";

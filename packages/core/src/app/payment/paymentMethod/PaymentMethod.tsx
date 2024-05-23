@@ -82,24 +82,9 @@ const PaymentMethodComponent: FunctionComponent<
 > = (props) => {
     const { method } = props;
 
-    // Culqi method
-    if (method.id === PaymentMethodId.Culqi) {
-        // console.log("Culqi method selected!!");
-       
-        return null;
-    }
-
     // prueba #8
-    if (method.id === PaymentMethodId.Sphere && method.type === PaymentMethodProviderType.PPSDK) {
-        // console.log("<<<<SPHERE: METHOD>>>>")
-        // confirma el metodo sea el adecuado para probar 
-        // const keys = Object.keys(method) as Array<keyof PaymentMethod<any>>;
-        // for (const key of keys) {
-        //     console.log(key, method[key]);
-        // }
-        // console.log("Sphere: " + method.method + " type: " + method.type + " ID: " + method.id);
-        // const initializationType = method.initializationStrategy?.type;
-        // console.log('InitializationStrategy type:', initializationType);
+    if (method.id === PaymentMethodId.Culqi) {
+        console.log("Culqi method selected!!");
         return <PPSDKPaymentMethod {...props} />;
     }
 

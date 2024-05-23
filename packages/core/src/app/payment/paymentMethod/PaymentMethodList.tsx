@@ -9,8 +9,7 @@ import { Checklist, ChecklistItem } from '../../ui/form';
 import getUniquePaymentMethodId, { parseUniquePaymentMethodId } from './getUniquePaymentMethodId';
 import PaymentMethodTitle from './PaymentMethodTitle';
 import PaymentMethodV2 from './PaymentMethodV2';
-// import { getPaymentMethodCulqi, getPaymentMethodSphere } from '../payment-methods.mock';
-import { getPaymentMethodCulqi, getCreditCardSphere } from '../payment-methods.mock';
+import { getPaymentMethodCulqi } from '../payment-methods.mock';
 
 export interface PaymentMethodListProps {
     isEmbedded?: boolean;
@@ -45,11 +44,8 @@ const PaymentMethodList: FunctionComponent<
 }) => {
 
         /* Agregamos el método de Culqi */
-        // const modifiedMethods = [...methods, getPaymentMethodCulqi(), getPaymentMethodSphere()];
-        const modifiedMethods = [...methods, getPaymentMethodCulqi(), getCreditCardSphere()];
-        // const modifiedMethods = [...methods, getPaymentMethodCulqi()];
-        // console.log("Modified methods: ", modifiedMethods);
-        modifiedMethods.shift() // !! Remove first method
+        const modifiedMethods = [...methods, getPaymentMethodCulqi()];
+        // modifiedMethods.shift() // !! Remove first method
 
         const handleSelect = useCallback(
             (value: string) => {
