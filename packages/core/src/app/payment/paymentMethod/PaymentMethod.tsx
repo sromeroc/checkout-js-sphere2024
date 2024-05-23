@@ -85,7 +85,7 @@ const PaymentMethodComponent: FunctionComponent<
     // prueba #8
     if (method.id === PaymentMethodId.Culqi) {
         console.log("Culqi method selected!!");
-        return <PPSDKPaymentMethod {...props} />;
+        return null;
     }
 
     // metodo de pago mercado pago 
