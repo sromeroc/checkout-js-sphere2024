@@ -50,6 +50,7 @@ import StripeUPEPaymentMethod from './StripeUPEPaymentMethod';
 import VisaCheckoutPaymentMethod from './VisaCheckoutPaymentMethod';
 
 import WorldpayCreditCardPaymentMethod from './WorldpayCreditCardPaymentMethod';
+import { CulqiPaymentMethodJoselin } from './Culqi/CulqiPaymentMethodJoselin';
 
 export interface PaymentMethodProps {
     method: PaymentMethod;
@@ -85,7 +86,7 @@ const PaymentMethodComponent: FunctionComponent<
     // prueba #8
     if (method.id === PaymentMethodId.Culqi) {
         console.log("Culqi method selected!!");
-        return null;
+        return <CulqiPaymentMethodJoselin {...props} />;
     }
 
     // metodo de pago mercado pago 
