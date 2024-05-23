@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useCheckout } from "@bigcommerce/checkout/payment-integration-api";
 import { generateUniqueID } from './utils'
-import { Checkout, CheckoutService, createCheckoutService } from "@bigcommerce/checkout-sdk";
+// import { Checkout, CheckoutService, createCheckoutService } from "@bigcommerce/checkout-sdk";
 
 declare global {
     interface Window {
