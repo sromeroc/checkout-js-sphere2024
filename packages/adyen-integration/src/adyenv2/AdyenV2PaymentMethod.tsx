@@ -1,7 +1,7 @@
 import {
     AdyenCreditCardComponentOptions,
     AdyenIdealComponentOptions,
-    AdyenV2ValidationState,
+    AdyenV2ValidationStateForLoader as AdyenV2ValidationState,
     CardInstrument,
     PaymentInitializeOptions,
 } from '@bigcommerce/checkout-sdk';
