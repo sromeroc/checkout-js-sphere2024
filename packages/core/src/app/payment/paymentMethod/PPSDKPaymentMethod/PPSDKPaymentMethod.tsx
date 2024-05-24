@@ -16,7 +16,7 @@ export interface Props {
 export const PPSDKPaymentMethod: FunctionComponent<Props> = (props) => {
     const { method, onUnhandledError = noop } = props;
 
-    const componentKey = method.initializationStrategy?.type || '';
+    const componentKey = method.initializationStrategy?.type || ''; // card - none 
     const Component = initializationComponentMap[componentKey];
 
     if (!Component) {
