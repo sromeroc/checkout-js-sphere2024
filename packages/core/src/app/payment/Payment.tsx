@@ -149,10 +149,9 @@ class Payment extends Component<
         );
 
         window.addEventListener('beforeunload', this.handleBeforeUnload);
-        this.setState({
-            isReady: true,
-            submitFunctions: { ...this.state.submitFunctions, ['culqi']: culqiSubmitFunction }
-        });
+        this.setState({ isReady: true });
+        
+        this.setSubmit(getPaymentMethodCulqi(), culqiSubmitFunction);
         onReady();
     }
 
