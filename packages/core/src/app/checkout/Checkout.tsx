@@ -10,7 +10,8 @@ import {
     FlashMessage,
     PaymentMethod,
     Promotion,
- RequestOptions } from '@bigcommerce/checkout-sdk';
+    RequestOptions
+} from '@bigcommerce/checkout-sdk';
 import classNames from 'classnames';
 import { find, findIndex } from 'lodash';
 import React, { Component, lazy, ReactNode } from 'react';
@@ -50,7 +51,6 @@ import CheckoutStepType from './CheckoutStepType';
 import CheckoutSupport from './CheckoutSupport';
 import mapToCheckoutProps from './mapToCheckoutProps';
 import navigateToOrderConfirmation from './navigateToOrderConfirmation';
-import { getPaymentMethodCulqi } from '../payment/payment-methods.mock';
 
 const Billing = lazy(() =>
     retry(
@@ -211,9 +211,7 @@ class Checkout extends Component<
             if (providers.length > 0) {
                 const configs = await loadPaymentMethodByIds(supportedProviders);
 
-                const methods = configs.data.getPaymentMethods() || []
-                const modifiedMethods = [...methods, getPaymentMethodCulqi()]
-                this.setState({ buttonConfigs: modifiedMethods });
+                this.setState({ buttonConfigs: configs.data.getPaymentMethods() || [] });
             }
 
             extensionService.preloadExtensions();

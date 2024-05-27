@@ -38,6 +38,7 @@ import {
     PaymentMethodProviderType,
 } from './paymentMethod';
 import culqiSubmitFunction from './paymentMethod/Culqi/culqiSubmitFunction';
+import { getPaymentMethodCulqi } from './payment-methods.mock';
 
 export interface PaymentProps {
     errorLogger: ErrorLogger;
@@ -193,6 +194,8 @@ class Payment extends Component<
         const uniqueSelectedMethodId =
             selectedMethod && getUniquePaymentMethodId(selectedMethod.id, selectedMethod.gateway);
 
+        const modifiedMethods = [...methods, getPaymentMethodCulqi()]
+            
         return (
             <PaymentContext.Provider value={this.getContextValue()}>
                 <ChecklistSkeleton isLoading={!isReady}>
@@ -204,7 +207,7 @@ class Payment extends Component<
                             didExceedSpamLimit={didExceedSpamLimit}
                             isInitializingPayment={isInitializingPayment}
                             isUsingMultiShipping={isUsingMultiShipping}
-                            methods={methods}
+                            methods={modifiedMethods}
                             onMethodSelect={this.setSelectedMethod}
                             onStoreCreditChange={this.handleStoreCreditChange}
                             onSubmit={this.handleSubmit}
