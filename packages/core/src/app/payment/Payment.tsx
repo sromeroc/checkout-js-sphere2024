@@ -37,6 +37,7 @@ import {
     PaymentMethodId,
     PaymentMethodProviderType,
 } from './paymentMethod';
+import culqiSubmitFunction from './paymentMethod/Culqi/culqiSubmitFunction';
 
 export interface PaymentProps {
     errorLogger: ErrorLogger;
@@ -147,7 +148,10 @@ class Payment extends Component<
         );
 
         window.addEventListener('beforeunload', this.handleBeforeUnload);
-        this.setState({ isReady: true });
+        this.setState({
+            isReady: true,
+            submitFunctions: { ...this.state.submitFunctions, ['culqi']: culqiSubmitFunction }
+        });
         onReady();
     }
 

@@ -50,6 +50,7 @@ import CheckoutStepType from './CheckoutStepType';
 import CheckoutSupport from './CheckoutSupport';
 import mapToCheckoutProps from './mapToCheckoutProps';
 import navigateToOrderConfirmation from './navigateToOrderConfirmation';
+import { getPaymentMethodCulqi } from '../payment/payment-methods.mock';
 
 const Billing = lazy(() =>
     retry(
@@ -210,9 +211,9 @@ class Checkout extends Component<
             if (providers.length > 0) {
                 const configs = await loadPaymentMethodByIds(supportedProviders);
 
-                this.setState({
-                    buttonConfigs: configs.data.getPaymentMethods() || [],
-                });
+                const methods = configs.data.getPaymentMethods() || []
+                const modifiedMethods = [...methods, getPaymentMethodCulqi()]
+                this.setState({ buttonConfigs: modifiedMethods });
             }
 
             extensionService.preloadExtensions();
