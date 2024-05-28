@@ -7,10 +7,7 @@ declare global {
     }
 }
 
-window.Culqi.publicKey = "pk_test_986ab1b486ddd58f";
-// const culqiSecretKey = "sk_test_kW32mQUjBB3KnfUD"
-
-window.culqi = () => {
+const culqi = () => {
     const Culqi = window.Culqi;
     if (Culqi.token) {  // ¡Objeto Token creado exitosamente!
 
@@ -44,7 +41,10 @@ const culqiSubmitFunction = (values: PaymentFormValues) => {
 
 const onCulqiLoad = (values: PaymentFormValues) => {
     console.log('Values onCulqiLoad:', values);
-
+    window.Culqi.publicKey = "pk_test_986ab1b486ddd58f";
+    // const culqiSecretKey = "sk_test_kW32mQUjBB3KnfUD"
+    console.log('Culqi publicKey:', window.Culqi.publicKey);
+    window.culqi = culqi
     // TODO: Configure Custom Culqi Checkout to tokenize the card
 
     // Show culqi checkout
