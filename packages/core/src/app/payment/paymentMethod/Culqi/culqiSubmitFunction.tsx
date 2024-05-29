@@ -1,5 +1,7 @@
 // import { PaymentFormValues } from "@bigcommerce/checkout/payment-integration-api";
+import { Checkout } from "@bigcommerce/checkout-sdk";
 import { useCheckout } from "@bigcommerce/checkout/payment-integration-api";
+import { useEffect } from "react";
 
 declare global {
     interface Window {
@@ -30,17 +32,34 @@ const culqi = () => {
 };
 
 const culqiSubmitFunction = () => {
-    // Add Culqi Checkout
-    const script = document.createElement('script');
-    script.src = "https://checkout.culqi.com/js/v4";
-    script.async = true;
-    script.onload = () => onCulqiLoad();
-    document.body.appendChild(script);
+    const { checkoutState } = useCheckout();
 
-    // TODO: remove script
+    useEffect(() => {
+        // Add Culqi Checkout
+        const script = document.createElement('script');
+        script.src = "https://checkout.culqi.com/js/v4";
+        script.async = true;
+
+        script.onload = () => onCulqiLoad(checkoutState.data.getCheckout());
+        document.body.appendChild(script);
+
+        return () => {
+            document.body.removeChild(script);
+        };
+    }, [checkoutState]);
+
+    return null; // or return some JSX if needed
 }
 
-const onCulqiLoad = () => {
+const onCulqiLoad = (checkoutData: Checkout | undefined) => {
+
+    // Validate checkout data
+
+    console.log('checkoutData onCulqiLoad:', checkoutData);
+    if (!checkoutData) {
+        console.error('Checkout data not found');
+        return;
+    }
 
     // Culqi Checkout Configuration
 
@@ -48,15 +67,6 @@ const onCulqiLoad = () => {
     const culqiSecretKey = "sk_test_kW32mQUjBB3KnfUD"
     window.culqi = culqi
     const createOrderUrl = 'https://api.culqi.com/v2/orders'
-
-    const { checkoutState } = useCheckout();
-    const checkoutData = checkoutState.data.getCheckout()
-
-    console.log('checkoutData onCulqiLoad:', checkoutData);
-    if (!checkoutData) {
-        console.error('Checkout data not found');
-        return;
-    }
 
     // Generate metadata
 
