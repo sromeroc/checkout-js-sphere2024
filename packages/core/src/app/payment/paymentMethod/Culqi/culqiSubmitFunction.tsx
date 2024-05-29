@@ -1,5 +1,6 @@
 // import { PaymentFormValues } from "@bigcommerce/checkout/payment-integration-api";
-import { useCheckout } from "@bigcommerce/checkout/payment-integration-api";
+// import { useCheckout } from "@bigcommerce/checkout/payment-integration-api";
+const culqiSecretKey = "sk_test_kW32mQUjBB3KnfUD"
 
 declare global {
     interface Window {
@@ -8,13 +9,72 @@ declare global {
     }
 }
 
-const culqi = () => {
+type OrderMetadata = {
+    amount: number;
+    creationDate: number;
+    expirationDate: number;
+    currencyCode: string;
+    number: string;
+    title: string;
+    description: string;
+};
+
+type ClientMetadata = {
+    firstName: string;
+    lastName: string;
+    email: string;
+    address: string;
+    phone: string;
+    city: string;
+    countryCode: string;
+};
+
+const createCulqiCharge = (orderMetadata: OrderMetadata, clientMetadata: ClientMetadata) => {
     const Culqi = window.Culqi;
     if (Culqi.token) {  // ¡Objeto Token creado exitosamente!
 
         console.log('Se ha creado un Token: ', Culqi.token);
 
-        // TODO: Create charge
+        // En esta línea de código, debes enviar el "Culqi.token.id"
+        // hacia tu servidor con Ajax
+
+        const data = JSON.stringify({
+            "amount": orderMetadata.amount,
+            "currency_code": orderMetadata.currencyCode,
+            "email": clientMetadata.email,
+            "source_id": Culqi.token.id,
+            "capture": true,
+            "description": orderMetadata.description,
+            "installments": 0,
+            "antifraud_details": {
+                "address": clientMetadata.address,
+                "address_city": clientMetadata.city,
+                "country_code": orderMetadata.currencyCode,
+                "first_name": clientMetadata.firstName,
+                "last_name": clientMetadata.lastName,
+                "phone_number": clientMetadata.phone,
+            }
+        });
+
+        //var XMLHttpRequest = require('xhr2');
+        const xhr = new XMLHttpRequest();
+        xhr.withCredentials = false;
+
+        xhr.addEventListener("readystatechange", function () {
+            if (this.readyState === this.DONE) {
+                console.log(this.responseText);
+            }
+        });
+
+        console.log('Antes del cargo');
+        console.log('Data: ', data);
+        console.log('Despues del cargo');
+
+        xhr.open("POST", "https://api.culqi.com/v2/charges");
+        xhr.setRequestHeader("Authorization", `Bearer ${culqiSecretKey}`);
+        xhr.setRequestHeader("content-type", "application/json");
+
+        xhr.send(data);
 
     } else if (Culqi.order) {  // ¡Objeto Order creado exitosamente!
 
@@ -45,41 +105,51 @@ const onCulqiLoad = () => {
     // Culqi Checkout Configuration
 
     window.Culqi.publicKey = "pk_test_986ab1b486ddd58f";
-    const culqiSecretKey = "sk_test_kW32mQUjBB3KnfUD"
-    window.culqi = culqi
     const createOrderUrl = 'https://api.culqi.com/v2/orders'
 
-    const { checkoutState } = useCheckout();
-    const checkoutData = checkoutState.data.getCheckout()
+    // const { checkoutState } = useCheckout();
+    // const checkoutData = checkoutState.data.getCheckout()
+    // console.log('checkoutData onCulqiLoad:', checkoutData);
 
-    console.log('checkoutData onCulqiLoad:', checkoutData);
-    if (!checkoutData) {
-        console.error('Checkout data not found');
-        return;
-    }
+    // if (!checkoutData) {
+    //     console.error('Checkout data not found');
+    //     return;
+    // }
 
     // Generate metadata
 
-    const cartCreationDate = new Date(checkoutData.cart.createdTime)
-    const orderMetadata = {
-        amount: Math.floor(checkoutData.grandTotal * 100),
+    // const cartCreationDate = new Date(checkoutData.cart.createdTime)
+    const cartCreationDate = new Date()
+    const orderMetadata: OrderMetadata = {
+        // amount: Math.floor(checkoutData.grandTotal * 100),
+        amount: Math.floor(6000),
         creationDate: cartCreationDate.getTime() / 1000,
         expirationDate: cartCreationDate.setFullYear(cartCreationDate.getFullYear() + 1) / 1000,
-        currencyCode: checkoutData.cart.currency.code,
+        // currencyCode: checkoutData.cart.currency.code,
+        currencyCode: 'PEN',
         number: generateUniqueID(),
         title: 'Tienda de Mascotas',
         description: "BigCommerce",
     }
 
-    const clientMetadata = {
-        firstName: checkoutData.billingAddress?.firstName,
-        lastName: checkoutData.billingAddress?.lastName,
-        email: checkoutData.billingAddress?.email,
-        address: checkoutData.billingAddress?.address1,
-        phone: checkoutData.billingAddress?.phone,
-        city: checkoutData.billingAddress?.city,
-        countryCode: checkoutData.billingAddress?.countryCode,
+    const clientMetadata: ClientMetadata = {
+        firstName: 'John',
+        lastName: 'Doe',
+        email: 'luis.mesajil@sphere.com.pe',
+        address: 'Jiron cabo nicolas',
+        phone: '999999999',
+        city: 'Lima',
+        countryCode: 'PE',
+        // firstName: checkoutData.billingAddress?.firstName,
+        // lastName: checkoutData.billingAddress?.lastName,
+        // email: checkoutData.billingAddress?.email,
+        // address: checkoutData.billingAddress?.address1,
+        // phone: checkoutData.billingAddress?.phone,
+        // city: checkoutData.billingAddress?.city,
+        // countryCode: checkoutData.billingAddress?.countryCode,
     }
+
+    window.culqi = () => createCulqiCharge(orderMetadata, clientMetadata);
 
     // Create Culqi order
 
