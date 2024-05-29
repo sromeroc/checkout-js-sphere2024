@@ -52,6 +52,7 @@ const onCulqiLoad = () => {
     const { checkoutState } = useCheckout();
     const checkoutData = checkoutState.data.getCheckout()
 
+    console.log('checkoutData onCulqiLoad:', checkoutData);
     if (!checkoutData) {
         console.error('Checkout data not found');
         return;
