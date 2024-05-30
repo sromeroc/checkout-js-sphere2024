@@ -1,6 +1,6 @@
 import {
-    AdyenV3CreditCardComponentOptions,
-    AdyenV3ValidationState,
+    AdyenCreditCardComponentOptions as AdyenV3CreditCardComponentOptions,
+    AdyenValidationState as AdyenV3ValidationState,
     CardInstrument,
     PaymentInitializeOptions,
 } from '@bigcommerce/checkout-sdk';

@@ -1,5 +1,5 @@
 import {
-    AdyenV2ValidationState,
+    AdyenValidationState as AdyenV2ValidationState,
     CardInstrument,
     LanguageService,
     PaymentMethod,

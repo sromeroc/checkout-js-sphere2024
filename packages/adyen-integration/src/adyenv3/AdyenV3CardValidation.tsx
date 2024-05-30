@@ -1,4 +1,4 @@
-import { AdyenV3ValidationState, CardInstrument, PaymentMethod } from '@bigcommerce/checkout-sdk';
+import { AdyenValidationState as AdyenV3ValidationState, CardInstrument, PaymentMethod } from '@bigcommerce/checkout-sdk';
 import classNames from 'classnames';
 import React, { FunctionComponent, useContext, useEffect, useState } from 'react';
 
