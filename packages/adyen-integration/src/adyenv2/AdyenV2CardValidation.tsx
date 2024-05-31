@@ -1,4 +1,5 @@
 import {
+    AdyenCardFields,
     AdyenValidationState as AdyenV2ValidationState,
     CardInstrument,
     LanguageService,
@@ -73,7 +74,8 @@ const AdyenV2CardValidation: FunctionComponent<AdyenV2CardValidationProps> = ({
         }
 
         if (cardValidationState.fieldType) {
-            if (cardValidationState.fieldType === AdyenV2CardFields.CardNumber) {
+            const x: string = AdyenCardFields.CardNumber
+            if (x === AdyenV2CardFields.CardNumber) {
                 setFieldsValidation({
                     ...fieldsValidation,
                     [AdyenV2CardFields.CardNumber]:
