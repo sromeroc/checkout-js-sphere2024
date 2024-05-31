@@ -306,6 +306,8 @@ class HostedWidgetPaymentComponent extends Component<
                 return validateInstrument(shouldShowNumberField, selectedInstrument);
             }
         }
+
+        return null;
     }
 
     renderContainer(shouldShowCreditCardFieldset: any): ReactNode {
@@ -423,6 +425,8 @@ class HostedWidgetPaymentComponent extends Component<
                 </p>
             );
         }
+
+        return null;
     }
 
     private renderPaymentDescriptorIfAvailable() {
@@ -431,6 +435,8 @@ class HostedWidgetPaymentComponent extends Component<
         if (shouldShowDescriptor && paymentDescriptor) {
             return <div className="payment-descriptor">{paymentDescriptor}</div>;
         }
+
+        return null;
     }
 
     private async initializeMethod(): Promise<CheckoutSelectors | void> {

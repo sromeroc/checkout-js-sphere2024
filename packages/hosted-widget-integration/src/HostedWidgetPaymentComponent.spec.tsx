@@ -4,6 +4,7 @@ import {
     CheckoutSelectors,
     CheckoutService,
     createCheckoutService,
+    UntrustedShippingCardVerificationType,
 } from '@bigcommerce/checkout-sdk';
 import { mount, ReactWrapper } from 'enzyme';
 import { Formik } from 'formik';
@@ -401,6 +402,7 @@ describe('HostedWidgetPaymentMethod', () => {
                     defaultInstrument: true,
                     method: 'card',
                     type: 'card',
+                    untrustedShippingCardVerificationMode: UntrustedShippingCardVerificationType.CVV
                 },
             ];
 
@@ -479,7 +481,7 @@ describe('HostedWidgetPaymentMethod', () => {
                     provider: 'adyen',
                     accountNumber: 'GHI',
                     issuer: 'JKL',
-                    externalId: 'test@external-id-4.com',
+                    // externalId: 'test@external-id-4.com',
                     trustedShippingAddress: false,
                     defaultInstrument: false,
                     method: 'ideal',
