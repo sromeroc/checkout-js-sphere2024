@@ -1,4 +1,4 @@
-import { AdyenV3ValidationState, CardInstrument, PaymentMethod } from '@bigcommerce/checkout-sdk';
+import { AdyenCardFields, AdyenValidationState as AdyenV3ValidationState, CardInstrument, PaymentMethod } from '@bigcommerce/checkout-sdk';
 import classNames from 'classnames';
 import React, { FunctionComponent, useContext, useEffect, useState } from 'react';
 
@@ -67,7 +67,8 @@ const AdyenV3CardValidation: FunctionComponent<AdyenV3CardValidationProps> = ({
         }
 
         if (cardValidationState.fieldType) {
-            if (cardValidationState.fieldType === AdyenV3CardFields.CardNumber) {
+            const cardNumber: string = AdyenCardFields.CardNumber
+            if (cardNumber === AdyenV3CardFields.CardNumber) {
                 setFieldsValidation({
                     ...fieldsValidation,
                     [AdyenV3CardFields.CardNumber]:
