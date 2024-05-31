@@ -7,7 +7,7 @@ interface CulqiPaymentMethodProps {
     onSelect: () => void;
 }
 
-const CulqiPaymentMethod: React.FC<CulqiPaymentMethodProps> = ({ onSelect }) => {
+const CulqiPaymentMethod2: React.FC<CulqiPaymentMethodProps> = ({ onSelect }) => {
     const [isChecked, setIsChecked] = useState(false);
 
     const handleChange = () => {
@@ -122,4 +122,4 @@ const CulqiPaymentMethod: React.FC<CulqiPaymentMethodProps> = ({ onSelect }) => 
     );
 };
 
-export default CulqiPaymentMethod;
+export default CulqiPaymentMethod2;
