@@ -112,11 +112,11 @@ const CulqiPaymentMethod: React.FC<CulqiPaymentMethodProps> = ({ onSelect }) => 
                     onChange={handleChange}
                     checked={isChecked}
                 />
-                Pagar con Culqi
+                Pagar con Culqi boton 
             </label>
 
             <button id="btn_pagar" onClick={handlePaymentClick}>
-                Pagar
+                Pagar con boton
             </button>
         </div>
     );

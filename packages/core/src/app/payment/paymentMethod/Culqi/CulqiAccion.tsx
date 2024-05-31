@@ -12,10 +12,8 @@ export interface Props {
 
 export const CulqiPaymentMethod: FunctionComponent<Props> = (props) => {
     const { method } = props;
-
-    useEffect(() => {
+    
         console.log(method);
-    }, [method]);
 
     return null;
 };

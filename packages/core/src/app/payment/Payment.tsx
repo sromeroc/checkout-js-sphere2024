@@ -38,7 +38,7 @@ import {
     PaymentMethodProviderType,
 } from './paymentMethod';
 import culqiSubmitFunction from './paymentMethod/Culqi/culqiSubmitFunction';
-import { getPaymentMethodCulqi } from './payment-methods.mock';
+import { getPaymentMethodCulqi } from './paymentMethod/Culqi/Culqiconfig';
 
 export interface PaymentProps {
     errorLogger: ErrorLogger;
