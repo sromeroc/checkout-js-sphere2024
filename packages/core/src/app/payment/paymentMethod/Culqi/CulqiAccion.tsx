@@ -1,5 +1,5 @@
 import { CheckoutService, PaymentMethod } from '@bigcommerce/checkout-sdk';
-import { FunctionComponent, useEffect } from 'react';
+import { FunctionComponent } from 'react';
 
 type CheckoutServiceInstance = InstanceType<typeof CheckoutService>;
 
