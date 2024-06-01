@@ -150,7 +150,7 @@ class Payment extends Component<
 
         window.addEventListener('beforeunload', this.handleBeforeUnload);
         this.setState({ isReady: true });
-        
+
         this.setSubmit(getPaymentMethodCulqi(), culqiSubmitFunction);
         onReady();
     }
@@ -194,7 +194,7 @@ class Payment extends Component<
             selectedMethod && getUniquePaymentMethodId(selectedMethod.id, selectedMethod.gateway);
 
         const modifiedMethods = [...methods, getPaymentMethodCulqi()]
-            
+
         return (
             <PaymentContext.Provider value={this.getContextValue()}>
                 <ChecklistSkeleton isLoading={!isReady}>
@@ -458,7 +458,7 @@ class Payment extends Component<
 
         const { selectedMethod = defaultMethod, submitFunctions } = this.state;
 
-        analyticsTracker.clickPayButton({shouldCreateAccount: values.shouldCreateAccount});
+        analyticsTracker.clickPayButton({ shouldCreateAccount: values.shouldCreateAccount });
 
         const customSubmit =
             selectedMethod &&
@@ -586,8 +586,8 @@ class Payment extends Component<
 }
 
 export function mapToPaymentProps({
-        checkoutService,
-        checkoutState,
+    checkoutService,
+    checkoutState,
 }: CheckoutContextProps): WithCheckoutPaymentProps | null {
     const {
         data: {
