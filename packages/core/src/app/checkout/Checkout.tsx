@@ -152,10 +152,10 @@ export interface WithCheckoutProps {
 
 class Checkout extends Component<
     CheckoutProps &
-        WithCheckoutProps &
-        WithLanguageProps &
-        AnalyticsContextProps &
-        ExtensionContextProps,
+    WithCheckoutProps &
+    WithLanguageProps &
+    AnalyticsContextProps &
+    ExtensionContextProps,
     CheckoutState
 > {
     state: CheckoutState = {
@@ -254,8 +254,8 @@ class Checkout extends Component<
             const checkoutBillingSameAsShippingEnabled =
                 data.getConfig()?.checkoutSettings.checkoutBillingSameAsShippingEnabled ?? true;
             const removeStepNumbersFlag =
-              data.getConfig()?.checkoutSettings.features['CHECKOUT-7255.remove_checkout_step_numbers'] ??
-              false;
+                data.getConfig()?.checkoutSettings.features['CHECKOUT-7255.remove_checkout_step_numbers'] ??
+                false;
             const defaultNewsletterSignupOption =
                 data.getConfig()?.shopperConfig.defaultNewsletterSignup ??
                 false;
@@ -408,7 +408,7 @@ class Checkout extends Component<
                     checkEmbeddedSupport={this.checkEmbeddedSupport}
                     isEmbedded={isEmbedded()}
                     isSubscribed={isSubscribed}
-                    isWalletButtonsOnTop = {isShowingWalletButtonsOnTop }
+                    isWalletButtonsOnTop={isShowingWalletButtonsOnTop}
                     onAccountCreated={this.navigateToNextIncompleteStep}
                     onChangeViewType={this.setCustomerViewType}
                     onContinueAsGuest={this.navigateToNextIncompleteStep}
@@ -643,7 +643,7 @@ class Checkout extends Component<
 
         const isShippingStepFinished =
             findIndex(steps, { type: CheckoutStepType.Shipping }) <
-                findIndex(steps, { type: activeStepType }) || isDefaultStepPaymentOrBilling;
+            findIndex(steps, { type: activeStepType }) || isDefaultStepPaymentOrBilling;
 
         if (
             prevHasSelectedShippingOptions &&
