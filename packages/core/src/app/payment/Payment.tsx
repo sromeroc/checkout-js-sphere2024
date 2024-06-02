@@ -469,7 +469,8 @@ class Payment extends Component<
         }
 
         try {
-            const state = await submitOrder(mapToOrderRequestBody(values, isPaymentDataRequired()));
+            const orderRequestBody = mapToOrderRequestBody(values, isPaymentDataRequired())
+            const state = await submitOrder(orderRequestBody);
             const order = state.data.getOrder();
 
             analyticsTracker.paymentComplete();
