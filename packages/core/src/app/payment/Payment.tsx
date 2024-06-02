@@ -466,7 +466,8 @@ class Payment extends Component<
         }
 
         try {
-            const orderRequestBody = mapToOrderRequestBody(values, isPaymentDataRequired())
+            const isCulqiSelectedMethod = values.paymentProviderRadio === PaymentMethodId.Culqi
+            const orderRequestBody = isCulqiSelectedMethod ? {} : mapToOrderRequestBody(values, isPaymentDataRequired())
             const state = await submitOrder(orderRequestBody);
             const order = state.data.getOrder();
 
