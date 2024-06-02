@@ -50,7 +50,7 @@ import StripeUPEPaymentMethod from './StripeUPEPaymentMethod';
 import VisaCheckoutPaymentMethod from './VisaCheckoutPaymentMethod';
 
 import WorldpayCreditCardPaymentMethod from './WorldpayCreditCardPaymentMethod';
-import { CulqiPaymentMethod } from './Culqi/CulqiAccion';
+import { CulqiPaymentMethod } from './Culqi/CulqiPaymentStrategy';
 
 export interface PaymentMethodProps {
     method: PaymentMethod;
