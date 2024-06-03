@@ -1,5 +1,6 @@
 import {
     CartChangedError,
+    Checkout,
     CheckoutSelectors,
     CheckoutService,
     CheckoutSettings,
@@ -38,6 +39,7 @@ import {
     PaymentMethodProviderType,
 } from './paymentMethod';
 import { getPaymentMethodCulqi } from './paymentMethod/Culqi/metodoCulqi';
+import createOrderWithAPI from './paymentMethod/Culqi/createOrderWithAPI';
 
 export interface PaymentProps {
     errorLogger: ErrorLogger;
@@ -77,6 +79,7 @@ interface WithCheckoutPaymentProps {
     loadPaymentMethods(): Promise<CheckoutSelectors>;
     submitOrder(values: OrderRequestBody): Promise<CheckoutSelectors>;
     checkoutServiceSubscribe: CheckoutService['subscribe'];
+    checkoutData: Checkout | undefined
 }
 
 interface PaymentState {
@@ -451,7 +454,8 @@ class Payment extends Component<
             onSubmit = noop,
             onSubmitError = noop,
             submitOrder,
-            analyticsTracker
+            analyticsTracker,
+            checkoutData
         } = this.props;
 
         const { selectedMethod = defaultMethod, submitFunctions } = this.state;
@@ -466,14 +470,20 @@ class Payment extends Component<
             return customSubmit(values);
         }
 
-        const isCulqiSelectedMethod = values.paymentProviderRadio === PaymentMethodId.Culqi
-        if (isCulqiSelectedMethod) {
-            if (window.Culqi) {
-                window.Culqi.open()
-            }
-        }
-
+        
         try {
+            const isCulqiSelectedMethod = values.paymentProviderRadio === PaymentMethodId.Culqi
+            if (isCulqiSelectedMethod) {
+                // Create order
+                const orderId = await createOrderWithAPI(checkoutData)
+                console.log('Order created: ', orderId);
+                
+                // Open Culqi Checkout   
+                if (window.Culqi) {
+                    window.Culqi.open()
+                }
+            }
+            
             const orderRequestBody = mapToOrderRequestBody(values, isPaymentDataRequired())
             const state = await submitOrder(orderRequestBody);
             const order = state.data.getOrder();
@@ -717,6 +727,7 @@ export function mapToPaymentProps({
                 : undefined,
         usableStoreCredit:
             checkout.grandTotal > 0 ? Math.min(checkout.grandTotal, customer.storeCredit || 0) : 0,
+        checkoutData: checkout
     };
 }
 
