@@ -19,7 +19,7 @@ declare global {
     }
 }
 
-const CulqiPaymentMethod: React.FC<Props> = (props) => {
+const CulqiAccion: React.FC<Props> = (props) => {
     // Use checkcoutContext
     const { checkoutState } = useCheckout();
     const { data } = checkoutState;
@@ -205,4 +205,4 @@ export const generateUniqueID = () => {
     return uniqueIdentifier;
 }
 
-export default CulqiPaymentMethod;
+export default CulqiAccion;

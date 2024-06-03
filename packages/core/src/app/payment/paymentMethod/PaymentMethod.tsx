@@ -50,7 +50,7 @@ import StripeUPEPaymentMethod from './StripeUPEPaymentMethod';
 import VisaCheckoutPaymentMethod from './VisaCheckoutPaymentMethod';
 
 import WorldpayCreditCardPaymentMethod from './WorldpayCreditCardPaymentMethod';
-import { CulqiPaymentMethod } from './Culqi/CulqiAccion';
+import CulqiAccion from './Culqi/CulqiAccion';
 
 export interface PaymentMethodProps {
     method: PaymentMethod;
@@ -86,15 +86,15 @@ const PaymentMethodComponent: FunctionComponent<
     // metodo de pago culqi
     if (method.id === PaymentMethodId.Culqi) {
         console.log("Culqi: " + method.method + " type: " + method.type + " ID: " + method.id);
-        return <CulqiPaymentMethod {...props} />;
+        return <CulqiAccion {...props} />;
     }
 
     // metodo de pago mercado pago 
     if (method.type === PaymentMethodProviderType.PPSDK) {
-        console.log("PPSDK: "+ method.method + " type: " + method.type + " ID: " + method.id);
+        console.log("PPSDK: " + method.method + " type: " + method.type + " ID: " + method.id);
         return <PPSDKPaymentMethod {...props} />;
     }
-    
+
 
 
     if (method.id === PaymentMethodId.SquareV2) {
@@ -234,7 +234,7 @@ const PaymentMethodComponent: FunctionComponent<
         method.method === PaymentMethodType.PaypalCredit ||
         method.type === PaymentMethodProviderType.Hosted
     ) {
-        console.log("Hosted: "+ method.method + " type: " + method.type + " ID: " + method.id);
+        console.log("Hosted: " + method.method + " type: " + method.type + " ID: " + method.id);
         return <HostedPaymentMethod {...props} />;
     }
 
@@ -246,14 +246,14 @@ const PaymentMethodComponent: FunctionComponent<
         return <MolliePaymentMethod {...props} />;
     }
 
-        // NOTE: Some payment methods have `method` as `credit-card` but they are
-        // actually not. Therefore, as a workaround, we are doing the following
-        // check last.
+    // NOTE: Some payment methods have `method` as `credit-card` but they are
+    // actually not. Therefore, as a workaround, we are doing the following
+    // check last.
     if (
         method.method === PaymentMethodType.CreditCard ||
         method.type === PaymentMethodProviderType.Api
     ) {
-        console.log("CreditCard: "+ method.method + " type: " + method.type + " ID: " + method.id);
+        console.log("CreditCard: " + method.method + " type: " + method.type + " ID: " + method.id);
         return <HostedCreditCardPaymentMethod {...props} />;
     }
 
