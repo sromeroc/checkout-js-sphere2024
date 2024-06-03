@@ -166,6 +166,11 @@ const CulqiAccion: React.FC<Props> = (props) => {
                     };
                     // Add the culqi function 
                     window.culqi = culqi;
+
+                    // Pending
+                    if (window.Culqi) {
+                        window.Culqi.open()
+                    }
                 })
                 .catch(error => console.error(`ERROR ${createOrderUrl}:`, error));
         }
@@ -186,10 +191,6 @@ const CulqiAccion: React.FC<Props> = (props) => {
         // Add script to the body
         document.body.appendChild(script);
 
-        // Pending
-        if (window.Culqi) {
-            window.Culqi.open()
-        }
         return () => {
             document.body.removeChild(script);
         };
