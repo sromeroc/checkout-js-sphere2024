@@ -193,7 +193,7 @@ const CulqiAccion: React.FC<Props> = (props) => {
         
         // submitOrder(checkoutData)
         console.log('Use window:', props.method);
-        initializeCulqiPayment()
+        // initializeCulqiPayment()
         onCulqiLoad();
         
     }, [checkoutData]);
