@@ -6,7 +6,7 @@ export function getPaymentMethodCulqi(): PaymentMethod {
         gateway: undefined,
         method: 'hosted',
         config: {
-            displayName: 'Pagar con Culqi Nuevo - Sphere',
+            displayName: 'Pagar con Culqi - Sphere',
             hasDefaultStoredInstrument: false,
             helpText: "Puede pagar con Yape, Cuotéalo BCP y PagoEfectivo ",
             testMode: true
