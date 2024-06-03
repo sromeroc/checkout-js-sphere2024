@@ -1,19 +1,31 @@
 import { CheckoutService, PaymentMethod } from '@bigcommerce/checkout-sdk';
-import { FunctionComponent } from 'react';
+import { FunctionComponent, useCallback } from 'react';
+
 
 type CheckoutServiceInstance = InstanceType<typeof CheckoutService>;
 
-export interface Props {
+export interface CulqiPaymentMethodProps {
     method: PaymentMethod;
     deinitializePayment: CheckoutServiceInstance['deinitializePayment'];
     initializePayment: CheckoutServiceInstance['initializePayment'];
     onUnhandledError?(error: Error): void;
 }
 
-export const CulqiPaymentMethod: FunctionComponent<Props> = (props) => {
-    const { method } = props;
-    
-        console.log(method);
+const CulqiPaymentMethod: FunctionComponent<CulqiPaymentMethodProps> = ({
+    initializePayment,
+    method,
+}) => {
+    const initializeCulqiPayment = useCallback(
+        (options) =>
+            initializePayment({
+                ...options,
+                culqi: {
+                    container: `${method.id}`,
+                },
+            }),
+        [initializePayment, method.id],
+    );
 
     return null;
 };
+export default CulqiPaymentMethod;

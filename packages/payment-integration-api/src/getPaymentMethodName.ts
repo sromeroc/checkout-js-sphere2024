@@ -76,6 +76,7 @@ enum PaymentMethodId {
     StripeUPE = 'stripeupe',
     WorldpayAccess = 'worldpayaccess',
     Zip = 'zip',
+    Culqi = 'culqi'
 }
 
 /**
