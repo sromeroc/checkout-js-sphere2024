@@ -45,9 +45,6 @@ const CulqiAccion: React.FC<Props> = (props) => {
             const city = checkoutData.billingAddress?.city
             const countryCode = checkoutData.billingAddress?.countryCode
 
-            // Add Culqi public key
-            window.Culqi.publicKey = "pk_test_986ab1b486ddd58f";
-
             // Define order data
             const orderData = {
                 amount,
@@ -166,11 +163,6 @@ const CulqiAccion: React.FC<Props> = (props) => {
                     };
                     // Add the culqi function 
                     window.culqi = culqi;
-
-                    // Pending
-                    if (window.Culqi) {
-                        window.Culqi.open()
-                    }
                 })
                 .catch(error => console.error(`ERROR ${createOrderUrl}:`, error));
         }
@@ -182,18 +174,9 @@ const CulqiAccion: React.FC<Props> = (props) => {
     useEffect(() => {
         console.log('Use window:', props.method);
         // submitOrder(checkoutData)
-        // Include Culqi Checkout
-        const script = document.createElement('script');
-        script.src = "https://checkout.culqi.com/js/v4";
-        script.async = true;
-        script.onload = onCulqiLoad;
 
-        // Add script to the body
-        document.body.appendChild(script);
+        onCulqiLoad();
 
-        return () => {
-            document.body.removeChild(script);
-        };
     }, [checkoutData]);
 
     return null;
