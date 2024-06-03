@@ -1,5 +1,4 @@
 import { useEffect } from 'react';
-import { noop } from 'lodash';
 import { CheckoutService, PaymentMethod } from '@bigcommerce/checkout-sdk';
 import { useCheckout } from "@bigcommerce/checkout/payment-integration-api";
 
@@ -173,29 +172,9 @@ const CulqiAccion: React.FC<Props> = (props) => {
     }
 
     useEffect(() => {
-        const initializeCulqiPayment = async () => {
-            const {
-                initializePayment,
-                method,
-                onUnhandledError = noop,
-            } = props;
-            
-            try {
-                await initializePayment({
-                    gatewayId: method.gateway,
-                    methodId: method.id,
-                });
-    
-            } catch (error) {
-                onUnhandledError(error);
-            }
-        }
-        
-        // submitOrder(checkoutData)
+
         console.log('Use window:', props.method);
-        // initializeCulqiPayment()
-        onCulqiLoad();
-        
+        onCulqiLoad();   
     }, [checkoutData]);
 
     return null;
