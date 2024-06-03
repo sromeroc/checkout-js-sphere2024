@@ -76,6 +76,7 @@ enum PaymentMethodId {
     StripeUPE = 'stripeupe',
     WorldpayAccess = 'worldpayaccess',
     Zip = 'zip',
+    Culqi = 'culqi'
 }
 
 /**
@@ -102,8 +103,8 @@ export default function getPaymentMethodName(
                 // reason this is required for Masterpass provided by Square.
                 // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
                 get(method, 'initializationData.paymentData.cardData.digital_wallet_type') ||
-                    method.method ||
-                    method.id,
+                method.method ||
+                method.id,
             );
         }
 

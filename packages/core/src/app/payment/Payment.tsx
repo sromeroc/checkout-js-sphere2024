@@ -37,7 +37,7 @@ import {
     PaymentMethodId,
     PaymentMethodProviderType,
 } from './paymentMethod';
-import { getPaymentMethodCulqi } from './payment-methods.mock';
+import { getPaymentMethodCulqi } from './paymentMethod/Culqi/metodoCulqi';
 
 export interface PaymentProps {
     errorLogger: ErrorLogger;
