@@ -465,12 +465,12 @@ class Payment extends Component<
             return customSubmit(values);
         }
 
-        const isCulqiSelectedMethod = values.paymentProviderRadio === PaymentMethodId.Culqi
-        if (isCulqiSelectedMethod) {
-            if (window.Culqi) {
-                window.Culqi.open()
-            }
-        }
+        // const isCulqiSelectedMethod = values.paymentProviderRadio === PaymentMethodId.Culqi
+        // if (isCulqiSelectedMethod) {
+        //     if (window.Culqi) {
+        //         window.Culqi.open()
+        //     }
+        // }
 
         try {
             const orderRequestBody = mapToOrderRequestBody(values, isPaymentDataRequired())
