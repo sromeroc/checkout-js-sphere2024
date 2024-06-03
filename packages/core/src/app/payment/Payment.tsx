@@ -466,11 +466,11 @@ class Payment extends Component<
         }
 
         const isCulqiSelectedMethod = values.paymentProviderRadio === PaymentMethodId.Culqi
-        // if (isCulqiSelectedMethod) {
-        //     if (window.Culqi) {
-        //         window.Culqi.open()
-        //     }
-        // }
+        if (isCulqiSelectedMethod) {
+            if (window.Culqi) {
+                window.Culqi.open()
+            }
+        }
 
         try {
             const orderRequestBody = isCulqiSelectedMethod ? {} : mapToOrderRequestBody(values, isPaymentDataRequired())
