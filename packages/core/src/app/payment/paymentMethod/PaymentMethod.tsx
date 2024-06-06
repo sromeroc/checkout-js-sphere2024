@@ -95,8 +95,6 @@ const PaymentMethodComponent: FunctionComponent<
         return <PPSDKPaymentMethod {...props} />;
     }
 
-
-
     if (method.id === PaymentMethodId.SquareV2) {
         return <SquarePaymentMethod {...props} />;
     }
