@@ -482,6 +482,7 @@ class Payment extends Component<
 
             onSubmit(order?.orderId);
         } catch (error) {
+            console.error('Submit order error:', error);
             analyticsTracker.paymentRejected();
 
             if (isErrorWithType(error) && error.type === 'payment_method_invalid') {
