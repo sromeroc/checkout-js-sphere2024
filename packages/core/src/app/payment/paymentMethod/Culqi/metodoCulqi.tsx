@@ -12,7 +12,7 @@ export function getPaymentMethodCulqi(): PaymentMethod {
             testMode: true
         },
         supportedCards: [],
-        type: "PAYMENT_TYPE_CULQI",
+        type: "PAYMENT_TYPE_API",
         logoUrl: "",
         initializationStrategy: {
             type: "none"
