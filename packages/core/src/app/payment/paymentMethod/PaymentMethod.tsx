@@ -82,16 +82,15 @@ const PaymentMethodComponent: FunctionComponent<
     PaymentMethodProps & WithCheckoutPaymentMethodProps
 > = (props) => {
     const { method } = props;
+    console.log('Selected method: ', method);
 
     // metodo de pago culqi
     if (method.id === PaymentMethodId.Culqi) {
-        console.log("Culqi: " + method.method + " type: " + method.type + " ID: " + method.id);
         return <CulqiAccion {...props} />;
     }
 
     // metodo de pago mercado pago 
     if (method.type === PaymentMethodProviderType.PPSDK) {
-        console.log("PPSDK: " + method.method + " type: " + method.type + " ID: " + method.id);
         return <PPSDKPaymentMethod {...props} />;
     }
 
